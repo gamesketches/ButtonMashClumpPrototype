@@ -25,7 +25,7 @@ public class InputManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		// This will probably be better as a GetKeyUp or Down
-		if(Input.GetAxis(fireAxis) != 0 && shotCooldown <= 0) {
+		if(Input.GetButtonUp(fireAxis) && shotCooldown <= 0) {
 			InterpretInputs();
 			for(int i = 0; i < mashBufferSize; i++){
 				mashBuffer.SetValue('*', i);
@@ -33,10 +33,10 @@ public class InputManager : MonoBehaviour {
 			bufferIter = 0;
 			return;
 		}
-		if(Input.GetAxis(buttonA) != 0) {
+		if(Input.GetButtonUp(buttonA)) {
 			mashBuffer.SetValue('A', bufferIter);
 		}
-		else if(Input.GetAxis(buttonB) != 0) {
+		else if(Input.GetButtonUp(buttonB)) {
 			mashBuffer.SetValue('B', bufferIter);
 		}
 		// Hell yeah ternaries
@@ -46,6 +46,7 @@ public class InputManager : MonoBehaviour {
 
 	void InterpretInputs() {
 		// Do some stuff here
+		Debug.Log("Fire!");
 		for(int i = 0; i < mashBufferSize; i++){
 			Debug.Log(mashBuffer[i]);
 		}
