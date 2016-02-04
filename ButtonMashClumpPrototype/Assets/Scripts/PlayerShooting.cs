@@ -6,7 +6,7 @@ public class PlayerShooting : MonoBehaviour {
 
 	void Update() {
 		if(Input.GetKeyDown(KeyCode.Space)) {
-			Shoot(0, 0.0f, 20.0f);
+			Shoot(0, 40.0f, 20.0f);
 		}
 	}
 

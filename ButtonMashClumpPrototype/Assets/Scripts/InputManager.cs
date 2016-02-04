@@ -13,6 +13,8 @@ public class InputManager : MonoBehaviour {
 	private char[] mashBuffer;
 	private int bufferIter;
 
+	public GameObject basicBulletPrefab;
+
 	// Use this for initialization
 	void Start () {
 		// BPM to frames conversion is (60 / BPM) * F where F is frames per second
@@ -46,6 +48,20 @@ public class InputManager : MonoBehaviour {
 
 	void InterpretInputs() {
 		// Do some stuff here
+		Rigidbody2D bullet;
+		float angle = 0.0f;
+		for(int i = 0; i < mashBufferSize; i++){
+			if(mashBuffer[i] == 'A') {
+				angle += 10.0f;
+			}
+			else if(mashBuffer[i] == 'B') {
+				angle -= 10.0f;
+			}
+		}
+		bullet = ((GameObject)Instantiate (basicBulletPrefab, transform.position, 
+			Quaternion.Euler (0.0f, 0.0f, angle))).GetComponent<Rigidbody2D> ();
+
+		bullet.velocity = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad)) * 10;
 		Debug.Log("Fire!");
 		for(int i = 0; i < mashBufferSize; i++){
 			Debug.Log(mashBuffer[i]);
