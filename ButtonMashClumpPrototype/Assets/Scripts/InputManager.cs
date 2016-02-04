@@ -46,9 +46,30 @@ public class InputManager : MonoBehaviour {
 
 	void InterpretInputs() {
 		// Do some stuff here
+		Rigidbody2D rb;
+		rb = GetComponent<Rigidbody2D>();
+
+		InputsEqualDirection(rb);
 		Debug.Log("Fire!");
 		for(int i = 0; i < mashBufferSize; i++){
 			Debug.Log(mashBuffer[i]);
 		}
 	}
+
+	void InputsEqualDirection(Rigidbody2D rb) {
+		int horis = 0;
+		int verts = 0;
+
+		for(int i = 0; i < mashBufferSize; i++) {
+			if(mashBuffer[i] == 'A') {
+				horis++;
+			}
+			else if(mashBuffer[i] == 'B') {
+				verts++;
+			}
+		}
+
+		rb.velocity = (new Vector2(horis, verts)).normalized * 10;
+	}
+
 }
