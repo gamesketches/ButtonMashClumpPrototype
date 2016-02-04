@@ -49,11 +49,12 @@ public class InputManager : MonoBehaviour {
 	void InterpretInputs() {
 		// Do some stuff here
 		//InputsEqualAngle();
-		InputEqualsSets();
+		//InputEqualsSets();
+		InputPatterns();
 		Debug.Log("Fire!");
-		for(int i = 0; i < mashBufferSize; i++){
+		/*for(int i = 0; i < mashBufferSize; i++){
 			Debug.Log(mashBuffer[i]);
-		}
+		}*/
 	}
 
 	void InputsEqualAngle() {
@@ -100,6 +101,88 @@ public class InputManager : MonoBehaviour {
 				Quaternion.Euler (0.0f, 0.0f, 90.0f - (10.0f * i)))).GetComponent<Rigidbody2D> ();
 			bullet.velocity = new Vector2(Mathf.Cos((90.0f - (10.0f * i)) * Mathf.Deg2Rad), Mathf.Sin((90.0f -10.0f * i) * Mathf.Deg2Rad)) * 10;
 
+		}
+	}
+
+	void InputPatterns() {
+		string pattern = "";
+
+		string aa = "AA";
+		string bb = "BB";
+		string ab = "AB";
+		string ba = "BA";
+
+		for(int i = 0; i < mashBufferSize;i++){
+			pattern = string.Concat(mashBuffer[i].ToString(), mashBuffer[++i].ToString());
+			if(pattern.CompareTo(aa) == 1){
+				Rigidbody2D bullet;
+
+				bullet = ((GameObject)Instantiate (basicBulletPrefab, transform.position, 
+					Quaternion.Euler (0.0f, 0.0f, 10.0f))).GetComponent<Rigidbody2D> ();
+				bullet.velocity = new Vector2(Mathf.Cos(10.0f * Mathf.Deg2Rad), Mathf.Sin(10.0f * Mathf.Deg2Rad)) * 10;
+
+				bullet = ((GameObject)Instantiate (basicBulletPrefab, transform.position, 
+					Quaternion.Euler (0.0f, 0.0f, 0.0f))).GetComponent<Rigidbody2D> ();
+
+				bullet.velocity = new Vector2(Mathf.Cos(0.0f * Mathf.Deg2Rad), Mathf.Sin(0.0f * Mathf.Deg2Rad)) * 10;
+
+				bullet = ((GameObject)Instantiate (basicBulletPrefab, transform.position, 
+					Quaternion.Euler (0.0f, 0.0f, -10.0f))).GetComponent<Rigidbody2D> ();
+
+				bullet.velocity = new Vector2(Mathf.Cos(-10.0f * Mathf.Deg2Rad), Mathf.Sin(-10.0f * Mathf.Deg2Rad)) * 10;
+			}
+
+			else if(pattern.CompareTo(bb) == 1) {
+				Rigidbody2D bullet;
+
+				bullet = ((GameObject)Instantiate (basicBulletPrefab, transform.position, 
+					Quaternion.Euler (0.0f, 0.0f, 100.0f))).GetComponent<Rigidbody2D> ();
+				bullet.velocity = new Vector2(Mathf.Cos(100.0f * Mathf.Deg2Rad), Mathf.Sin(100.0f * Mathf.Deg2Rad)) * 10;
+
+				bullet = ((GameObject)Instantiate (basicBulletPrefab, transform.position, 
+					Quaternion.Euler (0.0f, 0.0f, 90.0f))).GetComponent<Rigidbody2D> ();
+
+				bullet.velocity = new Vector2(Mathf.Cos(90.0f * Mathf.Deg2Rad), Mathf.Sin(90.0f * Mathf.Deg2Rad)) * 10;
+
+				bullet = ((GameObject)Instantiate (basicBulletPrefab, transform.position, 
+					Quaternion.Euler (0.0f, 0.0f, 80.0f))).GetComponent<Rigidbody2D> ();
+
+				bullet.velocity = new Vector2(Mathf.Cos(80.0f * Mathf.Deg2Rad), Mathf.Sin(80.0f * Mathf.Deg2Rad)) * 10;
+			}
+			else if(pattern.CompareTo(ab) == 1) {
+				Rigidbody2D bullet;
+
+				bullet = ((GameObject)Instantiate (basicBulletPrefab, transform.position, 
+					Quaternion.Euler (0.0f, 0.0f, -90.0f))).GetComponent<Rigidbody2D> ();
+				bullet.velocity = new Vector2(Mathf.Cos(-90.0f * Mathf.Deg2Rad), Mathf.Sin(-90.0f * Mathf.Deg2Rad)) * 10;
+
+				bullet = ((GameObject)Instantiate (basicBulletPrefab, transform.position, 
+					Quaternion.Euler (0.0f, 0.0f, -80.0f))).GetComponent<Rigidbody2D> ();
+
+				bullet.velocity = new Vector2(Mathf.Cos(-80.0f * Mathf.Deg2Rad), Mathf.Sin(-80.0f * Mathf.Deg2Rad)) * 10;
+
+				bullet = ((GameObject)Instantiate (basicBulletPrefab, transform.position, 
+					Quaternion.Euler (0.0f, 0.0f, -100.0f))).GetComponent<Rigidbody2D> ();
+
+				bullet.velocity = new Vector2(Mathf.Cos(-100.0f * Mathf.Deg2Rad), Mathf.Sin(-100.0f * Mathf.Deg2Rad)) * 10;
+			}
+			else if(pattern.CompareTo(ba) == 1){
+				Rigidbody2D bullet;
+
+				bullet = ((GameObject)Instantiate (basicBulletPrefab, transform.position, 
+					Quaternion.Euler (0.0f, 0.0f, 180.0f))).GetComponent<Rigidbody2D> ();
+				bullet.velocity = new Vector2(Mathf.Cos(180.0f * Mathf.Deg2Rad), Mathf.Sin(180.0f * Mathf.Deg2Rad)) * 10;
+
+				bullet = ((GameObject)Instantiate (basicBulletPrefab, transform.position, 
+					Quaternion.Euler (0.0f, 0.0f, 190.0f))).GetComponent<Rigidbody2D> ();
+
+				bullet.velocity = new Vector2(Mathf.Cos(190.0f * Mathf.Deg2Rad), Mathf.Sin(190.0f * Mathf.Deg2Rad)) * 10;
+
+				bullet = ((GameObject)Instantiate (basicBulletPrefab, transform.position, 
+					Quaternion.Euler (0.0f, 0.0f, 200.0f))).GetComponent<Rigidbody2D> ();
+
+				bullet.velocity = new Vector2(Mathf.Cos(200.0f * Mathf.Deg2Rad), Mathf.Sin(200.0f * Mathf.Deg2Rad)) * 10;
+			}
 		}
 	}
 }
