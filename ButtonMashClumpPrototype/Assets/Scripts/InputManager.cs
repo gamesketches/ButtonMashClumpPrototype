@@ -184,6 +184,8 @@ public class InputManager : MonoBehaviour {
 
 				bullet.velocity = new Vector2(Mathf.Cos(200.0f * Mathf.Deg2Rad), Mathf.Sin(200.0f * Mathf.Deg2Rad)) * 10;
 			}
+		}
+	}
 
 	void InputEqualsNumber() {
 		int bulletNumber = 0;
