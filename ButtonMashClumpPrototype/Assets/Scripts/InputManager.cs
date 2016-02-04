@@ -51,6 +51,7 @@ public class InputManager : MonoBehaviour {
 		//InputsEqualAngle();
 		//InputEqualsSets();
 		InputPatterns();
+		InputEqualsNumber();
 		Debug.Log("Fire!");
 		/*for(int i = 0; i < mashBufferSize; i++){
 			Debug.Log(mashBuffer[i]);
@@ -183,6 +184,32 @@ public class InputManager : MonoBehaviour {
 
 				bullet.velocity = new Vector2(Mathf.Cos(200.0f * Mathf.Deg2Rad), Mathf.Sin(200.0f * Mathf.Deg2Rad)) * 10;
 			}
+
+	void InputEqualsNumber() {
+		int bulletNumber = 0;
+		for(int i = 0; i < mashBufferSize; i++) {
+			if(mashBuffer [i] != '*') {
+				bulletNumber++;
+			}
+		}
+
+		if(bulletNumber % 2 != 0) {
+			bulletNumber++;
+		}
+		float angleDifference = 90.0f / bulletNumber;
+		Rigidbody2D bullet;
+		bullet = ((GameObject)Instantiate (basicBulletPrefab, transform.position, 
+			Quaternion.Euler(0.0f, 0.0f, 0.0f))).GetComponent<Rigidbody2D> ();
+		bullet.velocity = new Vector2(Mathf.Cos(0.0f), Mathf.Sin(0.0f)) * 10;
+		for(int i = 0; i < bulletNumber / 2; i++) {
+			float degrees = angleDifference + i * angleDifference;
+			float radians = degrees * Mathf.Deg2Rad;
+			bullet = ((GameObject)Instantiate (basicBulletPrefab, transform.position, 
+				Quaternion.Euler(0.0f, 0.0f, degrees))).GetComponent<Rigidbody2D> ();
+			bullet.velocity = new Vector2(Mathf.Cos(radians), Mathf.Sin(radians)) * 10;
+			bullet = ((GameObject)Instantiate (basicBulletPrefab, transform.position, 
+				Quaternion.Euler(0.0f, 0.0f, -degrees))).GetComponent<Rigidbody2D> ();
+			bullet.velocity = new Vector2(Mathf.Cos(-radians), Mathf.Sin(-radians)) * 10;
 		}
 	}
 }
