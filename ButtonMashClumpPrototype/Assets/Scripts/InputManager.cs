@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class InputManager : MonoBehaviour {
 
@@ -190,28 +191,36 @@ public class InputManager : MonoBehaviour {
 	void InputEqualsNumber() {
 		int bulletNumber = 0;
 		for(int i = 0; i < mashBufferSize; i++) {
-			if(mashBuffer [i] != '*') {
+			if(mashBuffer[i] != '*') {
 				bulletNumber++;
 			}
 		}
-
-		if(bulletNumber % 2 != 0) {
-			bulletNumber++;
+		float angleDifference;
+		List<float> bulletAngles = new List<float>();
+		if(bulletNumber == 0) {
+			bulletAngles.Add(0.0f);
+		} else if(bulletNumber % 2 == 0) {
+			angleDifference = 90.0f / bulletNumber;
+			for(int i = 0; i < bulletNumber / 2; i++) {
+				bulletAngles.Add(angleDifference);
+				bulletAngles.Add(-angleDifference);
+			}
+		} else {
+			Debug.Log("Uneven");
+			angleDifference = 90.0f / (bulletNumber - 1);
+			bulletAngles.Add(0.0f);
+			for(int i = 1; i < bulletNumber - 1; i++) {
+				bulletAngles.Add(angleDifference * i);
+				bulletAngles.Add(-angleDifference * i);
+			}
 		}
-		float angleDifference = 90.0f / bulletNumber;
 		Rigidbody2D bullet;
-		bullet = ((GameObject)Instantiate (basicBulletPrefab, transform.position, 
-			Quaternion.Euler(0.0f, 0.0f, 0.0f))).GetComponent<Rigidbody2D> ();
-		bullet.velocity = new Vector2(Mathf.Cos(0.0f), Mathf.Sin(0.0f)) * 10;
-		for(int i = 0; i < bulletNumber / 2; i++) {
-			float degrees = angleDifference + i * angleDifference;
+		for(int i = 0; i < bulletAngles.Count; i++) {
+			float degrees = bulletAngles[i];
 			float radians = degrees * Mathf.Deg2Rad;
 			bullet = ((GameObject)Instantiate (basicBulletPrefab, transform.position, 
 				Quaternion.Euler(0.0f, 0.0f, degrees))).GetComponent<Rigidbody2D> ();
 			bullet.velocity = new Vector2(Mathf.Cos(radians), Mathf.Sin(radians)) * 10;
-			bullet = ((GameObject)Instantiate (basicBulletPrefab, transform.position, 
-				Quaternion.Euler(0.0f, 0.0f, -degrees))).GetComponent<Rigidbody2D> ();
-			bullet.velocity = new Vector2(Mathf.Cos(-radians), Mathf.Sin(-radians)) * 10;
 		}
 	}
 }
