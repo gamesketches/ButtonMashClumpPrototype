@@ -15,6 +15,7 @@ public class InputManager : MonoBehaviour {
 	private int bufferIter;
 
 	public GameObject basicBulletPrefab;
+	public GameObject meleeAttackPrefab;
 
 	// Use this for initialization
 	void Start () {
@@ -51,8 +52,9 @@ public class InputManager : MonoBehaviour {
 		// Do some stuff here
 		//InputsEqualAngle();
 		//InputEqualsSets();
-		InputPatterns();
-		InputEqualsNumber();
+		//InputPatterns();
+		//InputEqualsNumber();
+		InputMeleeAttacks();
 		Debug.Log("Fire!");
 		/*for(int i = 0; i < mashBufferSize; i++){
 			Debug.Log(mashBuffer[i]);
@@ -62,14 +64,10 @@ public class InputManager : MonoBehaviour {
 	void InputsEqualAngle() {
 		Rigidbody2D bullet;
 		float angle = 0.0f;
-		for(int i = 0; i < mashBufferSize; i++){
-			if(mashBuffer[i] == 'A') {
-				angle += 10.0f;
-			}
-			else if(mashBuffer[i] == 'B') {
-				angle -= 10.0f;
-			}
-		}
+		int numAs, numBs;
+		TallyInputs(out numAs, out numBs);
+		angle += 10.0f * numAs;
+		angle -= 10.0f * numBs;
 		bullet = ((GameObject)Instantiate (basicBulletPrefab, transform.position, 
 			Quaternion.Euler (0.0f, 0.0f, angle))).GetComponent<Rigidbody2D> ();
 
@@ -221,6 +219,38 @@ public class InputManager : MonoBehaviour {
 			bullet = ((GameObject)Instantiate (basicBulletPrefab, transform.position, 
 				Quaternion.Euler(0.0f, 0.0f, degrees))).GetComponent<Rigidbody2D> ();
 			bullet.velocity = new Vector2(Mathf.Cos(radians), Mathf.Sin(radians)) * 10;
+		}
+	}
+
+	void InputMeleeAttacks() {
+		int aCount, bCount;
+
+		TallyInputs(out aCount, out bCount);
+
+		float width = aCount * 0.3f;
+		float height = bCount * 0.3f;
+
+		// dem Lupin III references
+		GameObject monkeyPunch;
+
+		monkeyPunch = ((GameObject)Instantiate(meleeAttackPrefab, transform.position,
+			Quaternion.Euler(0.0f, 0.0f, 0.0f)));
+
+		monkeyPunch.transform.localScale = new Vector3(width, height, 0);
+
+		Destroy(monkeyPunch, 0.5f);
+	}
+		
+	void TallyInputs(out int num1, out int num2) {
+		num1 = 0;
+		num2 = 0;
+		for(int i = 0; i < mashBufferSize; i++) {
+			if(mashBuffer[i] == 'A') {
+				num1++;
+			}
+			else if(mashBuffer[i] == 'B') {
+				num2++;
+			}
 		}
 	}
 }
