@@ -53,8 +53,8 @@ public class InputManager : MonoBehaviour {
 		//InputsEqualAngle();
 		//InputEqualsSets();
 		//InputPatterns();
-		//InputEqualsNumber();
-		InputMeleeAttacks();
+		InputEqualsNumber();
+		//InputMeleeAttacks();
 		Debug.Log("Fire!");
 		/*for(int i = 0; i < mashBufferSize; i++){
 			Debug.Log(mashBuffer[i]);
@@ -193,6 +193,7 @@ public class InputManager : MonoBehaviour {
 				bulletNumber++;
 			}
 		}
+		//Debug.Log("Bullet Number: " + bulletNumber);
 		float angleDifference;
 		List<float> bulletAngles = new List<float>();
 		if(bulletNumber == 0) {
@@ -200,16 +201,15 @@ public class InputManager : MonoBehaviour {
 		} else if(bulletNumber % 2 == 0) {
 			angleDifference = 90.0f / bulletNumber;
 			for(int i = 0; i < bulletNumber / 2; i++) {
-				bulletAngles.Add(angleDifference);
-				bulletAngles.Add(-angleDifference);
+				bulletAngles.Add(angleDifference * (i + 1));
+				bulletAngles.Add(-angleDifference * (i + 1));
 			}
 		} else {
-			Debug.Log("Uneven");
 			angleDifference = 90.0f / (bulletNumber - 1);
 			bulletAngles.Add(0.0f);
-			for(int i = 1; i < bulletNumber - 1; i++) {
-				bulletAngles.Add(angleDifference * i);
-				bulletAngles.Add(-angleDifference * i);
+			for(int i = 0; i < (bulletNumber - 1) / 2; i++) {
+				bulletAngles.Add(angleDifference * (i + 1));
+				bulletAngles.Add(-angleDifference * (i + 1));
 			}
 		}
 		Rigidbody2D bullet;
