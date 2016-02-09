@@ -8,13 +8,16 @@ public class InputManager : MonoBehaviour {
 	public string buttonA;
 	public string buttonB;
 	public int mashBufferSize;
-
+    public int frameTimeout;
+    
 	public int ShotsPerMinute;
 	private int shotCooldown;
 	private char[] mashBuffer;
 	private int bufferIter;
 
-	public GameObject basicBulletPrefab;
+    private float shotInterval;
+
+    public GameObject basicBulletPrefab;
 	public GameObject meleeAttackPrefab;
 
 	// Use this for initialization
@@ -24,13 +27,18 @@ public class InputManager : MonoBehaviour {
 		shotCooldown = Mathf.RoundToInt((60.0f / ShotsPerMinute) * 60.0f);
 		mashBuffer = new char[mashBufferSize];
 		bufferIter = 0;
+        frameTimeout = 45;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		// This will probably be better as a GetKeyUp or Down
-		if(Input.GetButtonUp(fireAxis) && shotCooldown <= 0) {
-			InterpretInputs();
+        //print("time framecount" + Time.frameCount);
+        // This will probably be better as a GetKeyUp or Down
+        // if(Input.GetButtonUp(fireAxis) && shotCooldown <= 0) {
+        shotInterval = (Time.frameCount % frameTimeout);
+        if (shotInterval == 0)
+        {
+            InterpretInputs();
 			for(int i = 0; i < mashBufferSize; i++){
 				mashBuffer.SetValue('*', i);
 			}
