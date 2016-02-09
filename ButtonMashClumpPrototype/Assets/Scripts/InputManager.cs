@@ -50,12 +50,20 @@ public class InputManager : MonoBehaviour {
 
 	void InterpretInputs() {
 		// Do some stuff here
+		// each A increases angle by 10%, B reduces by 10%
 		//InputsEqualAngle();
+		// A sets a shot at 0 degrees, adds another projectile for each A.
+		// B is the same thing but starting at 90 degrees
 		//InputEqualsSets();
+		// Each two set of characters corresponds to a different set of projectiles
 		//InputPatterns();
+		// Counts all inputs equally, number of projectiles is tied to num inputs
 		InputEqualsNumber();
+		// Another implementation of other
 		//InputEqualsNumberAlt();
+		// dummy function
 		//InputEqualsProjectileDecay()
+		// A equals width, B equals height
 		//InputMeleeAttacks();
 		//Debug.Log("Fire!");
 		/*for(int i = 0; i < mashBufferSize; i++){
