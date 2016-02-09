@@ -50,12 +50,13 @@ public class InputManager : MonoBehaviour {
 
 	void InterpretInputs() {
 		// Do some stuff here
-		InputsEqualAngle();
+		//InputsEqualAngle();
 		//InputEqualsSets();
 		//InputPatterns();
 		//InputEqualsNumber();
+		InputEqualsNumberAlt();
 		//InputMeleeAttacks();
-		Debug.Log("Fire!");
+		//Debug.Log("Fire!");
 		/*for(int i = 0; i < mashBufferSize; i++){
 			Debug.Log(mashBuffer[i]);
 		}*/
@@ -136,7 +137,6 @@ public class InputManager : MonoBehaviour {
 				bulletNumber++;
 			}
 		}
-		//Debug.Log("Bullet Number: " + bulletNumber);
 		float angleDifference;
 		List<float> bulletAngles = new List<float>();
 		if(bulletNumber == 0) {
@@ -149,6 +149,40 @@ public class InputManager : MonoBehaviour {
 			}
 		} else {
 			angleDifference = 90.0f / (bulletNumber - 1);
+			bulletAngles.Add(0.0f);
+			for(int i = 0; i < (bulletNumber - 1) / 2; i++) {
+				bulletAngles.Add(angleDifference * (i + 1));
+				bulletAngles.Add(-angleDifference * (i + 1));
+			}
+		}
+		Rigidbody2D bullet;
+		for(int i = 0; i < bulletAngles.Count; i++) {
+			float degrees = bulletAngles[i];
+			float radians = degrees * Mathf.Deg2Rad;
+			bullet = ((GameObject)Instantiate (basicBulletPrefab, transform.position, 
+				Quaternion.Euler(0.0f, 0.0f, degrees))).GetComponent<Rigidbody2D> ();
+			bullet.velocity = new Vector2(Mathf.Cos(radians), Mathf.Sin(radians)) * 10;
+		}
+	}
+
+	void InputEqualsNumberAlt() {
+		int bulletNumber = 0;
+		for(int i = 0; i < mashBufferSize; i++) {
+			if(mashBuffer[i] != '*') {
+				bulletNumber++;
+			}
+		}
+		Debug.Log("Bullet Number: " + bulletNumber);
+		float angleDifference = 90.0f / (mashBufferSize / 2.0f);
+		List<float> bulletAngles = new List<float>();
+		if(bulletNumber == 0) {
+			bulletAngles.Add(0.0f);
+		} else if(bulletNumber % 2 == 0) {
+			for(int i = 0; i < bulletNumber / 2; i++) {
+				bulletAngles.Add(angleDifference * (i + 1));
+				bulletAngles.Add(-angleDifference * (i + 1));
+			}
+		} else {
 			bulletAngles.Add(0.0f);
 			for(int i = 0; i < (bulletNumber - 1) / 2; i++) {
 				bulletAngles.Add(angleDifference * (i + 1));
