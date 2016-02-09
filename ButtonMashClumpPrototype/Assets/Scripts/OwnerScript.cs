@@ -6,14 +6,13 @@ public class OwnerScript : MonoBehaviour {
 	// This script exists entirely for this line lulz
 	public GameObject mother;
 
-	// Use this for initialization
-	void Start () {
-	
+	void OnTriggerEnter2D(Collider2D collider) {
+		string layerMask = LayerMask.LayerToName(collider.gameObject.layer);
+		if(layerMask == "Players") {
+			if(collider.gameObject != mother) {
+				Debug.Log("TRIGGER WARNING!");
+			}
+			//Debug.Log("TRIGGER WARNING!");
+		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
 }
