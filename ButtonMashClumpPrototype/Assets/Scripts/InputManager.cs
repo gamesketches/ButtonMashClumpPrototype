@@ -198,10 +198,15 @@ public class InputManager : MonoBehaviour {
 	}
 
 	void createBullet(float angle) {
-		Rigidbody2D bullet;
+		GameObject bullet;
+		Rigidbody2D bulletRB;
 		bullet = ((GameObject)Instantiate (basicBulletPrefab, transform.position, 
-			Quaternion.Euler (0.0f, 0.0f, angle))).GetComponent<Rigidbody2D> ();
+			Quaternion.Euler (0.0f, 0.0f, angle)));
+		bulletRB = bullet.GetComponent<Rigidbody2D> ();
 
-		bullet.velocity = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad)) * 10;
+		bulletRB.velocity = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad)) * 10;
+
+		OwnerScript script = bullet.GetComponent<OwnerScript>();
+		script.mother = gameObject;
 	}
 }
