@@ -55,6 +55,7 @@ public class InputManager : MonoBehaviour {
 		//InputPatterns();
 		InputEqualsNumber();
 		//InputEqualsNumberAlt();
+		//InputEqualsProjectileDecay()
 		//InputMeleeAttacks();
 		//Debug.Log("Fire!");
 		/*for(int i = 0; i < mashBufferSize; i++){
@@ -188,6 +189,10 @@ public class InputManager : MonoBehaviour {
 		for(int i = 0; i < bulletAngles.Count; i++) {
 			createBullet(bulletAngles[i]);
 		}
+	}
+
+	void InputEqualsProjectileDecay() {
+		//TO DO
 	}
 
 	void InputMeleeAttacks() {
