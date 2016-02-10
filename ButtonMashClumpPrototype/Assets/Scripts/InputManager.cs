@@ -14,6 +14,8 @@ public class InputManager : MonoBehaviour {
 	private char[] mashBuffer;
 	private int bufferIter;
 
+	private int interpreterIndex;
+
 	public GameObject basicBulletPrefab;
 	public GameObject meleeAttackPrefab;
 
@@ -46,9 +48,44 @@ public class InputManager : MonoBehaviour {
 		// Hell yeah ternaries
 		bufferIter = bufferIter >= mashBufferSize - 1 ? 0 : bufferIter + 1;
 		shotCooldown--;
+
+		if(Input.GetButtonDown("LeftScroll")) {
+			interpreterIndex = ((interpreterIndex - 1) + 6) % 6;
+		} else if(Input.GetButtonDown("RightScroll")) {
+			interpreterIndex = (interpreterIndex + 1) % 6;
+		}
 	}
 
 	void InterpretInputs() {
+		switch(interpreterIndex) {
+			case 0:
+				// each A increases angle by 10%, B reduces by 10%
+				InputsEqualAngle();
+				break;
+			case 1:
+				// A sets a shot at 0 degrees, adds another projectile for each A.
+				// B is the same thing but starting at 90 degrees
+				InputEqualsSets();
+				break;
+			case 2:
+				// Each two set of characters corresponds to a different set of projectiles
+				InputPatterns();
+				break;
+			case 3:
+				// Counts all inputs equally, number of projectiles is tied to num inputs
+				InputEqualsNumber();
+				break;
+			case 4:
+				// Another implementation of other
+				InputEqualsNumberAlt();
+				break;
+			case 5:
+				// A equals width, B equals height
+				InputMeleeAttacks();
+				break;
+			/*case 6:
+				break;*/
+		}
 		// Do some stuff here
 		// each A increases angle by 10%, B reduces by 10%
 		//InputsEqualAngle();
@@ -58,7 +95,7 @@ public class InputManager : MonoBehaviour {
 		// Each two set of characters corresponds to a different set of projectiles
 		//InputPatterns();
 		// Counts all inputs equally, number of projectiles is tied to num inputs
-		InputEqualsNumber();
+		//InputEqualsNumber();
 		// Another implementation of other
 		//InputEqualsNumberAlt();
 		// dummy function
@@ -164,7 +201,6 @@ public class InputManager : MonoBehaviour {
 				bulletAngles.Add(-angleDifference * (i + 1));
 			}
 		}
-		Rigidbody2D bullet;
 		for(int i = 0; i < bulletAngles.Count; i++) {
 			createBullet(bulletAngles[i]);
 		}
@@ -193,7 +229,6 @@ public class InputManager : MonoBehaviour {
 				bulletAngles.Add(-angleDifference * (i + 1));
 			}
 		}
-		Rigidbody2D bullet;
 		for(int i = 0; i < bulletAngles.Count; i++) {
 			createBullet(bulletAngles[i]);
 		}
