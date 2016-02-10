@@ -4,10 +4,16 @@ using System.Collections.Generic;
 
 public class InputManager : MonoBehaviour {
 
-	public string fireAxis;
+	//public string fireAxis;
 	public string buttonA;
 	public string buttonB;
+	public string buttonC;
+	public string buttonD;
 	public int mashBufferSize;
+
+	public float inputCooldown;
+	private float inputCooldownTimer;
+	private bool mashing;
 
 	public int ShotsPerMinute;
 	private int shotCooldown;
@@ -23,13 +29,16 @@ public class InputManager : MonoBehaviour {
 		// Also: rounding simplicity
 		shotCooldown = Mathf.RoundToInt((60.0f / ShotsPerMinute) * 60.0f);
 		mashBuffer = new char[mashBufferSize];
+		for(int i = 0; i < mashBufferSize; i++){
+			mashBuffer.SetValue('*', i);
+		}
 		bufferIter = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		// This will probably be better as a GetKeyUp or Down
-		if(Input.GetButtonUp(fireAxis) && shotCooldown <= 0) {
+		/*if(Input.GetButtonUp(fireAxis) && shotCooldown <= 0) {
 			InterpretInputs();
 			for(int i = 0; i < mashBufferSize; i++){
 				mashBuffer.SetValue('*', i);
@@ -45,7 +54,36 @@ public class InputManager : MonoBehaviour {
 		}
 		// Hell yeah ternaries
 		bufferIter = bufferIter >= mashBufferSize - 1 ? 0 : bufferIter + 1;
-		shotCooldown--;
+		shotCooldown--;*/
+
+		if(Input.GetButtonDown(buttonA) || Input.GetButtonDown(buttonB) || 
+			Input.GetButtonDown(buttonC) || Input.GetButtonDown(buttonD)) {
+			inputCooldownTimer = inputCooldown;
+			if(!mashing) {
+				mashing = true;
+			}
+			if(Input.GetButtonDown(buttonA)) {
+				mashBuffer.SetValue('A', bufferIter);
+			} else if(Input.GetButtonDown(buttonB)) {
+				mashBuffer.SetValue('B', bufferIter);
+			} else if(Input.GetButtonDown(buttonC)) {
+				mashBuffer.SetValue('C', bufferIter);
+			} else if(Input.GetButtonDown(buttonD)) {
+				mashBuffer.SetValue('D', bufferIter);
+			}
+			bufferIter = bufferIter >= mashBufferSize - 1 ? 0 : bufferIter + 1;
+		} else if(mashing && !Input.GetButton(buttonA) && !Input.GetButton(buttonB) && 
+			!Input.GetButton(buttonC) && !Input.GetButton(buttonD)) {
+			inputCooldownTimer -= Time.deltaTime;
+			if(inputCooldownTimer <= 0.0f) {
+				InterpretInputs();
+				for(int i = 0; i < mashBufferSize; i++){
+					mashBuffer.SetValue('*', i);
+				}
+				bufferIter = 0;
+				mashing = false;
+			}
+		}
 	}
 
 	void InterpretInputs() {
@@ -156,7 +194,6 @@ public class InputManager : MonoBehaviour {
 				bulletAngles.Add(-angleDifference * (i + 1));
 			}
 		}
-		Rigidbody2D bullet;
 		for(int i = 0; i < bulletAngles.Count; i++) {
 			createBullet(bulletAngles[i]);
 		}
@@ -185,7 +222,6 @@ public class InputManager : MonoBehaviour {
 				bulletAngles.Add(-angleDifference * (i + 1));
 			}
 		}
-		Rigidbody2D bullet;
 		for(int i = 0; i < bulletAngles.Count; i++) {
 			createBullet(bulletAngles[i]);
 		}
