@@ -11,8 +11,11 @@ public class OwnerScript : MonoBehaviour {
 		if(layerMask == "Players") {
 			if(collider.gameObject != mother) {
 				Debug.Log("TRIGGER WARNING!");
-			}
-		} else if(layerMask == "Bounds") {
+                Debug.Log("Collider " + collider.name);
+                collider.gameObject.GetComponent<PlayerHealth>().TakeDamage();
+                Destroy(gameObject);
+            }
+        } else if(layerMask == "Bounds") {
 			Destroy(gameObject);
 		}
 	}
