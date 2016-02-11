@@ -67,6 +67,7 @@ public class InputManager : MonoBehaviour {
 		//InputEqualsSets();
 		//InputPatterns();
 		InputEqualsNumber();
+		//InputEqualsNumberInverse();
 		//InputEqualsNumberAlt();
 		//InputEqualsNumberAltAlt();
 		//InputEqualsRandom();
@@ -167,11 +168,58 @@ public class InputManager : MonoBehaviour {
 		}
 		float angleDifference = 90.0f / mashBufferSize;
 		List<float> bulletAngles = new List<float>();
+
 		bulletAngles.Add(baseAngle);
+		if(bulletNumber == mashBufferSize) {
+			bulletAngles.Add(baseAngle + 90.0f);
+			bulletAngles.Add(baseAngle - 90.0f);
+		}
+
 		if(bulletNumber > 1) {
 			for(int i = 0; i < bulletNumber - 1; i++) {
 				bulletAngles.Add(baseAngle + angleDifference * (i + 1));
 				bulletAngles.Add(baseAngle - angleDifference * (i + 1));
+			}
+		}
+		for(int i = 0; i < bulletAngles.Count; i++) {
+			createBullet(bulletAngles[i]);
+		}
+	}
+
+	void InputEqualsNumberInverse() {
+		int bulletNumber = 0;
+		float baseAngle = 0.0f;
+		bool firstButton = false;
+		for(int i = 0; i < mashBufferSize; i++) {
+			if(mashBuffer[i] != '*') {
+				bulletNumber++;
+				if(!firstButton) {
+					firstButton = true;
+					if(mashBuffer[i] == 'A') {
+						baseAngle = 180.0f;
+					} else if(mashBuffer[i] == 'B') {
+						baseAngle = 270.0f;
+					} else if(mashBuffer[i] == 'C') {
+						baseAngle = 0.0f;
+					} else if(mashBuffer[i] == 'D') {
+						baseAngle = 90.0f;
+					}
+				}
+			}
+		}
+		float angleDifference = 90.0f / mashBufferSize;
+		List<float> bulletAngles = new List<float>();
+
+		bulletAngles.Add(baseAngle + 90.0f);
+		bulletAngles.Add(baseAngle - 90.0f);
+		if(bulletNumber == mashBufferSize) {
+			bulletAngles.Add(baseAngle);
+		}
+
+		if(bulletNumber > 1) {
+			for(int i = 0; i < bulletNumber; i++) {
+				bulletAngles.Add(baseAngle + 90.0f - angleDifference * i);
+				bulletAngles.Add(baseAngle - 90.0f + angleDifference * i);
 			}
 		}
 		for(int i = 0; i < bulletAngles.Count; i++) {
