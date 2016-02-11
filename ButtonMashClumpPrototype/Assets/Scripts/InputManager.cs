@@ -60,9 +60,9 @@ public class InputManager : MonoBehaviour {
 		shotCooldown--;
 
 		if(Input.GetButtonDown("LeftScroll")) {
-			interpreterIndex = ((interpreterIndex - 1) + 6) % 6;
+			interpreterIndex = ((interpreterIndex - 1) + 9) % 9;
 		} else if(Input.GetButtonDown("RightScroll")) {
-			interpreterIndex = (interpreterIndex + 1) % 6;
+			interpreterIndex = (interpreterIndex + 1) % 9;
 		}
 	}
 
@@ -90,11 +90,18 @@ public class InputManager : MonoBehaviour {
 				InputEqualsNumberAlt();
 				break;
 			case 5:
+				InputEqualsNumberInverse();
+				break;
+			case 6:
+				InputEqualsNumberAltAlt();
+				break;
+			case 7:
+				InputEqualsRandom();
+				break;
+			case 8:
 				// A equals width, B equals height
 				InputMeleeAttacks();
 				break;
-			/*case 6:
-				break;*/
 		}
 		// Do some stuff here
 		// each A increases angle by 10%, B reduces by 10%
