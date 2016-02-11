@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class InputManager : MonoBehaviour {
 
-	//public string fireAxis;
 	public string buttonA;
 	public string buttonB;
 	public string buttonC;
@@ -15,8 +14,6 @@ public class InputManager : MonoBehaviour {
 	private float inputCooldownTimer;
 	private bool mashing;
 
-	public int ShotsPerMinute;
-	private int shotCooldown;
 	private char[] mashBuffer;
 	private int bufferIter;
 
@@ -25,9 +22,6 @@ public class InputManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		// BPM to frames conversion is (60 / BPM) * F where F is frames per second
-		// Also: rounding simplicity
-		shotCooldown = Mathf.RoundToInt((60.0f / ShotsPerMinute) * 60.0f);
 		mashBuffer = new char[mashBufferSize];
 		for(int i = 0; i < mashBufferSize; i++){
 			mashBuffer.SetValue('*', i);
@@ -37,25 +31,6 @@ public class InputManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		// This will probably be better as a GetKeyUp or Down
-		/*if(Input.GetButtonUp(fireAxis) && shotCooldown <= 0) {
-			InterpretInputs();
-			for(int i = 0; i < mashBufferSize; i++){
-				mashBuffer.SetValue('*', i);
-			}
-			bufferIter = 0;
-			return;
-		}
-		if(Input.GetButtonUp(buttonA)) {
-			mashBuffer.SetValue('A', bufferIter);
-		}
-		else if(Input.GetButtonUp(buttonB)) {
-			mashBuffer.SetValue('B', bufferIter);
-		}
-		// Hell yeah ternaries
-		bufferIter = bufferIter >= mashBufferSize - 1 ? 0 : bufferIter + 1;
-		shotCooldown--;*/
-
 		if(Input.GetButtonDown(buttonA) || Input.GetButtonDown(buttonB) || 
 			Input.GetButtonDown(buttonC) || Input.GetButtonDown(buttonD)) {
 			inputCooldownTimer = inputCooldown;
@@ -94,7 +69,7 @@ public class InputManager : MonoBehaviour {
 		InputEqualsNumber();
 		//InputEqualsNumberAlt();
 		//InputEqualsNumberAltAlt();
-		//InputEqualsProjectileDecay()
+		//InputEqualsRandom();
 		//InputMeleeAttacks();
 		//Debug.Log("Fire!");
 		/*for(int i = 0; i < mashBufferSize; i++){
@@ -103,14 +78,13 @@ public class InputManager : MonoBehaviour {
 	}
 
 	void InputsEqualAngle() {
-		//Rigidbody2D bullet;
 		float angle = 0.0f;
 		int numAs, numBs;
 		TallyInputs(out numAs, out numBs);
 		angle += 10.0f * numAs;
 		angle -= 10.0f * numBs;
 		createBullet(angle);
-		}
+	}
 
 	void InputEqualsSets() {
 		int horis = 0;
@@ -263,8 +237,17 @@ public class InputManager : MonoBehaviour {
 		}
 	}
 
-	void InputEqualsProjectileDecay() {
-		//TO DO
+	void InputEqualsRandom() {
+		int bulletNumber = 0;
+		for(int i = 0; i < mashBufferSize; i++) {
+			if(mashBuffer[i] != '*') {
+				bulletNumber++;
+			}
+		}
+
+		for(int i = 0; i < bulletNumber; i++) {
+			createBullet(Random.Range(0.0f, 360.0f));
+		}
 	}
 
 	void InputMeleeAttacks() {
