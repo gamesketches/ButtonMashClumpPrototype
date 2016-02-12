@@ -20,6 +20,7 @@ public class InputManager : MonoBehaviour {
 
 	public GameObject basicBulletPrefab;
 	public GameObject meleeAttackPrefab;
+	private PlayerMovement movementManager;
 
 	// Use this for initialization
 	void Start () {
@@ -29,6 +30,7 @@ public class InputManager : MonoBehaviour {
 			mashBuffer.SetValue('*', i);
 		}
 		bufferIter = 0;
+		movementManager = gameObject.GetComponent<PlayerMovement>();
 	}
 	
 	// Update is called once per frame
@@ -383,6 +385,7 @@ public class InputManager : MonoBehaviour {
 	void createBullet(float angle) {
 		GameObject bullet;
 		Rigidbody2D bulletRB;
+		angle += movementManager.currentShotAngle();
 		bullet = ((GameObject)Instantiate (basicBulletPrefab, transform.position, 
 			Quaternion.Euler (0.0f, 0.0f, angle)));
 		bulletRB = bullet.GetComponent<Rigidbody2D> ();
