@@ -7,10 +7,12 @@ public class PlayerHealth : MonoBehaviour {
     private Player player;
     private int health;
     public Text healthText;
+	private AudioSource audio;
 
     void Start()
     {
         player = GetComponent<Player>();
+		audio = GetComponent<AudioSource>();
 
         /*GameObject theCanvas = GameObject.Find("Canvas");
         health_texts = theCanvas.GetComponents<TextMesh>();
@@ -29,6 +31,7 @@ public class PlayerHealth : MonoBehaviour {
     {
         Debug.Log("Im taking damage!");
         health--;
+		audio.Play();
         if (player.number == 1)
         {
             healthText.text = "Blue\n" + health.ToString();
