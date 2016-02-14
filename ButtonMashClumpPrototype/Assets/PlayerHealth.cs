@@ -39,7 +39,18 @@ public class PlayerHealth : MonoBehaviour {
         {
             healthText.text = "White\n" + health.ToString();
         }
+
+		if(health <= 0) {
+			string color = player.number == 1 ? "Blue\n" : "White\n";
+			healthText.text = color + "Loses :(";
+			StartCoroutine(sceneReset());
+		}
     }
+
+	IEnumerator sceneReset() {
+		yield return new WaitForSeconds(2);
+		Application.LoadLevel(Application.loadedLevel);
+	}
 
     // Update is called once per frame
     void Update () {
