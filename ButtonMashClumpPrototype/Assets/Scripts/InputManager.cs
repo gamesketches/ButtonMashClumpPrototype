@@ -11,8 +11,10 @@ public class InputManager : MonoBehaviour {
 	public string buttonD;
 	public int mashBufferSize;
 
-	public int ShotsPerMinute;
-	private int shotCooldown;
+	public float inputCooldown;
+	private float inputCooldownTimer;
+	private bool mashing;
+
 	private char[] mashBuffer;
 	private int bufferIter;
 
@@ -24,7 +26,6 @@ public class InputManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		shotCooldown = Mathf.RoundToInt((60.0f / ShotsPerMinute) * 60.0f);
 		mashBuffer = new char[mashBufferSize];
 		for(int i = 0; i < mashBufferSize; i++){
 			mashBuffer.SetValue('*', i);
@@ -35,17 +36,12 @@ public class InputManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetButtonUp(fireAxis) && shotCooldown <= 0) {
-			InterpretInputs();
-			for(int i = 0; i < mashBufferSize; i++){
-				mashBuffer.SetValue('*', i);
-			}
-			bufferIter = 0;
-			return;
-		}
-
 		if(Input.GetButtonDown(buttonA) || Input.GetButtonDown(buttonB) || 
 			Input.GetButtonDown(buttonC) || Input.GetButtonDown(buttonD)) {
+			inputCooldownTimer = inputCooldown;
+			if(!mashing) {
+				mashing = true;
+			}
 			if(Input.GetButtonDown(buttonA)) {
 				mashBuffer.SetValue('A', bufferIter);
 			} else if(Input.GetButtonDown(buttonB)) {
@@ -56,15 +52,17 @@ public class InputManager : MonoBehaviour {
 				mashBuffer.SetValue('D', bufferIter);
 			}
 			bufferIter = bufferIter >= mashBufferSize - 1 ? 0 : bufferIter + 1;
-		} 
-		// Hell yeah ternaries
-		bufferIter = bufferIter >= mashBufferSize - 1 ? 0 : bufferIter + 1;
-		shotCooldown--;
-
-		if(Input.GetButtonDown("LeftScroll")) {
-			interpreterIndex = ((interpreterIndex - 1) + 9) % 9;
-		} else if(Input.GetButtonDown("RightScroll")) {
-			interpreterIndex = (interpreterIndex + 1) % 9;
+		} else if(mashing && !Input.GetButton(buttonA) && !Input.GetButton(buttonB) && 
+			!Input.GetButton(buttonC) && !Input.GetButton(buttonD)) {
+			inputCooldownTimer -= Time.deltaTime;
+			if(inputCooldownTimer <= 0.0f) {
+				InterpretInputs();
+				for(int i = 0; i < mashBufferSize; i++){
+					mashBuffer.SetValue('*', i);
+				}
+				bufferIter = 0;
+				mashing = false;
+			}
 		}
 	}
 
