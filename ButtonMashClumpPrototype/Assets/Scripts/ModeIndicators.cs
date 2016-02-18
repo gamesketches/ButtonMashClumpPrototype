@@ -25,6 +25,7 @@ public class ModeIndicators : MonoBehaviour {
 	void Awake() {
 		playerOneMode = new VectorLine("Player One Mode", new List<Vector3>(), null, 2.0f, LineType.Discrete, Joins.Weld);
 		playerTwoMode = new VectorLine("Player Two Mode", new List<Vector3>(), null, 2.0f, LineType.Discrete, Joins.Weld);
+		Debug.Log(playerOneMode);
 	}
 
 	void Update() {
