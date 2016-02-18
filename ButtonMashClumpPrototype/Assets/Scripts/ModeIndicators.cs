@@ -22,7 +22,7 @@ public class ModeIndicators : MonoBehaviour {
 	private VectorLine playerOneMode;
 	private VectorLine playerTwoMode;
 
-	void Start() {
+	void Awake() {
 		playerOneMode = new VectorLine("Player One Mode", new List<Vector3>(), null, 2.0f, LineType.Discrete, Joins.Weld);
 		playerTwoMode = new VectorLine("Player Two Mode", new List<Vector3>(), null, 2.0f, LineType.Discrete, Joins.Weld);
 	}
