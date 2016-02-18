@@ -10,6 +10,7 @@ public class InputManager : MonoBehaviour {
 	public string buttonC;
 	public string buttonD;
 	public int mashBufferSize;
+	public bool shootFullBuffer;
 
 	public float inputCooldown;
 	private float inputCooldownTimer;
@@ -51,19 +52,30 @@ public class InputManager : MonoBehaviour {
 			} else if(Input.GetButtonDown(buttonD)) {
 				mashBuffer.SetValue('D', bufferIter);
 			}
-			bufferIter = bufferIter >= mashBufferSize - 1 ? 0 : bufferIter + 1;
+			if(shootFullBuffer) {
+				bufferIter++;
+				if(bufferIter >= mashBufferSize) {
+					Fire();
+				}
+			} else {
+				bufferIter = bufferIter >= mashBufferSize - 1 ? 0 : bufferIter + 1;
+			}
 		} else if(mashing && !Input.GetButton(buttonA) && !Input.GetButton(buttonB) && 
 			!Input.GetButton(buttonC) && !Input.GetButton(buttonD)) {
 			inputCooldownTimer -= Time.deltaTime;
 			if(inputCooldownTimer <= 0.0f) {
-				InterpretInputs();
-				for(int i = 0; i < mashBufferSize; i++){
-					mashBuffer.SetValue('*', i);
-				}
-				bufferIter = 0;
-				mashing = false;
+				Fire();
 			}
 		}
+	}
+
+	void Fire() {
+		InterpretInputs();
+		for(int i = 0; i < mashBufferSize; i++){
+			mashBuffer.SetValue('*', i);
+		}
+		bufferIter = 0;
+		mashing = false;
 	}
 
 	void InterpretInputs() {
