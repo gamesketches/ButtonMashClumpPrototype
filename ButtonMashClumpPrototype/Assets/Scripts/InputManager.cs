@@ -67,7 +67,8 @@ public class InputManager : MonoBehaviour {
 	}
 
 	void InterpretInputs() {
-		switch(interpreterIndex) {
+		InputEqualsNumber();
+		/*switch(interpreterIndex) {
 			case 0:
 				// each A increases angle by 10%, B reduces by 10%
 				InputsEqualAngle();
@@ -102,7 +103,7 @@ public class InputManager : MonoBehaviour {
 				// A equals width, B equals height
 				InputMeleeAttacks();
 				break;
-		}
+		}*/
 		// Do some stuff here
 		// each A increases angle by 10%, B reduces by 10%
 		//InputsEqualAngle();
@@ -197,42 +198,28 @@ public class InputManager : MonoBehaviour {
 
 	void InputEqualsNumber() {
 		int bulletNumber = 0;
-		float baseAngle = 0.0f;
-		bool firstButton = false;
 		for(int i = 0; i < mashBufferSize; i++) {
 			if(mashBuffer[i] != '*') {
 				bulletNumber++;
-				if(!firstButton) {
-					firstButton = true;
-					if(mashBuffer[i] == 'A') {
-						baseAngle = 180.0f;
-					} else if(mashBuffer[i] == 'B') {
-						baseAngle = 270.0f;
-					} else if(mashBuffer[i] == 'C') {
-						baseAngle = 0.0f;
-					} else if(mashBuffer[i] == 'D') {
-						baseAngle = 90.0f;
-					}
-				}
 			}
 		}
 		float angleDifference = 90.0f / mashBufferSize;
 		List<float> bulletAngles = new List<float>();
 
-		bulletAngles.Add(baseAngle);
+		bulletAngles.Add(0.0f);
 		if(bulletNumber == mashBufferSize) {
-			bulletAngles.Add(baseAngle + 90.0f);
-			bulletAngles.Add(baseAngle - 90.0f);
+			bulletAngles.Add(90.0f);
+			bulletAngles.Add(90.0f);
 		}
 
 		if(bulletNumber > 1) {
 			for(int i = 0; i < bulletNumber - 1; i++) {
-				bulletAngles.Add(baseAngle + angleDifference * (i + 1));
-				bulletAngles.Add(baseAngle - angleDifference * (i + 1));
+				bulletAngles.Add(angleDifference * (i + 1));
+				bulletAngles.Add(-angleDifference * (i + 1));
 			}
 		}
 		for(int i = 0; i < bulletAngles.Count; i++) {
-			createBullet(bulletAngles[i]);
+			createBullet(bulletAngles[i], Random.Range(15.0f, 25.0f));
 		}
 	}
 
@@ -380,7 +367,7 @@ public class InputManager : MonoBehaviour {
 		}
 	}
 
-	void createBullet(float angle) {
+	void createBullet(float angle, float speed = 10.0f) {
 		GameObject bullet;
 		Rigidbody2D bulletRB;
 		angle += movementManager.currentShotAngle();
@@ -388,7 +375,7 @@ public class InputManager : MonoBehaviour {
 			Quaternion.Euler (0.0f, 0.0f, angle)));
 		bulletRB = bullet.GetComponent<Rigidbody2D> ();
 
-		bulletRB.velocity = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad)) * 10;
+		bulletRB.velocity = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad)) * speed;
 
 		OwnerScript script = bullet.GetComponent<OwnerScript>();
 		script.mother = gameObject;
