@@ -11,6 +11,7 @@ public class InputManager : MonoBehaviour {
 	public string buttonD;
 	public int mashBufferSize;
 	public bool shootFullBuffer;
+	public bool shootStrays;
 
 	public float inputCooldown;
 	private float inputCooldownTimer;
@@ -22,6 +23,7 @@ public class InputManager : MonoBehaviour {
 	private int interpreterIndex;
 
 	public GameObject basicBulletPrefab;
+	public GameObject strayBulletPrefab;
 	public GameObject meleeAttackPrefab;
 	private PlayerMovement movementManager;
 
@@ -45,12 +47,24 @@ public class InputManager : MonoBehaviour {
 			}
 			if(Input.GetButtonDown(buttonA)) {
 				mashBuffer.SetValue('A', bufferIter);
+				if(shootStrays) {
+					FireStray();
+				}
 			} else if(Input.GetButtonDown(buttonB)) {
 				mashBuffer.SetValue('B', bufferIter);
+				if(shootStrays) {
+					FireStray();
+				}
 			} else if(Input.GetButtonDown(buttonC)) {
 				mashBuffer.SetValue('C', bufferIter);
+				if(shootStrays) {
+					FireStray();
+				}
 			} else if(Input.GetButtonDown(buttonD)) {
 				mashBuffer.SetValue('D', bufferIter);
+				if(shootStrays) {
+					FireStray();
+				}
 			}
 			if(shootFullBuffer) {
 				bufferIter++;
@@ -78,9 +92,12 @@ public class InputManager : MonoBehaviour {
 		mashing = false;
 	}
 
+	void FireStray() {
+		createBullet(Random.Range(0.0f, 360.0f), Random.Range(15.0f, 25.0f), 1);
+	}
+
 	void InterpretInputs() {
-		InputEqualsNumber();
-		/*switch(interpreterIndex) {
+		switch(interpreterIndex) {
 			case 0:
 				// each A increases angle by 10%, B reduces by 10%
 				InputsEqualAngle();
@@ -115,7 +132,7 @@ public class InputManager : MonoBehaviour {
 				// A equals width, B equals height
 				InputMeleeAttacks();
 				break;
-		}*/
+		}
 		// Do some stuff here
 		// each A increases angle by 10%, B reduces by 10%
 		//InputsEqualAngle();
@@ -379,12 +396,17 @@ public class InputManager : MonoBehaviour {
 		}
 	}
 
-	void createBullet(float angle, float speed = 10.0f) {
-		GameObject bullet;
+	void createBullet(float angle, float speed = 10.0f, int bulletType = 0) {
+		GameObject bullet = null;
 		Rigidbody2D bulletRB;
 		angle += movementManager.currentShotAngle();
-		bullet = ((GameObject)Instantiate (basicBulletPrefab, transform.position, 
-			Quaternion.Euler (0.0f, 0.0f, angle)));
+		if(bulletType == 0) {
+			bullet = ((GameObject)Instantiate (basicBulletPrefab, transform.position, 
+				Quaternion.Euler (0.0f, 0.0f, angle)));
+		} else if(bulletType == 1) {
+			bullet = ((GameObject)Instantiate (strayBulletPrefab, transform.position, 
+				Quaternion.Euler (0.0f, 0.0f, angle)));
+		}
 		bulletRB = bullet.GetComponent<Rigidbody2D> ();
 
 		bulletRB.velocity = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad)) * speed;
