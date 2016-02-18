@@ -89,10 +89,10 @@ public class InputManager : MonoBehaviour {
 		}
 
 		if(Input.GetButtonDown(leftScroll)) {
-			interpreterIndex = ((interpreterIndex - 1) + 9) % 9;
+			interpreterIndex = ((interpreterIndex - 1) + 10) % 10;
 			SetInterpreterText();
 		} else if(Input.GetButtonDown(rightScroll)) {
-			interpreterIndex = (interpreterIndex + 1) % 9;
+			interpreterIndex = (interpreterIndex + 1) % 10;
 			SetInterpreterText();
 		}
 	}
@@ -143,6 +143,9 @@ public class InputManager : MonoBehaviour {
 		case 8:
 			ModeIndicators.Instance.UpdateMode(player.number, "Input Melee Attacks");
 			break;
+		case 9:
+			ModeIndicators.Instance.UpdateMode(player.number, "Input Melee Attacks *SKI*");
+			break;
 		}
 	}
 
@@ -178,11 +181,15 @@ public class InputManager : MonoBehaviour {
 			case 7:
 				InputEqualsRandom();
 				break;
-			case 8:
-				// A equals width, B equals height
-				InputMeleeAttacks();
-				break;
-		}
+            case 8:
+                // A equals width, B equals height
+                InputMeleeAttacks();
+                break;
+            case 9:
+                // lets barrel
+                InputMeleeAttacksSki();
+                break;
+        }
 		// Do some stuff here
 		// each A increases angle by 10%, B reduces by 10%
 		//InputsEqualAngle();
@@ -432,8 +439,72 @@ public class InputManager : MonoBehaviour {
 
 		Destroy(monkeyPunch, 0.5f);
 	}
-		
-	void TallyInputs(out int num1, out int num2) {
+
+    //ski's melee - similar to charged 360 degree attack in Zelda LTTP
+    void InputMeleeAttacksSki()
+    {
+        int aCount, bCount;
+
+        TallyInputs(out aCount, out bCount);
+
+        float width = aCount * 0.3f;
+        float height = bCount * 0.3f;
+        int totalCount = aCount + bCount;
+
+
+        // dem Lupin III references
+        GameObject monkeyPunch;
+        monkeyPunch = ((GameObject)Instantiate(meleeAttackPrefab, transform.position,
+    Quaternion.Euler(0.0f, 0.0f, 0.0f)));
+
+        monkeyPunch.transform.parent = transform;
+
+        /*here I want to take the total number of inputs and map it across 360 degrees
+        // max inputs will = 360 degrees
+        // min inputs = 0 degrees 
+        // this will determine the rotation
+        // i will keep the width thin and just spin it from the center
+        some math 360/18 = 20 that is nice. 
+        so each input = 20 degrees of rotation
+        afterwards i will address directionality based on inputs for now we'll just do a total
+        do i: instantiate and spin all within this function 
+        or
+        instatiate and spin from another function?
+        instiate as many as i need rotations and destroy before creating the next?
+        do i need to use invoke or waitforseconds?
+        can i do this without changing update?
+        */
+
+
+        StartCoroutine(SpinWeapon(monkeyPunch, totalCount));
+
+    }
+
+    IEnumerator SpinWeapon(GameObject monkeyPunch, int totalCount)
+    {
+
+
+        //monkeyPunch.transform.localScale = new Vector3(width, height, 0);
+        monkeyPunch.transform.localScale = new Vector3(3.0f, 0.5f, 0); //we'll just give it dimensions for now
+        monkeyPunch.transform.localPosition = Vector3.right * 1.0f; //extend it like sword
+
+
+        for (int i = 0; i < totalCount; i++)
+        {
+            //monkeyPunch.transform.Rotate(Vector3.forward, i * 20);
+            monkeyPunch.transform.localRotation = Quaternion.Euler(Vector3.zero);
+            transform.Rotate(Vector3.forward, i * 20);
+            Debug.Log("rotating : i = " + i);
+            //yield return null;
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        //Destroy(monkeyPunch, 0.5f);
+        Destroy(monkeyPunch);
+
+    }
+
+    void TallyInputs(out int num1, out int num2) {
 		num1 = 0;
 		num2 = 0;
 		for(int i = 0; i < mashBufferSize; i++) {
