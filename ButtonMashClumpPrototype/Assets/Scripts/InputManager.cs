@@ -549,5 +549,7 @@ public class InputManager : MonoBehaviour {
 
 		OwnerScript script = bullet.GetComponent<OwnerScript>();
 		script.mother = gameObject;
+		Renderer bulletRenderer = bullet.GetComponentInChildren<Renderer>();
+		bulletRenderer.material.color = player.number == 0 ? Color.red : Color.green;
 	}
 }
