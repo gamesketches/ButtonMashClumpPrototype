@@ -9,6 +9,8 @@ public class InputManager : MonoBehaviour {
 	public string buttonB;
 	public string buttonC;
 	public string buttonD;
+	public string leftScroll;
+	public string rightScroll;
 	public int mashBufferSize;
 	public bool shootFullBuffer;
 	public bool shootStrays;
@@ -27,14 +29,18 @@ public class InputManager : MonoBehaviour {
 	public GameObject meleeAttackPrefab;
 	private PlayerMovement movementManager;
 
+	private Player player;
+
 	// Use this for initialization
 	void Start () {
+		player = GetComponent<Player>();
 		mashBuffer = new char[mashBufferSize];
 		for(int i = 0; i < mashBufferSize; i++){
 			mashBuffer.SetValue('*', i);
 		}
 		bufferIter = 0;
 		movementManager = gameObject.GetComponent<PlayerMovement>();
+		SetInterpreterText();
 	}
 	
 	// Update is called once per frame
@@ -81,6 +87,14 @@ public class InputManager : MonoBehaviour {
 				Fire();
 			}
 		}
+
+		if(Input.GetButtonDown(leftScroll)) {
+			interpreterIndex = ((interpreterIndex - 1) + 9) % 9;
+			SetInterpreterText();
+		} else if(Input.GetButtonDown(rightScroll)) {
+			interpreterIndex = (interpreterIndex + 1) % 9;
+			SetInterpreterText();
+		}
 	}
 
 	void Fire() {
@@ -94,6 +108,42 @@ public class InputManager : MonoBehaviour {
 
 	void FireStray() {
 		createBullet(Random.Range(0.0f, 360.0f), Random.Range(15.0f, 25.0f), 1);
+	}
+
+	public int GetInterpreterIndex() {
+		return interpreterIndex;
+	}
+
+	void SetInterpreterText() {
+		switch(interpreterIndex) {
+		case 0:
+			ModeIndicators.Instance.UpdateMode(player.number, "Inputs Equal Angle");
+			break;
+		case 1:
+			ModeIndicators.Instance.UpdateMode(player.number, "Input Equals Sets");
+			break;
+		case 2:
+			ModeIndicators.Instance.UpdateMode(player.number, "Input Patterns");
+			break;
+		case 3:
+			ModeIndicators.Instance.UpdateMode(player.number, "Input Equals Number");
+			break;
+		case 4:
+			ModeIndicators.Instance.UpdateMode(player.number, "Input Equals Number Alt");
+			break;
+		case 5:
+			ModeIndicators.Instance.UpdateMode(player.number, "Input Equals Number Inverse");
+			break;
+		case 6:
+			ModeIndicators.Instance.UpdateMode(player.number, "Input Equals Number Alt Alt");
+			break;
+		case 7:
+			ModeIndicators.Instance.UpdateMode(player.number, "Input Equals Random");
+			break;
+		case 8:
+			ModeIndicators.Instance.UpdateMode(player.number, "Input Melee Attacks");
+			break;
+		}
 	}
 
 	void InterpretInputs() {
@@ -360,7 +410,7 @@ public class InputManager : MonoBehaviour {
 		}
 
 		for(int i = 0; i < bulletNumber; i++) {
-			createBullet(Random.Range(0.0f, 360.0f));
+			createBullet(Random.Range(0.0f, 360.0f), Random.Range(15.0f, 25.0f));
 		}
 	}
 
