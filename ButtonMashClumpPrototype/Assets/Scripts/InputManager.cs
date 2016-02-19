@@ -15,7 +15,7 @@ public class InputManager : MonoBehaviour {
 	public bool shootFullBuffer;
 	public bool shootStrays;
 
-	public Color chargeColor;
+	//public Color chargeColor;
 
 	public float inputCooldown;
 	private float inputCooldownTimer;
@@ -25,7 +25,6 @@ public class InputManager : MonoBehaviour {
 	private int bufferIter;
 
 	private int interpreterIndex;
-	private int switchFrames;
 
 	public GameObject basicBulletPrefab;
 	public GameObject strayBulletPrefab;
@@ -33,8 +32,6 @@ public class InputManager : MonoBehaviour {
 	private PlayerMovement movementManager;
 
 	private Player player;
-	private Color startColor;
-	public Renderer quadRenderer;
 
 	// Use this for initialization
 	void Start () {
@@ -46,10 +43,6 @@ public class InputManager : MonoBehaviour {
 		bufferIter = 0;
 		movementManager = gameObject.GetComponent<PlayerMovement>();
 		SetInterpreterText();
-		//renderer = gameObject.GetComponentsInChildren<Renderer>()[0];
-		startColor = quadRenderer.material.color;
-		Debug.Log(quadRenderer.material.color);
-		switchFrames = mashBufferSize;
 	}
 	
 	// Update is called once per frame
@@ -85,7 +78,6 @@ public class InputManager : MonoBehaviour {
 				bufferIter++;
 				if(bufferIter >= mashBufferSize) {
 					Fire();
-					switchFrames = mashBufferSize;
 				}
 			} else {
 				bufferIter = bufferIter >= mashBufferSize - 1 ? 0 : bufferIter + 1;
@@ -104,11 +96,6 @@ public class InputManager : MonoBehaviour {
 		} else if(Input.GetButtonDown(rightScroll)) {
 			interpreterIndex = (interpreterIndex + 1) % 10;
 			SetInterpreterText();
-		}
-		switchFrames--;
-		if(switchFrames - bufferIter <= 0) {
-			quadRenderer.material.color = quadRenderer.material.color == chargeColor ? startColor : chargeColor;
-			switchFrames = mashBufferSize;
 		}
 	}
 
