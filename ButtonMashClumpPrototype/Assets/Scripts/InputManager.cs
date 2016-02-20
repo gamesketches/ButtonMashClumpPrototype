@@ -477,6 +477,8 @@ public class InputManager : MonoBehaviour {
         can i do this without changing update?
         */
 
+		MeleeScript script = monkeyPunch.GetComponent<MeleeScript>();
+		script.mother = gameObject;
 
         StartCoroutine(SpinWeapon(monkeyPunch, totalCount));
 
@@ -496,7 +498,7 @@ public class InputManager : MonoBehaviour {
             //monkeyPunch.transform.Rotate(Vector3.forward, i * 20);
             monkeyPunch.transform.localRotation = Quaternion.Euler(Vector3.zero);
             transform.Rotate(Vector3.forward, i * 20);
-            Debug.Log("rotating : i = " + i);
+            //Debug.Log("rotating : i = " + i);
             //yield return null;
             yield return new WaitForSeconds(0.05f);
         }
