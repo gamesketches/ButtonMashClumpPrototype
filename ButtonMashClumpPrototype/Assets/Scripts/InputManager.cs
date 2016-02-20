@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class InputManager : MonoBehaviour {
-
-	public string fireAxis;
+	
 	public string buttonA;
 	public string buttonB;
 	public string buttonC;
@@ -91,10 +90,10 @@ public class InputManager : MonoBehaviour {
 		}
 
 		if(Input.GetButtonDown(leftScroll)) {
-			interpreterIndex = ((interpreterIndex - 1) + 10) % 10;
+			interpreterIndex = ((interpreterIndex - 1) + 7) % 7;
 			SetInterpreterText();
 		} else if(Input.GetButtonDown(rightScroll)) {
-			interpreterIndex = (interpreterIndex + 1) % 10;
+			interpreterIndex = (interpreterIndex + 1) % 7;
 			SetInterpreterText();
 		}
 	}
@@ -171,50 +170,17 @@ public class InputManager : MonoBehaviour {
 				InputEqualsNumber();
 				break;
 			case 4:
-				// Another implementation of other
-				InputEqualsNumberAlt();
-				break;
-			case 5:
-				InputEqualsNumberInverse();
-				break;
-			case 6:
-				InputEqualsNumberAltAlt();
-				break;
-			case 7:
 				InputEqualsRandom();
 				break;
-            case 8:
+            case 5:
                 // A equals width, B equals height
                 InputMeleeAttacks();
                 break;
-            case 9:
+            case 6:
                 // lets barrel
                 InputMeleeAttacksSki();
                 break;
         }
-		// Do some stuff here
-		// each A increases angle by 10%, B reduces by 10%
-		//InputsEqualAngle();
-		// A sets a shot at 0 degrees, adds another projectile for each A.
-		// B is the same thing but starting at 90 degrees
-		//InputEqualsSets();
-		// Each two set of characters corresponds to a different set of projectiles
-		//InputPatterns();
-		// Counts all inputs equally, number of projectiles is tied to num inputs
-		//InputEqualsNumber();
-		// Another implementation of other
-		//InputEqualsNumberAlt();
-		// dummy function
-		//InputEqualsProjectileDecay()
-		// A equals width, B equals height
-		//InputEqualsNumberInverse();
-		//InputEqualsNumberAltAlt();
-		//InputEqualsRandom();
-		//InputMeleeAttacks();
-		//Debug.Log("Fire!");
-		/*for(int i = 0; i < mashBufferSize; i++){
-			Debug.Log(mashBuffer[i]);
-		}*/
 	}
 
 	void InputsEqualAngle() {
@@ -308,105 +274,6 @@ public class InputManager : MonoBehaviour {
 		}
 		for(int i = 0; i < bulletAngles.Count; i++) {
 			createBullet(bulletAngles[i], Random.Range(15.0f, 25.0f));
-		}
-	}
-
-	void InputEqualsNumberInverse() {
-		int bulletNumber = 0;
-		float baseAngle = 0.0f;
-		bool firstButton = false;
-		for(int i = 0; i < mashBufferSize; i++) {
-			if(mashBuffer[i] != '*') {
-				bulletNumber++;
-				if(!firstButton) {
-					firstButton = true;
-					if(mashBuffer[i] == 'A') {
-						baseAngle = 180.0f;
-					} else if(mashBuffer[i] == 'B') {
-						baseAngle = 270.0f;
-					} else if(mashBuffer[i] == 'C') {
-						baseAngle = 0.0f;
-					} else if(mashBuffer[i] == 'D') {
-						baseAngle = 90.0f;
-					}
-				}
-			}
-		}
-		float angleDifference = 90.0f / mashBufferSize;
-		List<float> bulletAngles = new List<float>();
-
-		bulletAngles.Add(baseAngle + 90.0f);
-		bulletAngles.Add(baseAngle - 90.0f);
-		if(bulletNumber == mashBufferSize) {
-			bulletAngles.Add(baseAngle);
-		}
-
-		if(bulletNumber > 1) {
-			for(int i = 0; i < bulletNumber; i++) {
-				bulletAngles.Add(baseAngle + 90.0f - angleDifference * i);
-				bulletAngles.Add(baseAngle - 90.0f + angleDifference * i);
-			}
-		}
-		for(int i = 0; i < bulletAngles.Count; i++) {
-			createBullet(bulletAngles[i]);
-		}
-	}
-
-	void InputEqualsNumberAlt() {
-		int bulletNumber = 0;
-		for(int i = 0; i < mashBufferSize; i++) {
-			if(mashBuffer[i] != '*') {
-				bulletNumber++;
-			}
-		}
-		float angleDifference;
-		List<float> bulletAngles = new List<float>();
-		if(bulletNumber == 0) {
-			bulletAngles.Add(0.0f);
-		} else if(bulletNumber % 2 == 0) {
-			angleDifference = 90.0f / bulletNumber;
-			for(int i = 0; i < bulletNumber / 2; i++) {
-				bulletAngles.Add(angleDifference * (i + 1));
-				bulletAngles.Add(-angleDifference * (i + 1));
-			}
-		} else {
-			angleDifference = 90.0f / (bulletNumber - 1);
-			bulletAngles.Add(0.0f);
-			for(int i = 0; i < (bulletNumber - 1) / 2; i++) {
-				bulletAngles.Add(angleDifference * (i + 1));
-				bulletAngles.Add(-angleDifference * (i + 1));
-			}
-		}
-		for(int i = 0; i < bulletAngles.Count; i++) {
-			createBullet(bulletAngles[i]);
-		}
-	}
-
-	void InputEqualsNumberAltAlt() {
-		int bulletNumber = 0;
-		for(int i = 0; i < mashBufferSize; i++) {
-			if(mashBuffer[i] != '*') {
-				bulletNumber++;
-			}
-		}
-		float angleDifference = 90.0f / (mashBufferSize / 2.0f);
-		List<float> bulletAngles = new List<float>();
-		if(bulletNumber == 0) {
-			bulletAngles.Add(0.0f);
-		} else if(bulletNumber % 2 == 0) {
-			for(int i = 0; i < bulletNumber / 2; i++) {
-				bulletAngles.Add(angleDifference * (i + 1));
-				bulletAngles.Add(-angleDifference * (i + 1));
-			}
-		} else {
-			bulletAngles.Add(0.0f);
-			for(int i = 0; i < (bulletNumber - 1) / 2; i++) {
-				bulletAngles.Add(angleDifference * (i + 1));
-				bulletAngles.Add(-angleDifference * (i + 1));
-			}
-		}
-		for(int i = 0; i < bulletAngles.Count; i++) {
-			createBullet(bulletAngles[i]);
 		}
 	}
 
