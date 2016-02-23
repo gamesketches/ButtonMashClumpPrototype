@@ -13,6 +13,7 @@ public class InputManager : MonoBehaviour {
 	public int mashBufferSize;
 	public bool shootFullBuffer;
 	public bool shootStrays;
+	public bool exponentialBuffer;
 
 	//public Color chargeColor;
 
@@ -22,6 +23,7 @@ public class InputManager : MonoBehaviour {
 
 	private char[] mashBuffer;
 	private int bufferIter;
+	private int exponentCooldown;
 
 	private int interpreterIndex;
 
@@ -40,44 +42,46 @@ public class InputManager : MonoBehaviour {
 			mashBuffer.SetValue('*', i);
 		}
 		bufferIter = 0;
+		exponentCooldown = 0;
 		movementManager = gameObject.GetComponent<PlayerMovement>();
 		SetInterpreterText();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetButtonDown(buttonA) || Input.GetButtonDown(buttonB) || 
-			Input.GetButtonDown(buttonC) || Input.GetButtonDown(buttonD)) {
-			inputCooldownTimer = inputCooldown;
-			if(!mashing) {
-				mashing = true;
-			}
-			if(Input.GetButtonDown(buttonA)) {
-				mashBuffer.SetValue('A', bufferIter);
+		if(exponentCooldown <= 0) {
+
+			if(Input.GetButtonDown(buttonA) || Input.GetButtonDown(buttonB) || 
+				Input.GetButtonDown(buttonC) || Input.GetButtonDown(buttonD)) {
+				inputCooldownTimer = inputCooldown;
+				if(!mashing) {
+					mashing = true;
+				}
 				if(shootStrays) {
 					FireStray();
 				}
-			} else if(Input.GetButtonDown(buttonB)) {
-				mashBuffer.SetValue('B', bufferIter);
-				if(shootStrays) {
-					FireStray();
+				if(exponentialBuffer) {
+					ExponentShot();
 				}
-			} else if(Input.GetButtonDown(buttonC)) {
-				mashBuffer.SetValue('C', bufferIter);
-				if(shootStrays) {
-					FireStray();
+				if(Input.GetButtonDown(buttonA)) {
+					mashBuffer.SetValue('A', bufferIter);
+				} 
+				else if(Input.GetButtonDown(buttonB)) {
+					mashBuffer.SetValue('B', bufferIter);
+				} 
+				else if(Input.GetButtonDown(buttonC)) {
+					mashBuffer.SetValue('C', bufferIter);
+				} 
+				else if(Input.GetButtonDown(buttonD)) {
+					mashBuffer.SetValue('D', bufferIter);
 				}
-			} else if(Input.GetButtonDown(buttonD)) {
-				mashBuffer.SetValue('D', bufferIter);
-				if(shootStrays) {
-					FireStray();
-				}
-			}
-			if(shootFullBuffer) {
-				bufferIter++;
-				if(bufferIter >= mashBufferSize) {
-					Fire();
-				}
+				if(shootFullBuffer) {
+					bufferIter++;
+					if(bufferIter >= mashBufferSize) {
+						Fire();
+					}
+					if(exponentialBuffer) {			
+					}
 			} else {
 				bufferIter = bufferIter >= mashBufferSize - 1 ? 0 : bufferIter + 1;
 			}
@@ -86,9 +90,12 @@ public class InputManager : MonoBehaviour {
 			inputCooldownTimer -= Time.deltaTime;
 			if(inputCooldownTimer <= 0.0f) {
 				Fire();
-			}
+				}
 		}
-
+	}
+		else {
+			exponentCooldown--;
+		}
 		if(Input.GetButtonDown(leftScroll)) {
 			interpreterIndex = ((interpreterIndex - 1) + 7) % 7;
 			SetInterpreterText();
@@ -103,12 +110,22 @@ public class InputManager : MonoBehaviour {
 		for(int i = 0; i < mashBufferSize; i++){
 			mashBuffer.SetValue('*', i);
 		}
+		// This will be the hardest part to get right
+		if(exponentialBuffer) {
+			exponentCooldown = (bufferIter * (bufferIter + 1)) / 2;
+		}
 		bufferIter = 0;
 		mashing = false;
 	}
 
 	void FireStray() {
 		createBullet(Random.Range(0.0f, 360.0f), Random.Range(15.0f, 25.0f), 1);
+	}
+
+	void ExponentShot() {
+		for(int i = 0; i < bufferIter; i++) {
+			createBullet(Random.Range(-30.0f, 30.0f), Random.Range(10.0f, 25.0f), 1);
+		}
 	}
 
 	public int GetInterpreterIndex() {
@@ -367,6 +384,7 @@ public class InputManager : MonoBehaviour {
             transform.Rotate(Vector3.forward, i * 20);
             //Debug.Log("rotating : i = " + i);
             //yield return null;
+			Debug.Break();
             yield return new WaitForSeconds(0.05f);
         }
 
