@@ -124,7 +124,7 @@ public class InputManager : MonoBehaviour {
 
 	void ExponentShot() {
 		for(int i = 0; i < bufferIter; i++) {
-			createBullet(Random.Range(-30.0f, 30.0f), Random.Range(10.0f, 25.0f), 1);
+			createBullet(Random.Range(-30.0f, 30.0f), Random.Range(10.0f, 25.0f), 0);
 		}
 	}
 
