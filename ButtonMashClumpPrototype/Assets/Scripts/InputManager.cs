@@ -11,6 +11,7 @@ public class InputManager : MonoBehaviour {
 	public string leftScroll;
 	public string rightScroll;
 	public int mashBufferSize;
+	public float fullBufferScale;
 	public bool shootFullBuffer;
 	public bool shootStrays;
 	public bool exponentialBuffer;
@@ -58,6 +59,10 @@ public class InputManager : MonoBehaviour {
 			if(Input.GetButtonDown(buttonA) || Input.GetButtonDown(buttonB) || 
 				Input.GetButtonDown(buttonC) || Input.GetButtonDown(buttonD)) {
 				inputCooldownTimer = inputCooldown;
+				gameObject.transform.localScale = Vector3.Lerp(new Vector3(1f, 1f, 1f), 
+														new Vector3(fullBufferScale, fullBufferScale, fullBufferScale),
+														(float)bufferIter / (float)mashBufferSize);
+				Debug.Log(fullBufferScale);
 				if(!mashing) {
 					mashing = true;
 				}
@@ -121,6 +126,7 @@ public class InputManager : MonoBehaviour {
 		}
 		bufferIter = 0;
 		mashing = false;
+		gameObject.transform.localScale = new Vector3(1, 1, 1);
 	}
 
 	void FireStray() {
