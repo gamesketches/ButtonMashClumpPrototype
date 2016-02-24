@@ -32,6 +32,9 @@ public class InputManager : MonoBehaviour {
 	public GameObject meleeAttackPrefab;
 	private PlayerMovement movementManager;
 
+	public Color noShootingColor;
+	private Color startingColor;
+
 	private Player player;
 
 	// Use this for initialization
@@ -45,12 +48,13 @@ public class InputManager : MonoBehaviour {
 		exponentCooldown = 0;
 		movementManager = gameObject.GetComponent<PlayerMovement>();
 		SetInterpreterText();
+		startingColor = GetComponentInChildren<Renderer>().material.color;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if(exponentCooldown <= 0) {
-
+			GetComponentInChildren<Renderer>().material.color = startingColor;
 			if(Input.GetButtonDown(buttonA) || Input.GetButtonDown(buttonB) || 
 				Input.GetButtonDown(buttonC) || Input.GetButtonDown(buttonD)) {
 				inputCooldownTimer = inputCooldown;
@@ -95,6 +99,7 @@ public class InputManager : MonoBehaviour {
 	}
 		else {
 			exponentCooldown--;
+			GetComponentInChildren<Renderer>().material.color = noShootingColor;
 		}
 		if(Input.GetButtonDown(leftScroll)) {
 			interpreterIndex = ((interpreterIndex - 1) + 7) % 7;
