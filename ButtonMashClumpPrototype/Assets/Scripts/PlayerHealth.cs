@@ -40,7 +40,7 @@ public class PlayerHealth : MonoBehaviour {
     public void TakeDamage()
     {
         Debug.Log("Im taking damage!");
-        health--;
+        health-=3;
 		audioSource.Play();
         
         //"GREEN BARR!!"

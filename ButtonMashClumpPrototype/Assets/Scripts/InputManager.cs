@@ -27,7 +27,7 @@ public class InputManager : MonoBehaviour {
 	private int bufferIter;
 	private int exponentCooldown;
 
-	private int interpreterIndex;
+	private int interpreterIndex = 3;
 
 	public GameObject basicBulletPrefab;
 	public GameObject strayBulletPrefab;
@@ -115,13 +115,13 @@ public class InputManager : MonoBehaviour {
 			exponentCooldown--;
 			GetComponentInChildren<Renderer>().material.color = noShootingColor;
 		}
-		if(Input.GetButtonDown(leftScroll)) {
+		/*if(Input.GetButtonDown(leftScroll)) {
 			interpreterIndex = ((interpreterIndex - 1) + 7) % 7;
 			SetInterpreterText();
 		} else if(Input.GetButtonDown(rightScroll)) {
 			interpreterIndex = (interpreterIndex + 1) % 7;
 			SetInterpreterText();
-		}
+		}*/
 	}
 
 	void Fire() {
@@ -131,7 +131,11 @@ public class InputManager : MonoBehaviour {
 		}
 		// This will be the hardest part to get right
 		if(exponentialBuffer) {
-			//exponentCooldown = (bufferIter * (bufferIter + 1)) / 2;
+			int lockFrames = (bufferIter * (bufferIter + 1)) / 2;
+			if (bufferIter < mashBufferSize) {
+				lockFrames = lockFrames / 2;
+			}
+			exponentCooldown = lockFrames;
 		}
 		bufferIter = 0;
 		mashing = false;
