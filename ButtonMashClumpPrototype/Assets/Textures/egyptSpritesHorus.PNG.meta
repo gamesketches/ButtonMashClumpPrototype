@@ -1,0 +1,1081 @@
+fileFormatVersion: 2
+guid: 7cb3d013f24234a51b4d04e3a2036199
+timeCreated: 1456384522
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: egyptSpritesHorus_0
+    21300002: egyptSpritesHorus_1
+    21300004: egyptSpritesHorus_2
+    21300006: egyptSpritesHorus_3
+    21300008: egyptSpritesHorus_4
+    21300010: egyptSpritesHorus_5
+    21300012: egyptSpritesHorus_6
+    21300014: egyptSpritesHorus_7
+    21300016: egyptSpritesHorus_8
+    21300018: egyptSpritesHorus_9
+    21300020: egyptSpritesHorus_10
+    21300022: egyptSpritesHorus_11
+    21300024: egyptSpritesHorus_12
+    21300026: egyptSpritesHorus_13
+    21300028: egyptSpritesHorus_14
+    21300030: egyptSpritesHorus_15
+    21300032: egyptSpritesHorus_16
+    21300034: egyptSpritesHorus_17
+    21300036: egyptSpritesHorus_18
+    21300038: egyptSpritesHorus_19
+    21300040: egyptSpritesHorus_20
+    21300042: egyptSpritesHorus_21
+    21300044: egyptSpritesHorus_22
+    21300046: egyptSpritesHorus_23
+    21300048: egyptSpritesHorus_24
+    21300050: egyptSpritesHorus_25
+    21300052: egyptSpritesHorus_26
+    21300054: egyptSpritesHorus_27
+    21300056: egyptSpritesHorus_28
+    21300058: egyptSpritesHorus_29
+    21300060: egyptSpritesHorus_30
+    21300062: egyptSpritesHorus_31
+    21300064: egyptSpritesHorus_32
+    21300066: egyptSpritesHorus_33
+    21300068: egyptSpritesHorus_34
+    21300070: egyptSpritesHorus_35
+    21300072: egyptSpritesHorus_36
+    21300074: egyptSpritesHorus_37
+    21300076: egyptSpritesHorus_38
+    21300078: egyptSpritesHorus_39
+    21300080: egyptSpritesHorus_40
+    21300082: egyptSpritesHorus_41
+    21300084: egyptSpritesHorus_42
+    21300086: egyptSpritesHorus_43
+    21300088: egyptSpritesHorus_44
+    21300090: egyptSpritesHorus_45
+    21300092: egyptSpritesHorus_46
+    21300094: egyptSpritesHorus_47
+    21300096: egyptSpritesHorus_48
+    21300098: egyptSpritesHorus_49
+    21300100: egyptSpritesHorus_50
+    21300102: egyptSpritesHorus_51
+    21300104: egyptSpritesHorus_52
+    21300106: egyptSpritesHorus_53
+    21300108: egyptSpritesHorus_54
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 12
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: egyptSpritesHorus_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 16}
+        - {x: -5, y: 16}
+        - {x: -8, y: 11}
+        - {x: -8, y: -16}
+        - {x: 7, y: -16}
+        - {x: 9, y: -10}
+        - {x: 9, y: 14}
+    - name: egyptSpritesHorus_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: 16}
+        - {x: -8, y: 12}
+        - {x: -8, y: -7}
+        - {x: -6, y: -16}
+        - {x: 6, y: -16}
+        - {x: 8, y: -8}
+        - {x: 8, y: 13}
+        - {x: 6, y: 16}
+    - name: egyptSpritesHorus_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -13, y: -16}
+        - {x: 8, y: -16}
+        - {x: 8, y: 16}
+    - name: egyptSpritesHorus_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 16}
+        - {x: -8, y: -16}
+        - {x: 8, y: -16}
+        - {x: 8, y: 16}
+    - name: egyptSpritesHorus_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 16}
+        - {x: -9, y: -4}
+        - {x: -7, y: -14}
+        - {x: -6, y: -16}
+        - {x: 6, y: -16}
+        - {x: 7, y: -15}
+        - {x: 8, y: -3}
+        - {x: 8, y: 16}
+    - name: egyptSpritesHorus_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 16}
+        - {x: -8, y: 15}
+        - {x: -8, y: -16}
+        - {x: 8, y: -16}
+        - {x: 8, y: 16}
+    - name: egyptSpritesHorus_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 16}
+        - {x: -8, y: -16}
+        - {x: 11, y: -16}
+        - {x: 13, y: -5}
+        - {x: 13, y: 16}
+    - name: egyptSpritesHorus_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 11, y: 15}
+        - {x: 10, y: 16}
+        - {x: -5, y: 16}
+        - {x: -8, y: 10}
+        - {x: -8, y: -15}
+        - {x: -6, y: -16}
+        - {x: 6, y: -16}
+        - {x: 8, y: -9}
+        - {x: 11, y: 2}
+    - name: egyptSpritesHorus_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 16}
+        - {x: -8, y: -8}
+        - {x: -7, y: -16}
+        - {x: 7, y: -16}
+        - {x: 9, y: -11}
+        - {x: 9, y: 16}
+    - name: egyptSpritesHorus_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: 16}
+        - {x: -8, y: 12}
+        - {x: -8, y: -15}
+        - {x: -6, y: -16}
+        - {x: 3, y: -16}
+        - {x: 8, y: -12}
+        - {x: 9, y: -2}
+        - {x: 9, y: 16}
+    - name: egyptSpritesHorus_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 16}
+        - {x: -8, y: -12}
+        - {x: -5, y: -15}
+        - {x: 2, y: -16}
+        - {x: 4, y: -16}
+        - {x: 8, y: -14}
+        - {x: 9, y: 3}
+        - {x: 9, y: 16}
+    - name: egyptSpritesHorus_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 16}
+        - {x: -8, y: -8}
+        - {x: -1, y: -16}
+        - {x: 8, y: -16}
+        - {x: 9, y: 2}
+        - {x: 9, y: 16}
+    - name: egyptSpritesHorus_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 8, y: 16}
+        - {x: -5, y: 16}
+        - {x: -8, y: 11}
+        - {x: -8, y: -9}
+        - {x: -4, y: -15}
+        - {x: -1, y: -16}
+        - {x: 6, y: -16}
+        - {x: 8, y: -15}
+        - {x: 9, y: 3}
+        - {x: 9, y: 15}
+    - name: egyptSpritesHorus_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 16}
+        - {x: -9, y: -14}
+        - {x: -7, y: -16}
+        - {x: 5, y: -16}
+        - {x: 8, y: -5}
+        - {x: 8, y: 16}
+    - name: egyptSpritesHorus_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 16}
+        - {x: -14, y: 7}
+        - {x: -14, y: -15}
+        - {x: 9, y: -15}
+        - {x: 9, y: 4}
+        - {x: 5, y: 16}
+    - name: egyptSpritesHorus_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 16}
+        - {x: -10, y: 4}
+        - {x: -10, y: -16}
+        - {x: 5, y: -16}
+        - {x: 7, y: -13}
+        - {x: 7, y: 16}
+    - name: egyptSpritesHorus_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 16}
+        - {x: -10, y: 10}
+        - {x: -10, y: -12}
+        - {x: -6, y: -16}
+        - {x: 5, y: -16}
+        - {x: 7, y: -15}
+        - {x: 7, y: 16}
+    - name: egyptSpritesHorus_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 16}
+        - {x: -14, y: 7}
+        - {x: -14, y: -15}
+        - {x: 9, y: -15}
+        - {x: 9, y: 4}
+        - {x: 5, y: 16}
+    - name: egyptSpritesHorus_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 16}
+        - {x: -9, y: -16}
+        - {x: 5, y: -16}
+        - {x: 7, y: -13}
+        - {x: 7, y: 16}
+    - name: egyptSpritesHorus_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 16}
+        - {x: -10, y: 11}
+        - {x: -10, y: -12}
+        - {x: -4, y: -16}
+        - {x: 4, y: -16}
+        - {x: 7, y: -15}
+        - {x: 7, y: 16}
+    - name: egyptSpritesHorus_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 16}
+        - {x: -12, y: 16}
+        - {x: -14, y: 10}
+        - {x: -14, y: -13}
+        - {x: -11, y: -16}
+        - {x: 12, y: -16}
+        - {x: 12, y: 0}
+    - name: egyptSpritesHorus_21
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 16}
+        - {x: -14, y: 10}
+        - {x: -14, y: 1}
+        - {x: -11, y: -16}
+        - {x: 8, y: -16}
+        - {x: 8, y: 5}
+        - {x: 6, y: 16}
+    - name: egyptSpritesHorus_22
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -14, y: 15}
+        - {x: -14, y: -5}
+        - {x: -9, y: -16}
+        - {x: 8, y: -16}
+        - {x: 8, y: 12}
+        - {x: 5, y: 16}
+    - name: egyptSpritesHorus_23
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 16}
+        - {x: -12, y: 16}
+        - {x: -14, y: 10}
+        - {x: -14, y: -13}
+        - {x: -11, y: -16}
+        - {x: 12, y: -16}
+        - {x: 12, y: 0}
+    - name: egyptSpritesHorus_24
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 16}
+        - {x: -14, y: 10}
+        - {x: -14, y: 1}
+        - {x: -11, y: -16}
+        - {x: 8, y: -16}
+        - {x: 8, y: 5}
+        - {x: 6, y: 16}
+    - name: egyptSpritesHorus_25
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 16}
+        - {x: -14, y: 15}
+        - {x: -14, y: -5}
+        - {x: -9, y: -16}
+        - {x: 8, y: -16}
+        - {x: 8, y: 12}
+        - {x: 5, y: 16}
+    - name: egyptSpritesHorus_26
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 3}
+        - {x: -11, y: -10}
+        - {x: -1, y: -15}
+        - {x: 11, y: -15}
+        - {x: 11, y: 9}
+        - {x: 10, y: 16}
+        - {x: -8, y: 16}
+        - {x: -9, y: 15}
+    - name: egyptSpritesHorus_27
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: -13}
+        - {x: -9, y: -14}
+        - {x: 7, y: -14}
+        - {x: 7, y: 16}
+        - {x: -8, y: 16}
+        - {x: -10, y: 8}
+    - name: egyptSpritesHorus_28
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 16}
+        - {x: -8, y: 15}
+        - {x: -9, y: 5}
+        - {x: -9, y: -15}
+        - {x: -8, y: -16}
+        - {x: 3, y: -16}
+        - {x: 7, y: -7}
+        - {x: 7, y: 16}
+    - name: egyptSpritesHorus_29
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 3}
+        - {x: -11, y: -10}
+        - {x: -1, y: -15}
+        - {x: 11, y: -15}
+        - {x: 11, y: 9}
+        - {x: 10, y: 16}
+        - {x: -8, y: 16}
+        - {x: -9, y: 15}
+    - name: egyptSpritesHorus_30
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: -13}
+        - {x: -9, y: -14}
+        - {x: 7, y: -14}
+        - {x: 7, y: 16}
+        - {x: -8, y: 16}
+        - {x: -10, y: 8}
+    - name: egyptSpritesHorus_31
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 16}
+        - {x: -8, y: 15}
+        - {x: -9, y: 5}
+        - {x: -9, y: -15}
+        - {x: -8, y: -16}
+        - {x: 3, y: -16}
+        - {x: 7, y: -7}
+        - {x: 7, y: 16}
+    - name: egyptSpritesHorus_32
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 16}
+        - {x: -10, y: -8}
+        - {x: -4, y: -16}
+        - {x: 7, y: -16}
+        - {x: 7, y: 16}
+    - name: egyptSpritesHorus_33
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 16}
+        - {x: -10, y: -4}
+        - {x: -8, y: -13}
+        - {x: -4, y: -16}
+        - {x: 5, y: -16}
+        - {x: 7, y: -15}
+        - {x: 7, y: 16}
+    - name: egyptSpritesHorus_34
+      rect:
+        serializedVersion: 2
+        x: 1088
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 16}
+        - {x: -10, y: -13}
+        - {x: -9, y: -16}
+        - {x: 6, y: -16}
+        - {x: 7, y: -6}
+        - {x: 7, y: 16}
+    - name: egyptSpritesHorus_35
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 16}
+        - {x: -10, y: -8}
+        - {x: -9, y: -16}
+        - {x: 5, y: -16}
+        - {x: 7, y: -15}
+        - {x: 7, y: 13}
+        - {x: 6, y: 16}
+    - name: egyptSpritesHorus_36
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 16}
+        - {x: -10, y: -15}
+        - {x: -8, y: -16}
+        - {x: 3, y: -16}
+        - {x: 7, y: -13}
+        - {x: 7, y: 16}
+    - name: egyptSpritesHorus_37
+      rect:
+        serializedVersion: 2
+        x: 1184
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 16}
+        - {x: -10, y: -4}
+        - {x: -8, y: -16}
+        - {x: 6, y: -16}
+        - {x: 7, y: -10}
+        - {x: 7, y: 16}
+    - name: egyptSpritesHorus_38
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 5, y: 16}
+        - {x: -10, y: 16}
+        - {x: -13, y: -3}
+        - {x: -13, y: -14}
+        - {x: -10, y: -15}
+        - {x: -2, y: -15}
+        - {x: 7, y: -13}
+        - {x: 9, y: -9}
+        - {x: 9, y: 3}
+    - name: egyptSpritesHorus_39
+      rect:
+        serializedVersion: 2
+        x: 1248
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 16}
+        - {x: -9, y: 15}
+        - {x: -9, y: -14}
+        - {x: 6, y: -14}
+        - {x: 8, y: -12}
+        - {x: 8, y: 16}
+    - name: egyptSpritesHorus_40
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 16}
+        - {x: -9, y: -7}
+        - {x: -3, y: -16}
+        - {x: 7, y: -16}
+        - {x: 7, y: 15}
+        - {x: 6, y: 16}
+    - name: egyptSpritesHorus_41
+      rect:
+        serializedVersion: 2
+        x: 1312
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 5, y: 16}
+        - {x: -10, y: 16}
+        - {x: -13, y: -3}
+        - {x: -13, y: -14}
+        - {x: -10, y: -15}
+        - {x: -2, y: -15}
+        - {x: 7, y: -13}
+        - {x: 9, y: -9}
+        - {x: 9, y: 3}
+    - name: egyptSpritesHorus_42
+      rect:
+        serializedVersion: 2
+        x: 1344
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 16}
+        - {x: -9, y: 15}
+        - {x: -9, y: -14}
+        - {x: 6, y: -14}
+        - {x: 8, y: -12}
+        - {x: 8, y: 16}
+    - name: egyptSpritesHorus_43
+      rect:
+        serializedVersion: 2
+        x: 1376
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 16}
+        - {x: -9, y: -7}
+        - {x: -3, y: -16}
+        - {x: 7, y: -16}
+        - {x: 7, y: 15}
+        - {x: 6, y: 16}
+    - name: egyptSpritesHorus_44
+      rect:
+        serializedVersion: 2
+        x: 1408
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 10, y: 16}
+        - {x: -10, y: 16}
+        - {x: -14, y: 5}
+        - {x: -14, y: -16}
+        - {x: 12, y: -16}
+        - {x: 12, y: 15}
+    - name: egyptSpritesHorus_45
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 16}
+        - {x: -10, y: 13}
+        - {x: -10, y: -16}
+        - {x: 8, y: -16}
+        - {x: 12, y: 3}
+        - {x: 12, y: 13}
+        - {x: 10, y: 16}
+    - name: egyptSpritesHorus_46
+      rect:
+        serializedVersion: 2
+        x: 1472
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 16}
+        - {x: -10, y: 12}
+        - {x: -10, y: -16}
+        - {x: 3, y: -16}
+        - {x: 5, y: -15}
+        - {x: 12, y: -12}
+        - {x: 12, y: 16}
+    - name: egyptSpritesHorus_47
+      rect:
+        serializedVersion: 2
+        x: 1504
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 10, y: 16}
+        - {x: -10, y: 16}
+        - {x: -14, y: 5}
+        - {x: -14, y: -16}
+        - {x: 12, y: -16}
+        - {x: 12, y: 15}
+    - name: egyptSpritesHorus_48
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 16}
+        - {x: -10, y: 13}
+        - {x: -10, y: -16}
+        - {x: 8, y: -16}
+        - {x: 12, y: 3}
+        - {x: 12, y: 13}
+        - {x: 10, y: 16}
+    - name: egyptSpritesHorus_49
+      rect:
+        serializedVersion: 2
+        x: 1568
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 16}
+        - {x: -10, y: 12}
+        - {x: -10, y: -16}
+        - {x: 3, y: -16}
+        - {x: 5, y: -15}
+        - {x: 12, y: -12}
+        - {x: 12, y: 16}
+    - name: egyptSpritesHorus_50
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 16}
+        - {x: -11, y: 6}
+        - {x: -11, y: -13}
+        - {x: -7, y: -15}
+        - {x: 12, y: -15}
+        - {x: 12, y: 16}
+    - name: egyptSpritesHorus_51
+      rect:
+        serializedVersion: 2
+        x: 1632
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 16}
+        - {x: -9, y: -14}
+        - {x: -3, y: -16}
+        - {x: 6, y: -16}
+        - {x: 10, y: -12}
+        - {x: 10, y: 16}
+    - name: egyptSpritesHorus_52
+      rect:
+        serializedVersion: 2
+        x: 1664
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 16}
+        - {x: -9, y: -16}
+        - {x: 0, y: -16}
+        - {x: 10, y: -11}
+        - {x: 10, y: 16}
+    - name: egyptSpritesHorus_53
+      rect:
+        serializedVersion: 2
+        x: 1696
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 16}
+        - {x: -11, y: 6}
+        - {x: -11, y: -13}
+        - {x: -7, y: -15}
+        - {x: 12, y: -15}
+        - {x: 12, y: 16}
+    - name: egyptSpritesHorus_54
+      rect:
+        serializedVersion: 2
+        x: 1728
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 16}
+        - {x: -9, y: -15}
+        - {x: -2, y: -16}
+        - {x: 10, y: -16}
+        - {x: 10, y: 16}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

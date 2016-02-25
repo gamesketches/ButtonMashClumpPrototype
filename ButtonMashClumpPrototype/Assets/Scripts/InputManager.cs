@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -31,6 +32,10 @@ public class InputManager : MonoBehaviour {
 	public GameObject basicBulletPrefab;
 	public GameObject strayBulletPrefab;
 	public GameObject meleeAttackPrefab;
+	public GameObject squareBulletPrefab;
+	public GameObject xBulletPrefab;
+	public GameObject circleBulletPrefab;
+	public GameObject triangleBulletPrefab;
 	private PlayerMovement movementManager;
 
 	public Color noShootingColor;
@@ -54,6 +59,10 @@ public class InputManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(Input.GetKeyDown(KeyCode.R)) {
+			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		}
+
 		if(exponentCooldown <= 0) {
 			GetComponentInChildren<Renderer>().material.color = startingColor;
 			if(Input.GetButtonDown(buttonA) || Input.GetButtonDown(buttonB) || 
@@ -99,7 +108,7 @@ public class InputManager : MonoBehaviour {
 			inputCooldownTimer -= Time.deltaTime;
 			if(inputCooldownTimer <= 0.0f) {
 				Fire();
-				}
+			}
 		}
 	}
 		else {
@@ -122,7 +131,7 @@ public class InputManager : MonoBehaviour {
 		}
 		// This will be the hardest part to get right
 		if(exponentialBuffer) {
-			exponentCooldown = (bufferIter * (bufferIter + 1)) / 2;
+			//exponentCooldown = (bufferIter * (bufferIter + 1)) / 2;
 		}
 		bufferIter = 0;
 		mashing = false;
@@ -135,7 +144,17 @@ public class InputManager : MonoBehaviour {
 
 	void ExponentShot() {
 		for(int i = 0; i < bufferIter; i++) {
-			createBullet(Random.Range(-30.0f, 30.0f), Random.Range(10.0f, 25.0f), 0);
+			int type = 100;
+			if(mashBuffer[i] == 'A') {
+				type = 2;
+			} else if(mashBuffer[i] == 'B') {
+				type = 3;
+			} else if(mashBuffer[i] == 'C') {
+				type = 4;
+			} else if(mashBuffer[i] == 'D') {
+				type = 5;
+			}
+			createBullet(Random.Range(-30.0f, 30.0f), Random.Range(10.0f, 25.0f), type);
 		}
 	}
 
@@ -158,21 +177,12 @@ public class InputManager : MonoBehaviour {
 			ModeIndicators.Instance.UpdateMode(player.number, "Input Equals Number");
 			break;
 		case 4:
-			ModeIndicators.Instance.UpdateMode(player.number, "Input Equals Number Alt");
-			break;
-		case 5:
-			ModeIndicators.Instance.UpdateMode(player.number, "Input Equals Number Inverse");
-			break;
-		case 6:
-			ModeIndicators.Instance.UpdateMode(player.number, "Input Equals Number Alt Alt");
-			break;
-		case 7:
 			ModeIndicators.Instance.UpdateMode(player.number, "Input Equals Random");
 			break;
-		case 8:
+		case 5:
 			ModeIndicators.Instance.UpdateMode(player.number, "Input Melee Attacks");
 			break;
-		case 9:
+		case 6:
 			ModeIndicators.Instance.UpdateMode(player.number, "Input Melee Attacks *SKI*");
 			break;
 		}
@@ -280,41 +290,70 @@ public class InputManager : MonoBehaviour {
 
 	void InputEqualsNumber() {
 		int bulletNumber = 0;
+		List<char> meaningfulInput = new List<char>();
 		for(int i = 0; i < mashBufferSize; i++) {
 			if(mashBuffer[i] != '*') {
 				bulletNumber++;
+				meaningfulInput.Add(mashBuffer[i]);
 			}
 		}
 		float angleDifference = 90.0f / mashBufferSize;
 		List<float> bulletAngles = new List<float>();
+		List<int> bulletTypes = new List<int>();
 
 		bulletAngles.Add(0.0f);
+		bulletTypes.Insert(0, Random.Range(2, 6));
 		if(bulletNumber == mashBufferSize) {
 			bulletAngles.Add(90.0f);
-			bulletAngles.Add(90.0f);
+			bulletAngles.Add(-90.0f);
+			bulletTypes.Insert(0, Random.Range(2, 6));
+			bulletTypes.Insert(0, Random.Range(2, 6));
 		}
 
 		if(bulletNumber > 1) {
 			for(int i = 0; i < bulletNumber - 1; i++) {
 				bulletAngles.Add(angleDifference * (i + 1));
 				bulletAngles.Add(-angleDifference * (i + 1));
+				if(meaningfulInput[i] == 'A') {
+					bulletTypes.Add(2);
+					bulletTypes.Add(2);
+				} else if(meaningfulInput[i] == 'B') {
+					bulletTypes.Add(3);
+					bulletTypes.Add(3);
+				} else if(meaningfulInput[i] == 'C') {
+					bulletTypes.Add(4);
+					bulletTypes.Add(4);
+				} else if(meaningfulInput[i] == 'D') {
+					bulletTypes.Add(5);
+					bulletTypes.Add(5);
+				}
 			}
 		}
 		for(int i = 0; i < bulletAngles.Count; i++) {
-			createBullet(bulletAngles[i], Random.Range(15.0f, 25.0f));
+			createBullet(bulletAngles[i], Random.Range(15.0f, 25.0f), bulletTypes[i]);
 		}
 	}
 
 	void InputEqualsRandom() {
 		int bulletNumber = 0;
+		List<int> bulletTypes = new List<int>();
 		for(int i = 0; i < mashBufferSize; i++) {
 			if(mashBuffer[i] != '*') {
 				bulletNumber++;
+				if(mashBuffer[i] == 'A') {
+					bulletTypes.Add(2);
+				} else if(mashBuffer[i] == 'B') {
+					bulletTypes.Add(3);
+				} else if(mashBuffer[i] == 'C') {
+					bulletTypes.Add(4);
+				} else if(mashBuffer[i] == 'D') {
+					bulletTypes.Add(5);
+				}
 			}
 		}
 
 		for(int i = 0; i < bulletNumber; i++) {
-			createBullet(Random.Range(0.0f, 360.0f), Random.Range(15.0f, 25.0f));
+			createBullet(Random.Range(0.0f, 360.0f), Random.Range(15.0f, 25.0f), bulletTypes[i]);
 		}
 	}
 
@@ -332,7 +371,9 @@ public class InputManager : MonoBehaviour {
 		monkeyPunch = ((GameObject)Instantiate(meleeAttackPrefab, transform.position,
 			Quaternion.Euler(0.0f, 0.0f, 0.0f)));
 
-		monkeyPunch.transform.localScale = new Vector3(width, height, 0);
+		monkeyPunch.GetComponent<AudioSource>().Play();
+
+		//monkeyPunch.transform.localScale = new Vector3(width, height, 0);
 
 		Destroy(monkeyPunch, 0.5f);
 	}
@@ -375,6 +416,9 @@ public class InputManager : MonoBehaviour {
 		MeleeScript script = monkeyPunch.GetComponent<MeleeScript>();
 		script.mother = gameObject;
 
+
+		monkeyPunch.GetComponents<AudioSource>()[0].Play();
+
         StartCoroutine(SpinWeapon(monkeyPunch, totalCount));
 
     }
@@ -395,7 +439,6 @@ public class InputManager : MonoBehaviour {
             transform.Rotate(Vector3.forward, i * 20);
             //Debug.Log("rotating : i = " + i);
             //yield return null;
-			Debug.Break();
             yield return new WaitForSeconds(0.05f);
         }
 
@@ -427,6 +470,18 @@ public class InputManager : MonoBehaviour {
 		} else if(bulletType == 1) {
 			bullet = ((GameObject)Instantiate (strayBulletPrefab, transform.position, 
 				Quaternion.Euler (0.0f, 0.0f, angle)));
+		} else if(bulletType == 2) {
+			bullet = ((GameObject)Instantiate (squareBulletPrefab, transform.position, 
+				Quaternion.Euler (0.0f, 0.0f, angle)));
+		} else if(bulletType == 3) {
+			bullet = ((GameObject)Instantiate (xBulletPrefab, transform.position, 
+				Quaternion.Euler (0.0f, 0.0f, angle)));
+		} else if(bulletType == 4) {
+			bullet = ((GameObject)Instantiate (circleBulletPrefab, transform.position, 
+				Quaternion.Euler (0.0f, 0.0f, angle)));
+		} else if(bulletType == 5) {
+			bullet = ((GameObject)Instantiate (triangleBulletPrefab, transform.position, 
+				Quaternion.Euler (0.0f, 0.0f, angle)));
 		}
 		bulletRB = bullet.GetComponent<Rigidbody2D> ();
 
@@ -434,6 +489,7 @@ public class InputManager : MonoBehaviour {
 
 		OwnerScript script = bullet.GetComponent<OwnerScript>();
 		script.mother = gameObject;
+		script.SetType(bulletType);
 		Renderer bulletRenderer = bullet.GetComponentInChildren<Renderer>();
 		bulletRenderer.material.color = player.number == 0 ? Color.red : Color.green;
 	}
