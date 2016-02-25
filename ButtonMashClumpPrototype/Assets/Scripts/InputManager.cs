@@ -332,7 +332,9 @@ public class InputManager : MonoBehaviour {
 		monkeyPunch = ((GameObject)Instantiate(meleeAttackPrefab, transform.position,
 			Quaternion.Euler(0.0f, 0.0f, 0.0f)));
 
-		monkeyPunch.transform.localScale = new Vector3(width, height, 0);
+		monkeyPunch.GetComponent<AudioSource>().Play();
+
+		//monkeyPunch.transform.localScale = new Vector3(width, height, 0);
 
 		Destroy(monkeyPunch, 0.5f);
 	}
@@ -375,6 +377,9 @@ public class InputManager : MonoBehaviour {
 		MeleeScript script = monkeyPunch.GetComponent<MeleeScript>();
 		script.mother = gameObject;
 
+
+		monkeyPunch.GetComponents<AudioSource>()[0].Play();
+
         StartCoroutine(SpinWeapon(monkeyPunch, totalCount));
 
     }
@@ -395,7 +400,6 @@ public class InputManager : MonoBehaviour {
             transform.Rotate(Vector3.forward, i * 20);
             //Debug.Log("rotating : i = " + i);
             //yield return null;
-			Debug.Break();
             yield return new WaitForSeconds(0.05f);
         }
 
