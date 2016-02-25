@@ -108,7 +108,7 @@ public class InputManager : MonoBehaviour {
 			inputCooldownTimer -= Time.deltaTime;
 			if(inputCooldownTimer <= 0.0f) {
 				Fire();
-				}
+			}
 		}
 	}
 		else {
@@ -131,7 +131,7 @@ public class InputManager : MonoBehaviour {
 		}
 		// This will be the hardest part to get right
 		if(exponentialBuffer) {
-			exponentCooldown = (bufferIter * (bufferIter + 1)) / 2;
+			//exponentCooldown = (bufferIter * (bufferIter + 1)) / 2;
 		}
 		bufferIter = 0;
 		mashing = false;
@@ -336,14 +336,24 @@ public class InputManager : MonoBehaviour {
 
 	void InputEqualsRandom() {
 		int bulletNumber = 0;
+		List<int> bulletTypes = new List<int>();
 		for(int i = 0; i < mashBufferSize; i++) {
 			if(mashBuffer[i] != '*') {
 				bulletNumber++;
+				if(mashBuffer[i] == 'A') {
+					bulletTypes.Add(2);
+				} else if(mashBuffer[i] == 'B') {
+					bulletTypes.Add(3);
+				} else if(mashBuffer[i] == 'C') {
+					bulletTypes.Add(4);
+				} else if(mashBuffer[i] == 'D') {
+					bulletTypes.Add(5);
+				}
 			}
 		}
 
 		for(int i = 0; i < bulletNumber; i++) {
-			createBullet(Random.Range(0.0f, 360.0f), Random.Range(15.0f, 25.0f));
+			createBullet(Random.Range(0.0f, 360.0f), Random.Range(15.0f, 25.0f), bulletTypes[i]);
 		}
 	}
 
