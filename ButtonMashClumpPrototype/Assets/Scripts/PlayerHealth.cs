@@ -13,6 +13,7 @@ public class PlayerHealth : MonoBehaviour {
 	private Color startColor;
 	private AudioSource audioSource;
 	private Renderer quadRenderer;
+    public Text victoryText;
 
 
     void Start()
@@ -32,6 +33,7 @@ public class PlayerHealth : MonoBehaviour {
             }
 
         }*/
+        victoryText.text = "";
         health = 100;
     }
 
@@ -40,20 +42,43 @@ public class PlayerHealth : MonoBehaviour {
         Debug.Log("Im taking damage!");
         health--;
 		audioSource.Play();
-        if (player.number == 1)
+        
+        //"GREEN BARR!!"
+        if ((33 < health) & (health < 100))
         {
-            healthText.text = "Blue\n" + health.ToString();
-        } else if (player.number == 0)
+            healthText.color = Color.yellow;
+        }
+        else if ((0 <= health) & (health <= 33))
         {
-            healthText.text = "White\n" + health.ToString();
+            healthText.color = Color.red;
         }
 
-		StartCoroutine(hitFlash());
+
+        healthText.text = "";
+
+        //display 20 bars for health 
+        for (int i = 0; i < health / 5; i++)
+        {
+            healthText.text += "|";
+        }
+        
+        //magic pixel 
+        if ((0 < health) & (health < 5))
+        {
+            healthText.text += "|";
+        }
+
+        //why dont they just make a 4player version??
+        healthText.text += player.number == 1 ? "\nBLUE" : "\nWHITE";
+
+        StartCoroutine(hitFlash());
 
 		if(health <= 0) {
-			string color = player.number == 1 ? "Blue\n" : "White\n";
-			healthText.text = color + "Loses :(";
-			StartCoroutine(sceneReset());
+			string color = player.number == 1 ? "BLUE\n" : "WHITE\n";
+            healthText.text = color + "Loses :(";
+            string victory = player.number == 1 ? "WHITE  SQUARE\n" : "BLUE  SQUARE\n";
+            victoryText.text = victory + "WINS";
+            StartCoroutine(sceneReset());
 		}
     }
 
