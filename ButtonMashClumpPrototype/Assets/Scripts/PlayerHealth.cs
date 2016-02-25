@@ -69,14 +69,14 @@ public class PlayerHealth : MonoBehaviour {
         }
 
         //why dont they just make a 4player version??
-        healthText.text += player.number == 1 ? "\nBLUE" : "\nWHITE";
+        healthText.text += player.number == 1 ? "\nHORUS" : "\nSETT";
 
         StartCoroutine(hitFlash());
 
 		if(health <= 0) {
-			string color = player.number == 1 ? "BLUE\n" : "WHITE\n";
+			string color = player.number == 1 ? "HORUS\n" : "SETT\n";
             healthText.text = color + "Loses :(";
-            string victory = player.number == 1 ? "WHITE  SQUARE\n" : "BLUE  SQUARE\n";
+            string victory = player.number == 1 ? "SETT  \n" : "HORUS\n";
             victoryText.text = victory + "WINS";
             StartCoroutine(sceneReset());
 		}
