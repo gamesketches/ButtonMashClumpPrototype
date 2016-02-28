@@ -122,6 +122,12 @@ public class InputManager : MonoBehaviour {
 			interpreterIndex = (interpreterIndex + 1) % 7;
 			SetInterpreterText();
 		}*/
+
+		if(movementManager.useBenAiming) {
+			if(!mashing) {
+				movementManager.HandleRotation();
+			}
+		}
 	}
 
 	void Fire() {
