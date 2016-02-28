@@ -15,8 +15,10 @@ public class MeleeScript : MonoBehaviour {
 				collider.gameObject.GetComponent<PlayerHealth>().TakeDamage();
 			}
 		} 
-		else if(layerMask == "Bullets" || layerMask == "Basic Bullet Circle" || layerMask == "Default") {
+		else if(layerMask == "Bullets" && collider.gameObject.GetComponent<OwnerScript>().mother != mother) {
 			if(nullifiesProjectiles){
+				Debug.Log("TriggerWarning");
+				Debug.Break();
 				Destroy(collider.gameObject);
 				}
 		}
@@ -29,8 +31,10 @@ public class MeleeScript : MonoBehaviour {
 				collision.gameObject.GetComponent<PlayerHealth>().TakeDamage();
 			}
 		} 
-		else if(layerMask == "Bullets" || layerMask == "Basic Bullet Circle" || layerMask == "Default") {
+		else if(layerMask == "Bullets" && collision.gameObject.GetComponent<OwnerScript>().mother != mother) {
 			if(nullifiesProjectiles){
+				Debug.Log("Collision");
+				Debug.Break();
 				Destroy(collision.gameObject);
 			}
 		}

@@ -63,7 +63,6 @@ public class InputManager : MonoBehaviour {
 			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		}
 
-		if(exponentCooldown <= 0) {
 			GetComponentInChildren<Renderer>().material.color = startingColor;
 			if(Input.GetButtonDown(buttonA) || Input.GetButtonDown(buttonB) || 
 				Input.GetButtonDown(buttonC) || Input.GetButtonDown(buttonD)) {
@@ -78,7 +77,7 @@ public class InputManager : MonoBehaviour {
 				if(shootStrays) {
 					FireStray();
 				}
-				if(exponentialBuffer) {
+				if(exponentialBuffer && exponentCooldown <= 0) {
 					ExponentShot();
 				}
 				if(Input.GetButtonDown(buttonA)) {
@@ -98,20 +97,17 @@ public class InputManager : MonoBehaviour {
 					if(bufferIter >= mashBufferSize) {
 						Fire();
 					}
-					if(exponentialBuffer) {			
-					}
 			} else {
 				bufferIter = bufferIter >= mashBufferSize - 1 ? 0 : bufferIter + 1;
 			}
-		} else if(mashing && !Input.GetButton(buttonA) && !Input.GetButton(buttonB) && 
+		}else if(mashing && !Input.GetButton(buttonA) && !Input.GetButton(buttonB) && 
 			!Input.GetButton(buttonC) && !Input.GetButton(buttonD)) {
 			inputCooldownTimer -= Time.deltaTime;
 			if(inputCooldownTimer <= 0.0f) {
 				Fire();
 			}
 		}
-	}
-		else {
+		if(exponentCooldown > 0) { 
 			exponentCooldown--;
 			GetComponentInChildren<Renderer>().material.color = noShootingColor;
 		}
@@ -199,6 +195,10 @@ public class InputManager : MonoBehaviour {
 	}
 
 	void InterpretInputs() {
+		if(exponentCooldown > 0) {
+			InputMeleeAttacksSki();
+			return;
+		}
 		switch(interpreterIndex) {
 			case 0:
 				// each A increases angle by 10%, B reduces by 10%
@@ -446,10 +446,10 @@ public class InputManager : MonoBehaviour {
         {
             //monkeyPunch.transform.Rotate(Vector3.forward, i * 20);
             monkeyPunch.transform.localRotation = Quaternion.Euler(Vector3.zero);
-            transform.Rotate(Vector3.forward, i * 20);
+            transform.Rotate(Vector3.forward, i * 3);
             //Debug.Log("rotating : i = " + i);
             //yield return null;
-            yield return new WaitForSeconds(0.05f);
+			yield return null;//new WaitForSeconds(0.01f);
         }
 
         //Destroy(monkeyPunch, 0.5f);
