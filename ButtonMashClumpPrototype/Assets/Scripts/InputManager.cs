@@ -149,6 +149,7 @@ public class InputManager : MonoBehaviour {
 	}
 
 	void ExponentShot() {
+		float incrementAngle = 45.0f;
 		for(int i = 0; i < bufferIter; i++) {
 			int type = 100;
 			if(mashBuffer[i] == 'A') {
@@ -160,23 +161,23 @@ public class InputManager : MonoBehaviour {
 			} else if(mashBuffer[i] == 'D') {
 				type = 5;
 			}
-			float incrementAngle = 90.0f;
-			if(i == 0) {
+			if(bufferIter < 2) {
 				createBullet(0.0f, 20.0f, type);
-				// this sucks this sucks this sucks this sucks
-				if(bufferIter == 1) {
-					createBullet(0.0f, 10.0f, type);
-				}
-				continue;
+				return;
 			}
 			else {
 				float speed = (float)bufferIter;
+				float baseAngle = 0.0f;
 				for(int k = 1; k < i; k++) {
-					createBullet((incrementAngle / (float)k), speed, type);
-					k++;
-					createBullet(-(incrementAngle / (float)k), speed, type);
 					speed = speed > 1 ? speed -= 1 : 1;
+					createBullet(baseAngle + incrementAngle, speed, type);
+					k++;
+					createBullet(-(baseAngle + incrementAngle), speed, type);
+					baseAngle += incrementAngle;
 				}
+			}
+			if(i >= 1) {
+				incrementAngle /= i;
 			}
 			//createBullet(Random.Range(-30.0f, 30.0f), Random.Range(10.0f, 25.0f), type);
 		}
