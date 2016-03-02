@@ -494,22 +494,22 @@ public class InputManager : MonoBehaviour {
 		angle += movementManager.currentShotAngle();
 		if(bulletType == 0) {
 			bullet = ((GameObject)Instantiate (basicBulletPrefab, transform.position, 
-				Quaternion.Euler (0.0f, 0.0f, angle)));
+				Quaternion.Euler (0.0f, 0.0f, 0.0f/*angle*/)));
 		} else if(bulletType == 1) {
 			bullet = ((GameObject)Instantiate (strayBulletPrefab, transform.position, 
-				Quaternion.Euler (0.0f, 0.0f, angle)));
+				Quaternion.Euler (0.0f, 0.0f, 0.0f/*angle*/)));
 		} else if(bulletType == 2) {
 			bullet = ((GameObject)Instantiate (squareBulletPrefab, transform.position, 
-				Quaternion.Euler (0.0f, 0.0f, angle)));
+				Quaternion.Euler (0.0f, 0.0f, 0.0f/*angle*/)));
 		} else if(bulletType == 3) {
 			bullet = ((GameObject)Instantiate (xBulletPrefab, transform.position, 
-				Quaternion.Euler (0.0f, 0.0f, angle)));
+				Quaternion.Euler (0.0f, 0.0f, 0.0f/*angle*/)));
 		} else if(bulletType == 4) {
 			bullet = ((GameObject)Instantiate (circleBulletPrefab, transform.position, 
-				Quaternion.Euler (0.0f, 0.0f, angle)));
+				Quaternion.Euler (0.0f, 0.0f, 0.0f/*angle*/)));
 		} else if(bulletType == 5) {
 			bullet = ((GameObject)Instantiate (triangleBulletPrefab, transform.position, 
-				Quaternion.Euler (0.0f, 0.0f, angle)));
+				Quaternion.Euler (0.0f, 0.0f, 0.0f/*angle*/)));
 		}
 		bulletRB = bullet.GetComponent<Rigidbody2D> ();
 

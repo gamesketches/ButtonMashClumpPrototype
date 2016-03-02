@@ -15,7 +15,7 @@ public class OwnerScript : MonoBehaviour {
 
 	void Awake() {
 		rb2D = GetComponent<Rigidbody2D>();
-		rb2D.AddTorque(100.0f);
+		//rb2D.AddTorque(100.0f);
 	}
 
 	void OnTriggerEnter2D(Collider2D collider) {
