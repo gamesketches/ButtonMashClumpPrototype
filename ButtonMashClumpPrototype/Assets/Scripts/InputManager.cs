@@ -160,7 +160,25 @@ public class InputManager : MonoBehaviour {
 			} else if(mashBuffer[i] == 'D') {
 				type = 5;
 			}
-			createBullet(Random.Range(-30.0f, 30.0f), Random.Range(10.0f, 25.0f), type);
+			float incrementAngle = 90.0f;
+			if(i == 0) {
+				createBullet(0.0f, 20.0f, type);
+				// this sucks this sucks this sucks this sucks
+				if(bufferIter == 1) {
+					createBullet(0.0f, 10.0f, type);
+				}
+				continue;
+			}
+			else {
+				float speed = (float)bufferIter;
+				for(int k = 1; k < i; k++) {
+					createBullet((incrementAngle / (float)k), speed, type);
+					k++;
+					createBullet(-(incrementAngle / (float)k), speed, type);
+					speed = speed > 1 ? speed -= 1 : 1;
+				}
+			}
+			//createBullet(Random.Range(-30.0f, 30.0f), Random.Range(10.0f, 25.0f), type);
 		}
 	}
 
