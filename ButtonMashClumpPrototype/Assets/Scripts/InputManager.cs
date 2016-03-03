@@ -179,7 +179,6 @@ public class InputManager : MonoBehaviour {
 			if(i >= 1) {
 				incrementAngle /= i;
 			}
-			//createBullet(Random.Range(-30.0f, 30.0f), Random.Range(10.0f, 25.0f), type);
 		}
 	}
 
