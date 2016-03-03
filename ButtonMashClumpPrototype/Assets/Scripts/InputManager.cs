@@ -401,8 +401,6 @@ public class InputManager : MonoBehaviour {
 
 		monkeyPunch.GetComponent<AudioSource>().Play();
 
-		//monkeyPunch.transform.localScale = new Vector3(width, height, 0);
-
 		Destroy(monkeyPunch, 0.5f);
 	}
 
@@ -425,22 +423,6 @@ public class InputManager : MonoBehaviour {
 
         monkeyPunch.transform.parent = transform;
 
-        /*here I want to take the total number of inputs and map it across 360 degrees
-        // max inputs will = 360 degrees
-        // min inputs = 0 degrees 
-        // this will determine the rotation
-        // i will keep the width thin and just spin it from the center
-        some math 360/18 = 20 that is nice. 
-        so each input = 20 degrees of rotation
-        afterwards i will address directionality based on inputs for now we'll just do a total
-        do i: instantiate and spin all within this function 
-        or
-        instatiate and spin from another function?
-        instiate as many as i need rotations and destroy before creating the next?
-        do i need to use invoke or waitforseconds?
-        can i do this without changing update?
-        */
-
 		MeleeScript script = monkeyPunch.GetComponent<MeleeScript>();
 		script.mother = gameObject;
 
@@ -455,7 +437,6 @@ public class InputManager : MonoBehaviour {
     {
 
 
-        //monkeyPunch.transform.localScale = new Vector3(width, height, 0);
         monkeyPunch.transform.localScale = new Vector3(width, 0.5f, 0); //we'll just give it dimensions for now
         monkeyPunch.transform.localPosition = Vector3.right * width / 2.0f; //extend it like sword
 
@@ -466,12 +447,9 @@ public class InputManager : MonoBehaviour {
             monkeyPunch.transform.localRotation = Quaternion.Euler(Vector3.zero);
             transform.Rotate(Vector3.forward, i);
 			monkeyPunch.GetComponent<Rigidbody2D>().MoveRotation(monkeyPunch.GetComponent<Rigidbody2D>().rotation * Mathf.Rad2Deg + i * 3 * Mathf.Rad2Deg);
-            //Debug.Log("rotating : i = " + i);
-            //yield return null;
-			yield return null;//new WaitForSeconds(0.01f);
+			yield return null;
         }
 
-        //Destroy(monkeyPunch, 0.5f);
         Destroy(monkeyPunch);
 
     }
@@ -480,10 +458,10 @@ public class InputManager : MonoBehaviour {
 		num1 = 0;
 		num2 = 0;
 		for(int i = 0; i < mashBufferSize; i++) {
-			if(mashBuffer[i] == 'A') {
+			if(mashBuffer[i] == 'A' || mashBuffer[i] == 'C') {
 				num1++;
 			}
-			else if(mashBuffer[i] == 'B') {
+			else if(mashBuffer[i] == 'B' || mashBuffer[i] == 'D') {
 				num2++;
 			}
 		}
@@ -495,22 +473,22 @@ public class InputManager : MonoBehaviour {
 		angle += movementManager.currentShotAngle();
 		if(bulletType == 0) {
 			bullet = ((GameObject)Instantiate (basicBulletPrefab, transform.position, 
-				Quaternion.Euler (0.0f, 0.0f, 0.0f/*angle*/)));
+				Quaternion.Euler (0.0f, 0.0f, 0.0f)));
 		} else if(bulletType == 1) {
 			bullet = ((GameObject)Instantiate (strayBulletPrefab, transform.position, 
-				Quaternion.Euler (0.0f, 0.0f, 0.0f/*angle*/)));
+				Quaternion.Euler (0.0f, 0.0f, 0.0f)));
 		} else if(bulletType == 2) {
 			bullet = ((GameObject)Instantiate (squareBulletPrefab, transform.position, 
-				Quaternion.Euler (0.0f, 0.0f, 0.0f/*angle*/)));
+				Quaternion.Euler (0.0f, 0.0f, 0.0f)));
 		} else if(bulletType == 3) {
 			bullet = ((GameObject)Instantiate (xBulletPrefab, transform.position, 
-				Quaternion.Euler (0.0f, 0.0f, 0.0f/*angle*/)));
+				Quaternion.Euler (0.0f, 0.0f, 0.0f)));
 		} else if(bulletType == 4) {
 			bullet = ((GameObject)Instantiate (circleBulletPrefab, transform.position, 
-				Quaternion.Euler (0.0f, 0.0f, 0.0f/*angle*/)));
+				Quaternion.Euler (0.0f, 0.0f, 0.0f)));
 		} else if(bulletType == 5) {
 			bullet = ((GameObject)Instantiate (triangleBulletPrefab, transform.position, 
-				Quaternion.Euler (0.0f, 0.0f, 0.0f/*angle*/)));
+				Quaternion.Euler (0.0f, 0.0f, 0.0f)));
 		}
 		bulletRB = bullet.GetComponent<Rigidbody2D> ();
 
@@ -519,7 +497,5 @@ public class InputManager : MonoBehaviour {
 		OwnerScript script = bullet.GetComponent<OwnerScript>();
 		script.mother = gameObject;
 		script.SetType(bulletType);
-		/*Renderer bulletRenderer = bullet.GetComponentInChildren<Renderer>();
-		bulletRenderer.material.color = player.number == 0 ? Color.red : Color.green;*/
 	}
 }
