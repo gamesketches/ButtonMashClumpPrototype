@@ -133,7 +133,7 @@ public class InputManager : MonoBehaviour {
 		}
 		// This will be the hardest part to get right
 		if(exponentialBuffer) {
-			int lockFrames = (bufferIter * (bufferIter + 1)) / 2;
+			int lockFrames = (bufferIter * (bufferIter + 1));
 			if (bufferIter < mashBufferSize) {
 				lockFrames = lockFrames / 2;
 			}
@@ -413,8 +413,8 @@ public class InputManager : MonoBehaviour {
 
         TallyInputs(out aCount, out bCount);
 
-        float width = aCount * 0.3f;
-        float height = bCount * 0.3f;
+        float width = aCount * 1.0f;
+        float height = bCount * 1.0f;
         int totalCount = aCount + bCount;
 
 
@@ -447,24 +447,25 @@ public class InputManager : MonoBehaviour {
 
 		monkeyPunch.GetComponents<AudioSource>()[0].Play();
 
-        StartCoroutine(SpinWeapon(monkeyPunch, totalCount));
+        StartCoroutine(SpinWeapon(monkeyPunch, totalCount, width));
 
     }
 
-    IEnumerator SpinWeapon(GameObject monkeyPunch, int totalCount)
+	IEnumerator SpinWeapon(GameObject monkeyPunch, int totalCount, float width)
     {
 
 
         //monkeyPunch.transform.localScale = new Vector3(width, height, 0);
-        monkeyPunch.transform.localScale = new Vector3(3.0f, 0.5f, 0); //we'll just give it dimensions for now
-        monkeyPunch.transform.localPosition = Vector3.right * 1.0f; //extend it like sword
+        monkeyPunch.transform.localScale = new Vector3(width, 0.5f, 0); //we'll just give it dimensions for now
+        monkeyPunch.transform.localPosition = Vector3.right * width / 2.0f; //extend it like sword
 
 
-        for (int i = 0; i < totalCount; i++)
+        for (int i = 0; i < totalCount * 2; i++)
         {
             //monkeyPunch.transform.Rotate(Vector3.forward, i * 20);
             monkeyPunch.transform.localRotation = Quaternion.Euler(Vector3.zero);
             transform.Rotate(Vector3.forward, i * 3);
+			monkeyPunch.GetComponent<Rigidbody2D>().MoveRotation(monkeyPunch.GetComponent<Rigidbody2D>().rotation * Mathf.Rad2Deg + i * 3 * Mathf.Rad2Deg);
             //Debug.Log("rotating : i = " + i);
             //yield return null;
 			yield return null;//new WaitForSeconds(0.01f);

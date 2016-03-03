@@ -18,7 +18,6 @@ public class MeleeScript : MonoBehaviour {
 		else if(layerMask == "Bullets" && collider.gameObject.GetComponent<OwnerScript>().mother != mother) {
 			if(nullifiesProjectiles){
 				Debug.Log("TriggerWarning");
-				Debug.Break();
 				Destroy(collider.gameObject);
 				}
 		}
@@ -34,7 +33,6 @@ public class MeleeScript : MonoBehaviour {
 		else if(layerMask == "Bullets" && collision.gameObject.GetComponent<OwnerScript>().mother != mother) {
 			if(nullifiesProjectiles){
 				Debug.Log("Collision");
-				Debug.Break();
 				Destroy(collision.gameObject);
 			}
 		}
