@@ -69,14 +69,14 @@ public class PlayerHealth : MonoBehaviour {
         }
 
         //why dont they just make a 4player version??
-        healthText.text += player.number == 1 ? "\nHORUS" : "\nSETT";
+        healthText.text += player.number == 1 ? "\nHORUS" : "\nSETH";
 
         StartCoroutine(hitFlash());
 
 		if(health <= 0) {
-			string color = player.number == 1 ? "HORUS\n" : "SETT\n";
+			string color = player.number == 1 ? "HORUS\n" : "SETH\n";
             healthText.text = color + "Loses :(";
-            string victory = player.number == 1 ? "SETT  \n" : "HORUS\n";
+            string victory = player.number == 1 ? "SETH  \n" : "HORUS\n";
             victoryText.text = victory + "WINS";
             StartCoroutine(sceneReset());
 		}
@@ -100,6 +100,12 @@ public class PlayerHealth : MonoBehaviour {
 		// Make sure we end where we started
 		quadRenderer.material.color = startColor;
 	}
+
+    public int returnHealth()
+    {
+        return health;
+    }
+
     // Update is called once per frame
     void Update () {
 	
