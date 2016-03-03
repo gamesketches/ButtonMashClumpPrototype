@@ -166,7 +166,7 @@ public class InputManager : MonoBehaviour {
 				return;
 			}
 			else {
-				float speed = (float)bufferIter;
+				float speed = (float)bufferIter * 2;
 				float baseAngle = 0.0f;
 				for(int k = 1; k < i; k++) {
 					speed = speed > 1 ? speed -= 1 : 1;
@@ -411,7 +411,7 @@ public class InputManager : MonoBehaviour {
 
         TallyInputs(out aCount, out bCount);
 
-        float width = aCount * 1.0f;
+        float width = aCount * 0.75f;
         float height = bCount * 1.0f;
         int totalCount = aCount + bCount;
 
