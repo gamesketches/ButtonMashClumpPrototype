@@ -460,11 +460,11 @@ public class InputManager : MonoBehaviour {
         monkeyPunch.transform.localPosition = Vector3.right * width / 2.0f; //extend it like sword
 
 
-        for (int i = 0; i < totalCount * 2; i++)
+        for (int i = 0; i < totalCount * 5; i++)
         {
             //monkeyPunch.transform.Rotate(Vector3.forward, i * 20);
             monkeyPunch.transform.localRotation = Quaternion.Euler(Vector3.zero);
-            transform.Rotate(Vector3.forward, i * 3);
+            transform.Rotate(Vector3.forward, i);
 			monkeyPunch.GetComponent<Rigidbody2D>().MoveRotation(monkeyPunch.GetComponent<Rigidbody2D>().rotation * Mathf.Rad2Deg + i * 3 * Mathf.Rad2Deg);
             //Debug.Log("rotating : i = " + i);
             //yield return null;
