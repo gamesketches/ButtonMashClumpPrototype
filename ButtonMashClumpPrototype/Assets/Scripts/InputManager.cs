@@ -65,8 +65,9 @@ public class InputManager : MonoBehaviour {
 		}
 
 			GetComponentInChildren<Renderer>().material.color = startingColor;
-			if(Input.GetButtonDown(buttonA) || Input.GetButtonDown(buttonB) || 
-				Input.GetButtonDown(buttonC) || Input.GetButtonDown(buttonD)) {
+			char button = GetButtonPress();
+			if(button != '0'){//Input.GetButtonDown(buttonA) || Input.GetButtonDown(buttonB) || 
+				//Input.GetButtonDown(buttonC) || Input.GetButtonDown(buttonD)) {
 				inputCooldownTimer = inputCooldown;
 				gameObject.transform.localScale = Vector3.Lerp(new Vector3(1f, 1f, 1f), 
 														new Vector3(fullBufferScale, fullBufferScale, fullBufferScale),
@@ -81,7 +82,8 @@ public class InputManager : MonoBehaviour {
 				if(exponentialBuffer && exponentCooldown <= 0) {
 					ExponentShot();
 				}
-				if(Input.GetButtonDown(buttonA)) {
+				mashBuffer.SetValue(button, bufferIter);
+				/*if(Input.GetButtonDown(buttonA)) {
 					mashBuffer.SetValue('A', bufferIter);
 				} 
 				else if(Input.GetButtonDown(buttonB)) {
@@ -92,7 +94,7 @@ public class InputManager : MonoBehaviour {
 				} 
 				else if(Input.GetButtonDown(buttonD)) {
 					mashBuffer.SetValue('D', bufferIter);
-				}
+				}*/
 				if(shootFullBuffer) {
 					bufferIter++;
 					if(bufferIter >= mashBufferSize) {
@@ -101,8 +103,8 @@ public class InputManager : MonoBehaviour {
 			} else {
 				bufferIter = bufferIter >= mashBufferSize - 1 ? 0 : bufferIter + 1;
 			}
-		}else if(mashing && !Input.GetButton(buttonA) && !Input.GetButton(buttonB) && 
-			!Input.GetButton(buttonC) && !Input.GetButton(buttonD)) {
+		}else if(mashing && button == '0'){//!Input.GetButton(buttonA) && !Input.GetButton(buttonB) && 
+			//!Input.GetButton(buttonC) && !Input.GetButton(buttonD)) {
 			inputCooldownTimer -= Time.deltaTime;
 			if(inputCooldownTimer <= 0.0f) {
 				Fire();
@@ -117,6 +119,24 @@ public class InputManager : MonoBehaviour {
 			if(!mashing) {
 				movementManager.HandleRotation();
 			}
+		}
+	}
+
+	char GetButtonPress() {
+		if(Input.GetButtonDown(buttonA)) {
+			return 'A';
+		}
+		else if(Input.GetButtonDown(buttonB)) {
+			return 'B';
+		}
+		else if(Input.GetButtonDown(buttonC)) {
+			return 'C';
+		}
+		else if(Input.GetButtonDown(buttonD)) {
+			return 'D';
+		}
+		else {
+			return '0';
 		}
 	}
 
