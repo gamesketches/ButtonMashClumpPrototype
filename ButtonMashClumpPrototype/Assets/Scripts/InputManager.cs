@@ -17,8 +17,6 @@ public class InputManager : MonoBehaviour {
 	public bool shootStrays;
 	public bool exponentialBuffer;
 
-	//public Color chargeColor;
-
 	public float inputCooldown;
 	private float inputCooldownTimer;
 	private bool mashing;
@@ -27,15 +25,6 @@ public class InputManager : MonoBehaviour {
 	private int bufferIter;
 	private int exponentCooldown;
 
-	private int interpreterIndex = 3;
-
-	public GameObject basicBulletPrefab;
-	public GameObject strayBulletPrefab;
-	public GameObject meleeAttackPrefab;
-	public GameObject squareBulletPrefab;
-	public GameObject xBulletPrefab;
-	public GameObject circleBulletPrefab;
-	public GameObject triangleBulletPrefab;
 	private PlayerMovement movementManager;
 
 	public Color noShootingColor;
@@ -66,8 +55,7 @@ public class InputManager : MonoBehaviour {
 
 			GetComponentInChildren<Renderer>().material.color = startingColor;
 			char button = GetButtonPress();
-			if(button != '0'){//Input.GetButtonDown(buttonA) || Input.GetButtonDown(buttonB) || 
-				//Input.GetButtonDown(buttonC) || Input.GetButtonDown(buttonD)) {
+			if(button != '0'){
 				inputCooldownTimer = inputCooldown;
 				gameObject.transform.localScale = Vector3.Lerp(new Vector3(1f, 1f, 1f), 
 														new Vector3(fullBufferScale, fullBufferScale, fullBufferScale),
@@ -83,18 +71,6 @@ public class InputManager : MonoBehaviour {
 					ExponentShot();
 				}
 				mashBuffer.SetValue(button, bufferIter);
-				/*if(Input.GetButtonDown(buttonA)) {
-					mashBuffer.SetValue('A', bufferIter);
-				} 
-				else if(Input.GetButtonDown(buttonB)) {
-					mashBuffer.SetValue('B', bufferIter);
-				} 
-				else if(Input.GetButtonDown(buttonC)) {
-					mashBuffer.SetValue('C', bufferIter);
-				} 
-				else if(Input.GetButtonDown(buttonD)) {
-					mashBuffer.SetValue('D', bufferIter);
-				}*/
 				if(shootFullBuffer) {
 					bufferIter++;
 					if(bufferIter >= mashBufferSize) {
@@ -103,8 +79,7 @@ public class InputManager : MonoBehaviour {
 			} else {
 				bufferIter = bufferIter >= mashBufferSize - 1 ? 0 : bufferIter + 1;
 			}
-		}else if(mashing && button == '0'){//!Input.GetButton(buttonA) && !Input.GetButton(buttonB) && 
-			//!Input.GetButton(buttonC) && !Input.GetButton(buttonD)) {
+		}else if(mashing && button == '0'){
 			inputCooldownTimer -= Time.deltaTime;
 			if(inputCooldownTimer <= 0.0f) {
 				Fire();
@@ -200,10 +175,5 @@ public class InputManager : MonoBehaviour {
 			}
 		}
 	}
-
-	public int GetInterpreterIndex() {
-		return interpreterIndex;
-	}
-
 
 }
