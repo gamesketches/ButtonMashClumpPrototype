@@ -55,7 +55,6 @@ public class InputManager : MonoBehaviour {
 		exponentCooldown = 0;
 		movementManager = gameObject.GetComponent<PlayerMovement>();
 		shotManager = gameObject.GetComponent<ShotManager>();
-		SetInterpreterText();
 		startingColor = GetComponentInChildren<Renderer>().material.color;
 	}
 	
@@ -113,13 +112,6 @@ public class InputManager : MonoBehaviour {
 			exponentCooldown--;
 			GetComponentInChildren<Renderer>().material.color = noShootingColor;
 		}
-		/*if(Input.GetButtonDown(leftScroll)) {
-			interpreterIndex = ((interpreterIndex - 1) + 7) % 7;
-			SetInterpreterText();
-		} else if(Input.GetButtonDown(rightScroll)) {
-			interpreterIndex = (interpreterIndex + 1) % 7;
-			SetInterpreterText();
-		}*/
 
 		if(movementManager.useBenAiming) {
 			if(!mashing) {
@@ -129,7 +121,12 @@ public class InputManager : MonoBehaviour {
 	}
 
 	void Fire() {
-		InterpretInputs();
+		if(exponentCooldown > 0) {
+			shotManager.InputMeleeAttacksSki(mashBuffer);
+		}
+		else {
+			shotManager.shotInterpreter(mashBuffer);
+		}
 		for(int i = 0; i < mashBufferSize; i++){
 			mashBuffer.SetValue('*', i);
 		}
@@ -188,67 +185,5 @@ public class InputManager : MonoBehaviour {
 		return interpreterIndex;
 	}
 
-	void SetInterpreterText() {
-		switch(interpreterIndex) {
-		case 0:
-			ModeIndicators.Instance.UpdateMode(player.number, "Inputs Equal Angle");
-			break;
-		case 1:
-			ModeIndicators.Instance.UpdateMode(player.number, "Input Equals Sets");
-			break;
-		case 2:
-			ModeIndicators.Instance.UpdateMode(player.number, "Input Patterns");
-			break;
-		case 3:
-			ModeIndicators.Instance.UpdateMode(player.number, "Input Equals Number");
-			break;
-		case 4:
-			ModeIndicators.Instance.UpdateMode(player.number, "Input Equals Random");
-			break;
-		case 5:
-			ModeIndicators.Instance.UpdateMode(player.number, "Input Melee Attacks");
-			break;
-		case 6:
-			ModeIndicators.Instance.UpdateMode(player.number, "Input Melee Attacks *SKI*");
-			break;
-		}
-	}
-
-	void InterpretInputs() {
-		if(exponentCooldown > 0) {
-			shotManager.InputMeleeAttacksSki(mashBuffer);
-			return;
-		}
-		switch(interpreterIndex) {
-			case 0:
-				// each A increases angle by 10%, B reduces by 10%
-				shotManager.InputsEqualAngle(mashBuffer);
-				break;
-			case 1:
-				// A sets a shot at 0 degrees, adds another projectile for each A.
-				// B is the same thing but starting at 90 degrees
-				shotManager.InputEqualsSets(mashBuffer);
-				break;
-			case 2:
-				// Each two set of characters corresponds to a different set of projectiles
-				shotManager.InputPatterns(mashBuffer);
-				break;
-			case 3:
-				// Counts all inputs equally, number of projectiles is tied to num inputs
-				shotManager.InputEqualsNumber(mashBuffer);
-				break;
-			case 4:
-				shotManager.InputEqualsRandom(mashBuffer);
-				break;
-            case 5:
-                // A equals width, B equals height
-                shotManager.InputMeleeAttacks(mashBuffer);
-                break;
-            case 6:
-                // lets barrel
-                shotManager.InputMeleeAttacksSki(mashBuffer);
-                break;
-        }
-	}
 
 }

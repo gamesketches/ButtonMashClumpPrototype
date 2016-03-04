@@ -15,8 +15,12 @@ public class ShotManager : MonoBehaviour {
 	private int mashBufferSize;
 	private PlayerMovement movementManager;
 
+	public delegate void ShotInterpreter(char[] mashBuffer);
+	public ShotInterpreter shotInterpreter;
+
 	void Start() {
 		movementManager = gameObject.GetComponent<PlayerMovement>();
+		shotInterpreter = InputEqualsNumber;
 	}
 
 	public void InputsEqualAngle(char[] mashBuffer) {
