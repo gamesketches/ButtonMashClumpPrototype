@@ -77,6 +77,7 @@ public class PlayerHealth : MonoBehaviour {
 			string color = player.number == 1 ? "HORUS\n" : "SETH\n";
             healthText.text = color + "Loses :(";
             string victory = player.number == 1 ? "SETH  \n" : "HORUS\n";
+			victoryText.color = player.number == 1 ? Color.red : Color.blue;
             victoryText.text = victory + "WINS";
             StartCoroutine(sceneReset());
 		}

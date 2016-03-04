@@ -152,7 +152,7 @@ public class InputManager : MonoBehaviour {
 		}
 		// This will be the hardest part to get right
 		if(exponentialBuffer) {
-			int lockFrames = (bufferIter * (bufferIter + 1));
+			int lockFrames = (bufferIter * (bufferIter + 1)) * 2;
 			if (bufferIter < mashBufferSize) {
 				lockFrames = lockFrames / 2;
 			}
