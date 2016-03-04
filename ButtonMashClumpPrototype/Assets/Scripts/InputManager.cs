@@ -42,6 +42,7 @@ public class InputManager : MonoBehaviour {
 	private Color startingColor;
 
 	private Player player;
+	private ShotManager shotManager;
 
 	// Use this for initialization
 	void Start () {
@@ -53,6 +54,7 @@ public class InputManager : MonoBehaviour {
 		bufferIter = 0;
 		exponentCooldown = 0;
 		movementManager = gameObject.GetComponent<PlayerMovement>();
+		shotManager = gameObject.GetComponent<ShotManager>();
 		SetInterpreterText();
 		startingColor = GetComponentInChildren<Renderer>().material.color;
 	}
@@ -145,7 +147,7 @@ public class InputManager : MonoBehaviour {
 	}
 
 	void FireStray() {
-		createBullet(Random.Range(0.0f, 360.0f), Random.Range(15.0f, 25.0f), 1);
+		shotManager.createBullet(Random.Range(0.0f, 360.0f), Random.Range(15.0f, 25.0f), 1);
 	}
 
 	void ExponentShot() {
@@ -162,7 +164,7 @@ public class InputManager : MonoBehaviour {
 				type = 5;
 			}
 			if(bufferIter < 2) {
-				createBullet(0.0f, 20.0f, type);
+				shotManager.createBullet(0.0f, 20.0f, type);
 				return;
 			}
 			else {
@@ -170,9 +172,9 @@ public class InputManager : MonoBehaviour {
 				float baseAngle = 0.0f;
 				for(int k = 1; k < i; k++) {
 					speed = speed > 1 ? speed -= 1 : 1;
-					createBullet(baseAngle + incrementAngle, speed, type);
+					shotManager.createBullet(baseAngle + incrementAngle, speed, type);
 					k++;
-					createBullet(-(baseAngle + incrementAngle), speed, type);
+					shotManager.createBullet(-(baseAngle + incrementAngle), speed, type);
 					baseAngle += incrementAngle;
 				}
 			}
@@ -214,288 +216,39 @@ public class InputManager : MonoBehaviour {
 
 	void InterpretInputs() {
 		if(exponentCooldown > 0) {
-			InputMeleeAttacksSki();
+			shotManager.InputMeleeAttacksSki(mashBuffer);
 			return;
 		}
 		switch(interpreterIndex) {
 			case 0:
 				// each A increases angle by 10%, B reduces by 10%
-				InputsEqualAngle();
+				shotManager.InputsEqualAngle(mashBuffer);
 				break;
 			case 1:
 				// A sets a shot at 0 degrees, adds another projectile for each A.
 				// B is the same thing but starting at 90 degrees
-				InputEqualsSets();
+				shotManager.InputEqualsSets(mashBuffer);
 				break;
 			case 2:
 				// Each two set of characters corresponds to a different set of projectiles
-				InputPatterns();
+				shotManager.InputPatterns(mashBuffer);
 				break;
 			case 3:
 				// Counts all inputs equally, number of projectiles is tied to num inputs
-				InputEqualsNumber();
+				shotManager.InputEqualsNumber(mashBuffer);
 				break;
 			case 4:
-				InputEqualsRandom();
+				shotManager.InputEqualsRandom(mashBuffer);
 				break;
             case 5:
                 // A equals width, B equals height
-                InputMeleeAttacks();
+                shotManager.InputMeleeAttacks(mashBuffer);
                 break;
             case 6:
                 // lets barrel
-                InputMeleeAttacksSki();
+                shotManager.InputMeleeAttacksSki(mashBuffer);
                 break;
         }
 	}
 
-	void InputsEqualAngle() {
-		float angle = 0.0f;
-		int numAs, numBs;
-		TallyInputs(out numAs, out numBs);
-		angle += 10.0f * numAs;
-		angle -= 10.0f * numBs;
-		createBullet(angle);
-	}
-
-	void InputEqualsSets() {
-		int horis = 0;
-		int verts = 0;
-
-		for(int i = 0; i < mashBufferSize; i++){
-			if(mashBuffer[i] == 'A') {
-				horis++;
-			}
-			else if(mashBuffer[i] == 'B') {
-				verts++;
-			}
-		}
-
-		for(int i = 0; i < horis; i++) {
-			createBullet(10.0f * i);
-
-		}
-
-		for(int i = 0; i < verts; i++) {
-			createBullet(90.0f - (10.0f * i));
-		}
-	}
-
-	void InputPatterns() {
-		string pattern = "";
-
-		string aa = "AA";
-		string bb = "BB";
-		string ab = "AB";
-		string ba = "BA";
-
-		for(int i = 0; i < mashBufferSize;i++){
-			pattern = string.Concat(mashBuffer[i].ToString(), mashBuffer[++i].ToString());
-			if(pattern.CompareTo(aa) == 1){
-
-				createBullet(10.0f);
-				createBullet(0.0f);
-				createBullet(-10.0f);
-			}
-
-			else if(pattern.CompareTo(bb) == 1) {
-				createBullet(100.0f);
-				createBullet(90.0f);
-				createBullet(80.0f);
-			}
-			else if(pattern.CompareTo(ab) == 1) {
-				createBullet(-90.0f);
-				createBullet(-80.0f);
-				createBullet(-100.0f);
-			}
-			else if(pattern.CompareTo(ba) == 1){
-				createBullet(180.0f);
-				createBullet(190.0f);
-				createBullet(200.0f);
-			}
-		}
-	}
-
-	void InputEqualsNumber() {
-		int bulletNumber = 0;
-		List<char> meaningfulInput = new List<char>();
-		for(int i = 0; i < mashBufferSize; i++) {
-			if(mashBuffer[i] != '*') {
-				bulletNumber++;
-				meaningfulInput.Add(mashBuffer[i]);
-			}
-		}
-		float angleDifference = 90.0f / mashBufferSize;
-		List<float> bulletAngles = new List<float>();
-		List<int> bulletTypes = new List<int>();
-
-		bulletAngles.Add(0.0f);
-		bulletTypes.Insert(0, Random.Range(2, 6));
-		if(bulletNumber == mashBufferSize) {
-			bulletAngles.Add(90.0f);
-			bulletAngles.Add(-90.0f);
-			bulletTypes.Insert(0, Random.Range(2, 6));
-			bulletTypes.Insert(0, Random.Range(2, 6));
-		}
-
-		if(bulletNumber > 1) {
-			for(int i = 0; i < bulletNumber - 1; i++) {
-				bulletAngles.Add(angleDifference * (i + 1));
-				bulletAngles.Add(-angleDifference * (i + 1));
-				if(meaningfulInput[i] == 'A') {
-					bulletTypes.Add(2);
-					bulletTypes.Add(2);
-				} else if(meaningfulInput[i] == 'B') {
-					bulletTypes.Add(3);
-					bulletTypes.Add(3);
-				} else if(meaningfulInput[i] == 'C') {
-					bulletTypes.Add(4);
-					bulletTypes.Add(4);
-				} else if(meaningfulInput[i] == 'D') {
-					bulletTypes.Add(5);
-					bulletTypes.Add(5);
-				}
-			}
-		}
-		for(int i = 0; i < bulletAngles.Count; i++) {
-			createBullet(bulletAngles[i], Random.Range(15.0f, 25.0f), bulletTypes[i]);
-		}
-	}
-
-	void InputEqualsRandom() {
-		int bulletNumber = 0;
-		List<int> bulletTypes = new List<int>();
-		for(int i = 0; i < mashBufferSize; i++) {
-			if(mashBuffer[i] != '*') {
-				bulletNumber++;
-				if(mashBuffer[i] == 'A') {
-					bulletTypes.Add(2);
-				} else if(mashBuffer[i] == 'B') {
-					bulletTypes.Add(3);
-				} else if(mashBuffer[i] == 'C') {
-					bulletTypes.Add(4);
-				} else if(mashBuffer[i] == 'D') {
-					bulletTypes.Add(5);
-				}
-			}
-		}
-
-		for(int i = 0; i < bulletNumber; i++) {
-			createBullet(Random.Range(0.0f, 360.0f), Random.Range(15.0f, 25.0f), bulletTypes[i]);
-		}
-	}
-
-	void InputMeleeAttacks() {
-		int aCount, bCount;
-
-		TallyInputs(out aCount, out bCount);
-
-		float width = aCount * 0.3f;
-		float height = bCount * 0.3f;
-
-		// dem Lupin III references
-		GameObject monkeyPunch;
-
-		monkeyPunch = ((GameObject)Instantiate(meleeAttackPrefab, transform.position,
-			Quaternion.Euler(0.0f, 0.0f, 0.0f)));
-
-		monkeyPunch.GetComponent<AudioSource>().Play();
-
-		Destroy(monkeyPunch, 0.5f);
-	}
-
-    //ski's melee - similar to charged 360 degree attack in Zelda LTTP
-    void InputMeleeAttacksSki()
-    {
-        int aCount, bCount;
-
-        TallyInputs(out aCount, out bCount);
-
-        float width = aCount * 0.75f;
-        float height = bCount * 1.0f;
-        int totalCount = aCount + bCount;
-
-
-        // dem Lupin III references
-        GameObject monkeyPunch;
-        monkeyPunch = ((GameObject)Instantiate(meleeAttackPrefab, transform.position,
-    Quaternion.Euler(0.0f, 0.0f, 0.0f)));
-
-        monkeyPunch.transform.parent = transform;
-
-		MeleeScript script = monkeyPunch.GetComponent<MeleeScript>();
-		script.mother = gameObject;
-
-
-		monkeyPunch.GetComponents<AudioSource>()[0].Play();
-
-        StartCoroutine(SpinWeapon(monkeyPunch, totalCount, width));
-
-    }
-
-	IEnumerator SpinWeapon(GameObject monkeyPunch, int totalCount, float width)
-    {
-
-
-        monkeyPunch.transform.localScale = new Vector3(width, 0.5f, 0); //we'll just give it dimensions for now
-        monkeyPunch.transform.localPosition = Vector3.right * width / 2.0f; //extend it like sword
-
-
-        for (int i = 0; i < totalCount * 5; i++)
-        {
-            //monkeyPunch.transform.Rotate(Vector3.forward, i * 20);
-            monkeyPunch.transform.localRotation = Quaternion.Euler(Vector3.zero);
-            transform.Rotate(Vector3.forward, i);
-			monkeyPunch.GetComponent<Rigidbody2D>().MoveRotation(monkeyPunch.GetComponent<Rigidbody2D>().rotation * Mathf.Rad2Deg + i * 3 * Mathf.Rad2Deg);
-			yield return null;
-        }
-
-        Destroy(monkeyPunch);
-
-    }
-
-    void TallyInputs(out int num1, out int num2) {
-		num1 = 0;
-		num2 = 0;
-		for(int i = 0; i < mashBufferSize; i++) {
-			if(mashBuffer[i] == 'A' || mashBuffer[i] == 'C') {
-				num1++;
-			}
-			else if(mashBuffer[i] == 'B' || mashBuffer[i] == 'D') {
-				num2++;
-			}
-		}
-	}
-
-	void createBullet(float angle, float speed = 10.0f, int bulletType = 0) {
-		GameObject bullet = null;
-		Rigidbody2D bulletRB;
-		angle += movementManager.currentShotAngle();
-		if(bulletType == 0) {
-			bullet = ((GameObject)Instantiate (basicBulletPrefab, transform.position, 
-				Quaternion.Euler (0.0f, 0.0f, 0.0f)));
-		} else if(bulletType == 1) {
-			bullet = ((GameObject)Instantiate (strayBulletPrefab, transform.position, 
-				Quaternion.Euler (0.0f, 0.0f, 0.0f)));
-		} else if(bulletType == 2) {
-			bullet = ((GameObject)Instantiate (squareBulletPrefab, transform.position, 
-				Quaternion.Euler (0.0f, 0.0f, 0.0f)));
-		} else if(bulletType == 3) {
-			bullet = ((GameObject)Instantiate (xBulletPrefab, transform.position, 
-				Quaternion.Euler (0.0f, 0.0f, 0.0f)));
-		} else if(bulletType == 4) {
-			bullet = ((GameObject)Instantiate (circleBulletPrefab, transform.position, 
-				Quaternion.Euler (0.0f, 0.0f, 0.0f)));
-		} else if(bulletType == 5) {
-			bullet = ((GameObject)Instantiate (triangleBulletPrefab, transform.position, 
-				Quaternion.Euler (0.0f, 0.0f, 0.0f)));
-		}
-		bulletRB = bullet.GetComponent<Rigidbody2D> ();
-
-		bulletRB.velocity = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad)) * speed;
-
-		OwnerScript script = bullet.GetComponent<OwnerScript>();
-		script.mother = gameObject;
-		script.SetType(bulletType);
-	}
 }
