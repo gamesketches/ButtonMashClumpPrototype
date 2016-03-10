@@ -16,7 +16,7 @@ public class PlayerHealth : MonoBehaviour {
     public Text victoryText;
 
     public Text winCountText;
-    private int winCount;
+    private static int winCount = 0;
     public Text nameText;
     public GameObject opponent;
 
@@ -31,7 +31,7 @@ public class PlayerHealth : MonoBehaviour {
 
         victoryText.text = "";
         health = 100;
-        winCount = 0;
+     
 
         deadNow = false;
         if (winCount > 0)
