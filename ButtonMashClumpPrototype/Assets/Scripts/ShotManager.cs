@@ -65,6 +65,8 @@ public class ShotManager : MonoBehaviour {
 		}
 		bulletRB = bullet.GetComponent<Rigidbody2D> ();
 
+		bulletRB.rotation = angle - 90f;
+
 		bulletRB.velocity = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad)) * speed;
 
 		OwnerScript script = bullet.GetComponent<OwnerScript>();
