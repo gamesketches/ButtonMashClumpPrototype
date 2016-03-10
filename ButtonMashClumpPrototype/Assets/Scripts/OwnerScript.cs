@@ -36,7 +36,7 @@ public class OwnerScript : MonoBehaviour {
 			}
 		} else if(layerMask == "Bullets") {
 			int otherType = collider.gameObject.GetComponent<OwnerScript>().GetType();
-			if((type == 2 && otherType == 3) || (type == 3 && otherType == 4) || (type == 4 && otherType == 5) || (type == 5 && otherType == 2)) {
+			if((type == 2 && otherType == 4) || (type == 4 && otherType == 5) || (type == 5 && otherType == 2)) {
 				Destroy(collider.gameObject);
 			}
 		}
