@@ -27,7 +27,7 @@ public class RoundTimer : MonoBehaviour {
         m_nameText.font = GetComponentInChildren<Text>().font;
         m_nameText.text = roundTime.ToString();
 
-        m_oTextObject.transform.localPosition = Vector3.zero + new Vector3(0, 220f, 0);
+        m_oTextObject.transform.localPosition = Vector3.zero + new Vector3(0, 210f, 0);
 
         player0 = GameObject.Find("Player0");
         player1 = GameObject.Find("Player1");

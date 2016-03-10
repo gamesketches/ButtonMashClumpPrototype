@@ -15,6 +15,12 @@ public class PlayerHealth : MonoBehaviour {
 	private Renderer quadRenderer;
     public Text victoryText;
 
+    public Text winCountText;
+    private static int winCount = 0;
+    public Text nameText;
+    public GameObject opponent;
+
+    bool deadNow;
 
     void Start()
     {
@@ -23,22 +29,23 @@ public class PlayerHealth : MonoBehaviour {
 		quadRenderer = GetComponentInChildren<Renderer>();
 		startColor = quadRenderer.material.color;
 
-        /*GameObject theCanvas = GameObject.Find("Canvas");
-        health_texts = theCanvas.GetComponents<TextMesh>();
-        foreach (TextMesh text in health_texts)
-        {
-            if (text.GetComponent<Player>().number == player.number)
-            {
-                health_text = text; //finding this players text
-            }
-
-        }*/
         victoryText.text = "";
         health = 100;
+     
+
+        deadNow = false;
+        if (winCount > 0)
+        {
+            winCountText.gameObject.SetActive(true);
+        }
+        Debug.Log("win count = " + winCount);
     }
 
     public void TakeDamage()
     {
+
+        if (deadNow)
+            return;
         Debug.Log("Im taking damage!");
         health-=3;
 		audioSource.Play();
@@ -69,16 +76,29 @@ public class PlayerHealth : MonoBehaviour {
         }
 
         //why dont they just make a 4player version??
-        healthText.text += player.number == 1 ? "\nHORUS" : "\nSETH";
+        healthText.text += player.number == 1 ? "\nHORUS" : "\nSET";
 
         StartCoroutine(hitFlash());
 
-		if(health <= 0) {
-			string color = player.number == 1 ? "HORUS\n" : "SETH\n";
+		if(health <= 0) { // GAME IS ENDING - CURRENT PLAYER IS THE LOSER
+            nameText.gameObject.SetActive(false);
+            deadNow = true;
+
+
+            //if (player.number == 1)
+            {
+                Debug.Log("player " + player.number + "wins");
+                //quick way to add a win to opponent
+                GetComponent<PlayerHealth>().opponent.GetComponent<PlayerHealth>().addWin();
+            }
+
+            string color = player.number == 1 ? "HORUS\n" : "SET\n";
+            healthText.color = player.number == 1 ? Color.blue : Color.red;
             healthText.text = color + "Loses :(";
-            string victory = player.number == 1 ? "SETH  \n" : "HORUS\n";
+            string victory = player.number == 1 ? "SET  \n" : "HORUS\n";
 			victoryText.color = player.number == 1 ? Color.red : Color.blue;
             victoryText.text = victory + "WINS";
+
             StartCoroutine(sceneReset());
 		}
     }
@@ -105,6 +125,16 @@ public class PlayerHealth : MonoBehaviour {
     public int returnHealth()
     {
         return health;
+    }
+
+    public void addWin()
+    {
+        winCount++;
+        winCountText.text = winCount + " WINS";
+        if (winCount > 0 && winCountText.IsActive() == false)
+        {
+            winCountText.gameObject.SetActive(true);
+        }
     }
 
     // Update is called once per frame
