@@ -56,10 +56,7 @@ public class ShotManager : MonoBehaviour {
 		} else if(type == BulletType.Block){//2) {
 			bullet = ((GameObject)Instantiate (squareBulletPrefab, transform.position, 
 				Quaternion.Euler (0.0f, 0.0f, 0.0f)));
-		} /*else if(bulletType == 3) {
-			bullet = ((GameObject)Instantiate (xBulletPrefab, transform.position, 
-				Quaternion.Euler (0.0f, 0.0f, 0.0f)));
-		}*/ else if(type == BulletType.Roundabout){//bulletType == 4) {
+		} else if(type == BulletType.Roundabout){//bulletType == 4) {
 			bullet = ((GameObject)Instantiate (circleBulletPrefab, transform.position, 
 				Quaternion.Euler (0.0f, 0.0f, 0.0f)));
 		} else if(type == BulletType.Point){//bulletType == 5) {
@@ -91,7 +88,7 @@ public class ShotManager : MonoBehaviour {
 		List<BulletType> bulletTypes = new List<BulletType>();
 
 		bulletAngles.Add(0.0f);
-		bulletTypes.Insert(0, (BulletType)Random.Range(2, 4));//BulletType.Parse(typeof(BulletType), (BulletType)Random.Range(2, 4)));
+		bulletTypes.Insert(0, (BulletType)Random.Range(2, 4));
 		if(bulletNumber == mashBufferSize) {
 			bulletAngles.Add(90.0f);
 			bulletAngles.Add(-90.0f);

@@ -161,16 +161,16 @@ public class InputManager : MonoBehaviour {
 			float speed = (float)bufferIter * 2;
 			switch(mashBuffer[i]) {
 				case 'A':
-					type = BulletType.Point;//2;
+					type = BulletType.Point;
 					speed = 28.0f;
 					break;
 				case 'B':
-					type = BulletType.Roundabout;//4;
+					type = BulletType.Roundabout;
 					speed = 40.0f;
 					break;
 				case 'C':
 					speed = 5.0f;
-					type = BulletType.Block;//5;
+					type = BulletType.Block;
 					break;
 				case 'D':
 					Debug.LogError("Melee button sent to projectile buffer");

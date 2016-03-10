@@ -36,9 +36,7 @@ public class OwnerScript : MonoBehaviour {
 			}
 		} else if(layerMask == "Bullets") {
 			BulletType otherType = collider.gameObject.GetComponent<OwnerScript>().GetType();
-			if(/*(type == 2 && otherType == 3) || (type == 3 && otherType == 4) ||
-				(type == 4 && otherType == 5) || (type == 5 && otherType == 2)) {*/
-				(type == BulletType.Roundabout && otherType == BulletType.Point) ||
+			if((type == BulletType.Roundabout && otherType == BulletType.Point) ||
 				(type == BulletType.Point && otherType == BulletType.Block) ||
 				(type == BulletType.Block && otherType == BulletType.Roundabout)) {
 				Destroy(collider.gameObject);
@@ -65,7 +63,7 @@ public class OwnerScript : MonoBehaviour {
 		}
 	}
 
-	public void SetType(BulletType bulletType){//int t) {
+	public void SetType(BulletType bulletType){
 		type = bulletType;
 	}
 
