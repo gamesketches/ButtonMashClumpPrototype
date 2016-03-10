@@ -104,15 +104,12 @@ public class ShotManager : MonoBehaviour {
 					bulletTypes.Add(2);
 					bulletTypes.Add(2);
 				} else if(meaningfulInput[i] == 'B') {
-					bulletTypes.Add(3);
-					bulletTypes.Add(3);
+					bulletTypes.Add(4);
+					bulletTypes.Add(4);
 				} else if(meaningfulInput[i] == 'C') {
-					bulletTypes.Add(4);
-					bulletTypes.Add(4);
-				} else if(meaningfulInput[i] == 'D') {
 					bulletTypes.Add(5);
 					bulletTypes.Add(5);
-				}
+				} 	
 			}
 		}
 		for(int i = 0; i < bulletAngles.Count; i++) {

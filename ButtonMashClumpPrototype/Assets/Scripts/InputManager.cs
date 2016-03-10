@@ -157,24 +157,33 @@ public class InputManager : MonoBehaviour {
 		float incrementAngle = 45.0f;
 		for(int i = 0; i < bufferIter; i++) {
 			int type = 100;
-			if(mashBuffer[i] == 'A') {
-				type = 2;
-			} else if(mashBuffer[i] == 'B') {
-				type = 4;
-			} else if(mashBuffer[i] == 'C') {
-				type = 5;
-			} else if(mashBuffer[i] == 'D') {
-				Debug.LogError("Melee button sent to projectile buffer");
-			}
-			else {
-				continue;
+			float speed = (float)bufferIter * 2;
+			switch(mashBuffer[i]) {
+				case 'A':
+					type = 2;
+					speed = 28.0f;
+					break;
+				case 'B':
+					type = 4;
+					speed = 40.0f;
+					break;
+				case 'C':
+					speed = 5.0f;
+					type = 5;
+					break;
+				case 'D':
+					Debug.LogError("Melee button sent to projectile buffer");
+					break;
+				default:
+					continue;
+					break;
 			}
 			if(bufferIter < 2) {
-				shotManager.createBullet(0.0f, 20.0f, type);
+				shotManager.createBullet(0.0f, speed, type);
 				return;
 			}
 			else {
-				float speed = (float)bufferIter * 2;
+				//float speed = (float)bufferIter * 2;
 				float baseAngle = 0.0f;
 				for(int k = 1; k < i; k++) {
 					speed = speed > 1 ? speed -= 1 : 1;
