@@ -9,7 +9,7 @@ public class OwnerScript : MonoBehaviour {
 	public bool stray;
 	public int bounces;
 
-	private int type;
+	private BulletType type;
 
 	private Rigidbody2D rb2D;
 
@@ -35,8 +35,12 @@ public class OwnerScript : MonoBehaviour {
 				Destroy(gameObject);
 			}
 		} else if(layerMask == "Bullets") {
-			int otherType = collider.gameObject.GetComponent<OwnerScript>().GetType();
-			if((type == 2 && otherType == 3) || (type == 3 && otherType == 4) || (type == 4 && otherType == 5) || (type == 5 && otherType == 2)) {
+			BulletType otherType = collider.gameObject.GetComponent<OwnerScript>().GetType();
+			if(/*(type == 2 && otherType == 3) || (type == 3 && otherType == 4) ||
+				(type == 4 && otherType == 5) || (type == 5 && otherType == 2)) {*/
+				(type == BulletType.Roundabout && otherType == BulletType.Point) ||
+				(type == BulletType.Point && otherType == BulletType.Block) ||
+				(type == BulletType.Block && otherType == BulletType.Roundabout)) {
 				Destroy(collider.gameObject);
 			}
 		}
@@ -61,11 +65,11 @@ public class OwnerScript : MonoBehaviour {
 		}
 	}
 
-	public void SetType(int t) {
-		type = t;
+	public void SetType(BulletType bulletType){//int t) {
+		type = bulletType;
 	}
 
-	public int GetType() {
+	public BulletType GetType() {
 		return type;
 	}
 }

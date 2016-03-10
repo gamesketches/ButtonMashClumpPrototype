@@ -150,26 +150,27 @@ public class InputManager : MonoBehaviour {
 	}
 
 	void FireStray() {
-		shotManager.createBullet(Random.Range(0.0f, 360.0f), Random.Range(15.0f, 25.0f), 1);
+		shotManager.createBullet(Random.Range(0.0f, 360.0f), Random.Range(15.0f, 25.0f), BulletType.Stray);
 	}
 
 	void ExponentShot() {
 		float incrementAngle = 45.0f;
 		for(int i = 0; i < bufferIter; i++) {
-			int type = 100;
+			//int type = 100;
+			BulletType type = BulletType.Stray;
 			float speed = (float)bufferIter * 2;
 			switch(mashBuffer[i]) {
 				case 'A':
-					type = 2;
+					type = BulletType.Point;//2;
 					speed = 28.0f;
 					break;
 				case 'B':
-					type = 4;
+					type = BulletType.Roundabout;//4;
 					speed = 40.0f;
 					break;
 				case 'C':
 					speed = 5.0f;
-					type = 5;
+					type = BulletType.Block;//5;
 					break;
 				case 'D':
 					Debug.LogError("Melee button sent to projectile buffer");
@@ -183,7 +184,6 @@ public class InputManager : MonoBehaviour {
 				return;
 			}
 			else {
-				//float speed = (float)bufferIter * 2;
 				float baseAngle = 0.0f;
 				for(int k = 1; k < i; k++) {
 					speed = speed > 1 ? speed -= 1 : 1;

@@ -2,6 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 
+
+public enum BulletType {Basic, Stray, Point, Block, Roundabout};
+
 public class ShotManager : MonoBehaviour {
 
 	public GameObject basicBulletPrefab;
@@ -40,26 +43,26 @@ public class ShotManager : MonoBehaviour {
 		}
 	}
 
-	public void createBullet(float angle, float speed = 10.0f, int bulletType = 0) {
+	public void createBullet(float angle, float speed = 10.0f, BulletType type = BulletType.Basic){//int bulletType = 0) {
 		GameObject bullet = null;
 		Rigidbody2D bulletRB;
 		angle += movementManager.currentShotAngle();
-		if(bulletType == 0) {
+		if(type == BulletType.Basic){//bulletType == 0) {
 			bullet = ((GameObject)Instantiate (basicBulletPrefab, transform.position, 
 				Quaternion.Euler (0.0f, 0.0f, 0.0f)));
-		} else if(bulletType == 1) {
+		} else if(type == BulletType.Stray){//bulletType == 1) {
 			bullet = ((GameObject)Instantiate (strayBulletPrefab, transform.position, 
 				Quaternion.Euler (0.0f, 0.0f, 0.0f)));
-		} else if(bulletType == 2) {
+		} else if(type == BulletType.Block){//2) {
 			bullet = ((GameObject)Instantiate (squareBulletPrefab, transform.position, 
 				Quaternion.Euler (0.0f, 0.0f, 0.0f)));
-		} else if(bulletType == 3) {
+		} /*else if(bulletType == 3) {
 			bullet = ((GameObject)Instantiate (xBulletPrefab, transform.position, 
 				Quaternion.Euler (0.0f, 0.0f, 0.0f)));
-		} else if(bulletType == 4) {
+		}*/ else if(type == BulletType.Roundabout){//bulletType == 4) {
 			bullet = ((GameObject)Instantiate (circleBulletPrefab, transform.position, 
 				Quaternion.Euler (0.0f, 0.0f, 0.0f)));
-		} else if(bulletType == 5) {
+		} else if(type == BulletType.Point){//bulletType == 5) {
 			bullet = ((GameObject)Instantiate (triangleBulletPrefab, transform.position, 
 				Quaternion.Euler (0.0f, 0.0f, 0.0f)));
 		}
@@ -71,7 +74,7 @@ public class ShotManager : MonoBehaviour {
 
 		OwnerScript script = bullet.GetComponent<OwnerScript>();
 		script.mother = gameObject;
-		script.SetType(bulletType);
+		script.SetType(type);
 	}
 
 	public void InputEqualsNumber(char[] mashBuffer) {
@@ -85,15 +88,15 @@ public class ShotManager : MonoBehaviour {
 		}
 		float angleDifference = 90.0f / mashBufferSize;
 		List<float> bulletAngles = new List<float>();
-		List<int> bulletTypes = new List<int>();
+		List<BulletType> bulletTypes = new List<BulletType>();
 
 		bulletAngles.Add(0.0f);
-		bulletTypes.Insert(0, Random.Range(2, 6));
+		bulletTypes.Insert(0, (BulletType)Random.Range(2, 4));//BulletType.Parse(typeof(BulletType), (BulletType)Random.Range(2, 4)));
 		if(bulletNumber == mashBufferSize) {
 			bulletAngles.Add(90.0f);
 			bulletAngles.Add(-90.0f);
-			bulletTypes.Insert(0, Random.Range(2, 6));
-			bulletTypes.Insert(0, Random.Range(2, 6));
+			bulletTypes.Insert(0, (BulletType)Random.Range(2, 4));
+			bulletTypes.Insert(0, (BulletType)Random.Range(2, 4));
 		}
 
 		if(bulletNumber > 1) {
@@ -101,14 +104,14 @@ public class ShotManager : MonoBehaviour {
 				bulletAngles.Add(angleDifference * (i + 1));
 				bulletAngles.Add(-angleDifference * (i + 1));
 				if(meaningfulInput[i] == 'A') {
-					bulletTypes.Add(2);
-					bulletTypes.Add(2);
+					bulletTypes.Add(BulletType.Point);
+					bulletTypes.Add(BulletType.Point);
 				} else if(meaningfulInput[i] == 'B') {
-					bulletTypes.Add(4);
-					bulletTypes.Add(4);
+					bulletTypes.Add(BulletType.Block);
+					bulletTypes.Add(BulletType.Block);
 				} else if(meaningfulInput[i] == 'C') {
-					bulletTypes.Add(5);
-					bulletTypes.Add(5);
+					bulletTypes.Add(BulletType.Roundabout);
+					bulletTypes.Add(BulletType.Roundabout);
 				} 	
 			}
 		}
@@ -238,19 +241,19 @@ public class ShotManager : MonoBehaviour {
 
 	public void InputEqualsRandom(char[] mashBuffer) {
 		int bulletNumber = 0;
-		List<int> bulletTypes = new List<int>();
+		List<BulletType> bulletTypes = new List<BulletType>();
 		for(int i = 0; i < mashBufferSize; i++) {
 			if(mashBuffer[i] != '*') {
 				bulletNumber++;
 				if(mashBuffer[i] == 'A') {
-					bulletTypes.Add(2);
+					bulletTypes.Add(BulletType.Point);
 				} else if(mashBuffer[i] == 'B') {
-					bulletTypes.Add(3);
+					bulletTypes.Add(BulletType.Block);
 				} else if(mashBuffer[i] == 'C') {
-					bulletTypes.Add(4);
-				} else if(mashBuffer[i] == 'D') {
+					bulletTypes.Add(BulletType.Roundabout);
+				} /*else if(mashBuffer[i] == 'D') {
 					bulletTypes.Add(5);
-				}
+				}*/
 			}
 		}
 
