@@ -104,7 +104,11 @@ public class PlayerHealth : MonoBehaviour {
     }
 
 	IEnumerator sceneReset() {
-		yield return new WaitForSeconds(2);
+		DialogueManager dialogue = Camera.main.GetComponent<DialogueManager>();
+		dialogue.StartScene();
+		while(dialogue.inScene) {
+			yield return null;
+		}
 		Application.LoadLevel(Application.loadedLevel);
 	}
 

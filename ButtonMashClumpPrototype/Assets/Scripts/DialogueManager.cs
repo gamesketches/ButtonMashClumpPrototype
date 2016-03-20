@@ -14,29 +14,26 @@ public class DialogueManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		inScene = true;
-		scene = new List<string>(3);
+		inScene = false;
+		scene = new List<string>();
 		scene.Add("Sett is real mad");
 		scene.Add("Horus is picking a fight");
 		scene.Add("They did indeed fight");
-
-		scene_iter = scene.GetEnumerator();
-		StartScene();
 	}
 
-	public	void StartScene() {
+	public void StartScene() {
 		inScene = true;
-		sceneText.text = (string)scene_iter.Current;
+		scene_iter = scene.GetEnumerator();
+		sceneText.text = "heyo";
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.anyKeyDown) {
+		if(inScene && Input.anyKeyDown) {
 			if(scene_iter.MoveNext()) {
 			sceneText.text = (string)scene_iter.Current;
 			}
 			else {
-			Debug.Log("conversation over");
 			sceneText.text = "";
 			inScene = false;
 			}
