@@ -99,13 +99,13 @@ public class PlayerHealth : MonoBehaviour {
 			victoryText.color = player.number == 1 ? Color.red : Color.blue;
             victoryText.text = victory + "WINS";
 
-            StartCoroutine(sceneReset());
+            StartCoroutine(sceneReset(player.number));
 		}
     }
 
-	IEnumerator sceneReset() {
+	IEnumerator sceneReset(int playerNum) {
 		DialogueManager dialogue = Camera.main.GetComponent<DialogueManager>();
-		dialogue.StartScene();
+		dialogue.StartScene(playerNum);
 		while(dialogue.inScene) {
 			yield return null;
 		}
