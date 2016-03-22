@@ -1,7 +1,7 @@
-import os, json
+import os, json, sys
 
-def twine2CSV():#filename, outputFilename):
-    input = open("Kopesh_story_draft.html", "r")
+def twine2CSV(filename, outputFilename):
+    input = open(filename, "r")
     fullText = input.readlines()
     fullText = fullText[364]
     input.close()
@@ -38,8 +38,9 @@ def twine2CSV():#filename, outputFilename):
         data[key] = {"lines":fullySplitLines, "horusKey":horusKey, "setKey":setKey}
 
     data_string = json.dumps([data], indent=2)
-    outputFile = open("output.json", "w")
+    outputFile = open(outputFilename + ".json", "w")
     outputFile.write(data_string)
 
 
-twine2CSV()
+if __name__ == "__main__":
+   twine2CSV(sys.argv[1], sys.argv[2])
