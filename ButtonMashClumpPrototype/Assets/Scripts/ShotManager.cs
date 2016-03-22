@@ -14,6 +14,7 @@ public class ShotManager : MonoBehaviour {
 	public GameObject xBulletPrefab;
 	public GameObject circleBulletPrefab;
 	public GameObject triangleBulletPrefab;
+	public int meleeAttackDuration;
 
 	private int mashBufferSize;
 	private PlayerMovement movementManager;
@@ -125,9 +126,9 @@ public class ShotManager : MonoBehaviour {
 		TallyInputs(out aCount, out bCount, mashBuffer);
 
 		float width = bCount * 0.75f;
+		width = 4.3f;
 		float height = 5f;
 		int totalCount = aCount + bCount;
-
 
 		// dem Lupin III references
 		GameObject monkeyPunch;
@@ -142,7 +143,7 @@ public class ShotManager : MonoBehaviour {
 
 		monkeyPunch.GetComponents<AudioSource>()[0].Play();
 
-		StartCoroutine(SpinWeapon(monkeyPunch, totalCount, width));
+		StartCoroutine(SpinWeapon(monkeyPunch, meleeAttackDuration, width));
 
 	}
 

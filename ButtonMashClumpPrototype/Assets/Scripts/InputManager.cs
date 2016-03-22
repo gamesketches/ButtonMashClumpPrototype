@@ -19,12 +19,14 @@ public class InputManager : MonoBehaviour {
 
 	public float inputCooldown;
 	private float inputCooldownTimer;
+	public int meleeInputCooldown;
 	private bool mashing;
 
 	private char[] mashBuffer;
 	private char[] meleeBuffer;
 	private int bufferIter;
 	private int exponentCooldown;
+	private int meleeCooldown;
 
 	private PlayerMovement movementManager;
 
@@ -41,7 +43,7 @@ public class InputManager : MonoBehaviour {
 		meleeBuffer = new char[mashBufferSize];
 		for(int i = 0; i < mashBufferSize; i++){
 			mashBuffer.SetValue('*', i);
-			meleeBuffer.SetValue('*', i);
+			meleeBuffer.SetValue('D', i);
 		}
 		bufferIter = 0;
 		exponentCooldown = 0;
@@ -75,7 +77,10 @@ public class InputManager : MonoBehaviour {
 					ExponentShot();
 				}
 				if(button == 'D') {
-					meleeBuffer.SetValue(button, bufferIter);	
+					if(meleeCooldown <= 0) {
+						shotManager.InputMeleeAttacksSki(meleeBuffer);
+						meleeCooldown = meleeInputCooldown;
+					}
 				}
 				else {
 					mashBuffer.SetValue(button, bufferIter);
@@ -104,6 +109,7 @@ public class InputManager : MonoBehaviour {
 				movementManager.HandleRotation();
 			}
 		}
+		meleeCooldown--;
 	}
 
 	char GetButtonPress() {
@@ -130,11 +136,9 @@ public class InputManager : MonoBehaviour {
 		}
 		else {
 			shotManager.shotInterpreter(mashBuffer);
-			shotManager.InputMeleeAttacksSki(meleeBuffer);
 		}
 		for(int i = 0; i < mashBufferSize; i++){
 			mashBuffer.SetValue('*', i);
-			meleeBuffer.SetValue('*', i);
 		}
 		// This will be the hardest part to get right
 		if(exponentialBuffer) {
