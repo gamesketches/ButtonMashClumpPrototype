@@ -1,0 +1,538 @@
+[
+  {
+    "2allHGO": {
+      "horusKey": "gameOver", 
+      "setKey": "gameOver", 
+      "lines": [
+        "Horus kicks Set in the crotch and Set howls in pain and frustration", 
+        " Horus trips Set's legs out from under him and Set falls onto his stomach", 
+        " Horus grabs Set's neck and lifts him up to his knees", 
+        " Horus draws his mace and brings it down on Set's head", 
+        " Set crumples, vanquished", 
+        "Horus looks out of the window", 
+        " The sun is rising, and Horus' eyes flash in the dawn's light", 
+        "THEND"
+      ]
+    }, 
+    "S2H0": {
+      "horusKey": "S2H1H", 
+      "setKey": "S3H0GO", 
+      "lines": [
+        "Set knocks Horus into a pillar with enough force to shatter it", 
+        " Horus bounces off the pillar, and Set catches him by the neck", 
+        " Set grins again", 
+        "SET: Want to see what a king looks like?", 
+        "Set draws back his other hand", 
+        " In the background, we see the full moon, looming large through the window", 
+        " There is a flash of red, and Set rips Horus' left eye out, in silhouette", 
+        " The moon has disappeared", 
+        " Set tosses Horus to the ground, and Horus struggles to his feet, barely able to stand", 
+        "SET: Oops", 
+        "The battle begins", 
+        "HORUS (at 50%): I don't need both eyes to avenge my father, fool!", 
+        "SET: Good thing, then", 
+        "HORUS WINS: You will pay for that", 
+        "SET WINS: Personally, I think it's an improvement", 
+        "SET (at 50%): Don't let your eye wander, boy", 
+        " I'm right here!", 
+        "HORUS: Oh no, I'm able to focus now!", 
+        "HORUS WINS: Even with one eye", 
+        "SET WINS: Personally, I think it's an improvement", 
+        " ", 
+        "//(not an accident", 
+        " I really liked the line)//"
+      ]
+    }, 
+    "Start": {
+      "horusKey": "gameOver", 
+      "setKey": "gameOver", 
+      "lines": [
+        "Set's throne room, evening", 
+        " At the top of an impossibly tall tower, this room is the crown jewel of Set's kingdom", 
+        " The ceiling and the far wall are both made of glass, and both offer a breathtaking view", 
+        " Bathed in the purple-orange of the setting sun, the room is filled with shadow", 
+        "We see a stand that holds a crown and two ceremonial maces against a wall, in clear view of Set's throne, a massive marble chair with coushions", 
+        " In front of the throne is an altar-like desk, black marble, that seems to have been raised from the floor by magic", 
+        " A bowl of salad sits near one corner, but otherwise the desk is empty", 
+        " It is more a status symbol than a workspace", 
+        "Beyond this, near the imposing doors, four marble pillars frame a reflecting area", 
+        " Four large chairs sit each at one side of a fountain in the middle of the area", 
+        "Set gazes out a window", 
+        " He is the unchallenged ruler of all he sees", 
+        " Maybe he holds a glass of wine and [[toasts his reflection]]"
+      ]
+    }, 
+    "S3H1GO": {
+      "horusKey": "gameOver", 
+      "setKey": "gameOver", 
+      "lines": [
+        "Set runs toward Horus, but vanishes", 
+        " He reappears behind Horus and taps him on the shoulder", 
+        " As Horus whirls around, Set grabs his other eye", 
+        " Horus crumples to his knees", 
+        " Set draws his kopesh and holds it at Horus' neck", 
+        "The sun has fully descended by this time, and Set looks out the window a final time, grinning", 
+        "THEND"
+      ]
+    }, 
+    "S1H3GO": {
+      "horusKey": "gameOver", 
+      "setKey": "gameOver", 
+      "lines": [
+        "Set roars in frustration", 
+        " Horus draws his kopesh and charges, stopping short just as he closes in", 
+        " Set takes this moment and strikes, but he is too slow", 
+        " Horus steps out of the way and beheads Set", 
+        " ", 
+        "Horus looks out of the window", 
+        " The sun is rising, and Horus' eyes flash in the dawn's light", 
+        "THEND"
+      ]
+    }, 
+    "Non Violent 1": {
+      "horusKey": "2allSGO", 
+      "setKey": "Or Perhaps we have a [[Non Violent GO", 
+      "lines": [
+        "Horus lowers his guard", 
+        "HORUS: It doesn't need to be like this", 
+        "SET: What do you mean?", 
+        "HORUS: I will not have more blood spilled in Osiris' name", 
+        "Set crosses his arms", 
+        "SET: Come then, let us reason together, nephew", 
+        "The battle begins", 
+        "This time, the first one to score a hit speaks", 
+        "HORUS (After hitting): You're not the only one who can lie, Set!", 
+        "SET: Good", 
+        " I was worried there was nothing of me inside you", 
+        "HORUS WINS: This is nothing less than you deserve, murderer", 
+        "SET WINS: Your father would have wept to see you strike me", 
+        "SET (After hitting): Too trusting", 
+        " You get that from your father!", 
+        "HORUS: Won't you listen to reason?", 
+        "HORUS WINS: Your death is on your own head", 
+        " I would have spared you", 
+        "SET WINS: Didn't your father ever tell you not to let your guard down?", 
+        "[[Horus wins!|2allHGO]]"
+      ]
+    }, 
+    "H2S0": {
+      "horusKey": "H3S0GO", 
+      "setKey": "H2S1H", 
+      "lines": [
+        "Horus' attack knocks Set into his throne and Set lies splayed half in and half out of the seat of power", 
+        " Horus strides up to his foe purposefully, draws his leg back, and savagely kicks Set in the junk", 
+        " The screen flashes red and the two figures are silhouetted in black, a flash of white bursting from the point of impact", 
+        "HORUS: That was for my kingdom", 
+        "Horus folds his arms and watches Set rise shakily to his feet", 
+        " Once Set stands, he roars desperately", 
+        " ", 
+        "SET: You are no king, boy! Not yet!", 
+        "Horus' eyes flash defiantly", 
+        "The battle begins", 
+        "HORUS (at 50%):You want another, do you?", 
+        "SET: Of course", 
+        " But not quite as rough this time", 
+        "HORUS WINS: And that was for Osiris!", 
+        "SET WINS: Ever tried it on your knees, boy?", 
+        "SET (at 50%): That", 
+        "hurt", 
+        " ", 
+        "HORUS: It only gets worse from here", 
+        "HORUS WINS: And that was for Osiris!", 
+        "SET WINS: You don't have what it takes to be king", 
+        " Like father, like son"
+      ]
+    }, 
+    "H3S0GO": {
+      "horusKey": "gameOver", 
+      "setKey": "gameOver", 
+      "lines": [
+        "Horus strides over to the crumpled Set", 
+        " As he walks, we see flashes of Set defeating and dismembering Osiris", 
+        " Horus towers over Set and draws his Kopesh", 
+        "Outside the building, Set's limbs fly out of the window one after another, scattering in different directions", 
+        "Horus looks out of the window", 
+        " The sun is rising, and Horus' eyes flash in the dawn's light", 
+        "THEND"
+      ]
+    }, 
+    "StoryTitle": {
+      "horusKey": "gameOver", 
+      "setKey": "gameOver", 
+      "lines": [
+        "Kopesh Narrative Outline ver", 
+        "2", 
+        "1", 
+        "NOTE: First to 3 wins"
+      ]
+    }, 
+    "H3S1GO": {
+      "horusKey": "gameOver", 
+      "setKey": "gameOver", 
+      "lines": [
+        "Horus grabs Set by the throat and chokes him", 
+        " There is a crack, and Set falls lifeless to the ground", 
+        "HORUS: Behold, the new day dawns!", 
+        "Horus looks out of the window", 
+        " The sun is rising, and Horus' eyes flash in the dawn's light", 
+        "THEND"
+      ]
+    }, 
+    "S1H0": {
+      "horusKey": "S1H1", 
+      "setKey": "S2H0", 
+      "lines": [
+        "Set's strike catches Horus off guard and Horus goes reeling", 
+        " Horus lands on his feet, shaking the blow off", 
+        " Set grins again", 
+        "SET: You'll have to try harder than that", 
+        "HORUS: I'm just warming up!", 
+        "The batte begins", 
+        "HORUS (at 50%): This is nothing! You are nothing!", 
+        "SET: Looks like you've got some nothing on you, then", 
+        "HORUS WINS: This, this is Egypt's king?", 
+        "SET WINS: Stop hitting yourself, Horus", 
+        "SET (at 50%): Okay, so you've got some skill", 
+        " I've got a crown", 
+        "HORUS: And borrowed time!", 
+        "HORUS WINS: Time's up, Set!", 
+        "SET WINS: You'll never be king like this, boy"
+      ]
+    }, 
+    "S1H1": {
+      "horusKey": "S1H2", 
+      "setKey": "S2H1S", 
+      "lines": [
+        "Horus catches Set under the chin, causing Set to stumble backward", 
+        " Set dusts his clothes off", 
+        " Horus' eyes flash defiantly", 
+        "SET: Somebody ought to teach you some manners", 
+        "HORUS: My father taught me manners", 
+        "The battle begins", 
+        "HORUS (at 50%): Is that all you've got?", 
+        "SET: Is that all you can take?", 
+        "HORUS WINS: I can do this all day", 
+        "SET WINS: He should've taught you how to fight", 
+        "SET (at 50%): He didn't teach you how to fight, at least", 
+        "HORUS: Oh, this is nothing", 
+        "HORUS WINS: Do you yield?", 
+        "SET WINS: Self-righteous twerp"
+      ]
+    }, 
+    "S1H2": {
+      "horusKey": "2all", 
+      "setKey": " As Horus sinks to his knees, Horus keeps kickin", 
+      "lines": [
+        "Set lunges at Horus, Kopesh drawn and ready to cleave him in two", 
+        " Horus ducks, catching Set by the ankle as Set sails past", 
+        " Horus slams Set down to the ground, cracking the floor", 
+        " As Set struggles to his feet, Horus' eyes flash", 
+        "HORUS: Do you yield, Set?", 
+        "SET: Sorry, I didn't hear you! My ears are ringing!", 
+        "The battle begins", 
+        "HORUS (at 50%): Last warning", 
+        " Yield now!", 
+        "SET: Show me how, boy!", 
+        "HORUS WINS: No more! You die now!", 
+        "SET WINS:", 
+        "SET (at 50%): Stop", 
+        "stop spinning! All of you!", 
+        "HORUS: Last chance! Yield!", 
+        "HORUS WINS: Enough of this!", 
+        "SET WINS: There you are!", 
+        "[[Horus wins!|S1H3GO]] "
+      ]
+    }, 
+    "S2H1S": {
+      "horusKey": "gameOver", 
+      "setKey": "gameOver", 
+      "lines": [
+        "Set tackles Horus", 
+        " Horus scrambles to his feet as Set attempts to stomp on his head", 
+        "SET: Stay down, damn you!", 
+        "HORUS: I will always rise, Set", 
+        " I am the Sun!", 
+        "The battle begins", 
+        "HORUS (at 50%): I'll never give up! You'll have to kill me!", 
+        "SET: That's the plan, boy!", 
+        "HORUS WINS: The best laid plans", 
+        "SET WINS: Kill you, eh? Yes, that's a good idea", 
+        "SET (at 50%): Enough of this! I am the king!", 
+        "HORUS: Not for much longer!", 
+        "HORUS WINS: You're no king! I'll show you a king!", 
+        "SET WINS: Still got it", 
+        "[[Horus wins!|2all]] Horus grabs Set by the neck and begins to choke him", 
+        " Set barely manages to escape by kicking out", 
+        "[[Set wins!|S3H1GO]] "
+      ]
+    }, 
+    "Time Out 1": {
+      "horusKey": "S1H0", 
+      "setKey": "Or Perhaps we have a [[Non Violent 1", 
+      "lines": [
+        "Horus and Set pause, poised for action", 
+        "SET: Why are you hesitating? Having second thoughts?", 
+        "HORUS: I", 
+        "It's nothing!", 
+        "The battle begins", 
+        "HORUS (at 50%): You're wasting my time", 
+        "SET: Funny, I was thinking the same thing", 
+        "HORUS WINS: I will show you what ruthlessness means, Set", 
+        "SET WINS: Come on, boy! At least give it a try!", 
+        "SET (at 50%): That's uncalled for", 
+        " What did I ever do to you?", 
+        "HORUS: How dare you make light of it!?!", 
+        "HORUS WINS: To think I considered showing mercy", 
+        "SET WINS: Your father didn't have a sense of humor either", 
+        "[[Horus wins!|H1S0]]"
+      ]
+    }, 
+    "H1S0": {
+      "horusKey": "H2S0", 
+      "setKey": "H1S1", 
+      "lines": [
+        "Horus punches Set in the nose, which starts bleeding", 
+        " Set checks it and is surprised", 
+        " He has underestimated Horus' determination, a mistake he will quickly correct", 
+        " Horus goads Set, and his eyes flash defiantly", 
+        "HORUS: You see now I will not be brushed aside", 
+        "SET: We'll see", 
+        " I've done far worse to better men", 
+        "Smash cut to the dead Osiris", 
+        "The battle begins", 
+        "HORUS (at 50%): This changes nothing!", 
+        "SET: How right you are, boy", 
+        " I am still king", 
+        "HORUS WINS: Time to wipe that grin off your face", 
+        "SET WINS: This changes nothing", 
+        "SET (at 50%): Careful, boy", 
+        " You're starting to annoy me", 
+        "HORUS: I'm no man's boy", 
+        " I will be king!", 
+        "HORUS WINS: How about this?", 
+        "SET WINS: I'm done playing games!"
+      ]
+    }, 
+    "H1S1": {
+      "horusKey": "H2S1S", 
+      "setKey": "H1S2", 
+      "lines": [
+        "Set lunges for Horus, but Horus spreads his wings, flying over his foe and lighting on a table", 
+        " Set kicks the table out from under Horus, and it shatters", 
+        " As Horus lands on the ground, Set grins", 
+        "SET: Don't discount your old uncle quite yet", 
+        " There's a reason I am king", 
+        "HORUS: Because I haven't killed you yet", 
+        "The battle begins", 
+        "HORUS (at 50%): I won't break as easily as that!", 
+        "SET: I'll carve that on your sarcophagus", 
+        "HORUS WINS: Surrender now and I might spare your life!", 
+        "SET WINS: I'm still here, nephew", 
+        " Why are you?", 
+        "SET (at 50%): You think yourself a better king than I?", 
+        "HORUS: I am the dead king's son! It is my right", 
+        "HORUS WINS: My father will be avenged!", 
+        "SET WINS: You don't want the throne", 
+        " It makes you a target for fleas"
+      ]
+    }, 
+    "H1S2": {
+      "horusKey": "2all", 
+      "setKey": "H1S3GO", 
+      "lines": [
+        "Horus charges Set, who punches him in the gut", 
+        " Set elbows Horus in the back and Horus collapses", 
+        " As Horus rises unsteadily to his feet, Set grins", 
+        "SET: I admire your determination", 
+        " I really do", 
+        " But sun/set/ always follows sunrise", 
+        "The battle begins", 
+        " ", 
+        "HORUS (at 50%): I'll just keep coming back!", 
+        "SET: Keep talking dirty", 
+        " I like it", 
+        "HORUS WINS: I will never yield to you!", 
+        "SET WINS: You should try to last longer", 
+        "SET (at 50%): You're not the only resiliant one", 
+        "HORUS: It runs in my family", 
+        "HORUS WINS: Now we finish this!", 
+        "SET WINS: Maybe I'll feed your heart to my dog"
+      ]
+    }, 
+    "S2H1H": {
+      "horusKey": "gameOver", 
+      "setKey": "gameOver", 
+      "lines": [
+        "Horus pauses to catch his breath", 
+        "SET: So Horus, do you finally", 
+        "see", 
+        "your predicament?", 
+        "HORUS: Enough!", 
+        "The battle begins", 
+        "HORUS (at 50%): No! I", 
+        "I can't lose!", 
+        "SET: A little late for that!", 
+        "HORUS WINS: I will never stop!", 
+        "SET WINS: Good try, Horus", 
+        " Maybe next time", 
+        "SET (at 50%): Nothing good in life comes easily, Horus", 
+        " Can't you see?", 
+        "HORUS: I can see that you're flagging!", 
+        "HORUS WINS: We're not finished yet, Set", 
+        "SET WINS: Are you blinded to the truth? You're finished!", 
+        "[[Horus wins!|2all]] Horus flies at Set, grabbing him and soaring into the air", 
+        " He piledrives Set into the ground", 
+        "[[Set wins!|S3H1GO]]  "
+      ]
+    }, 
+    "Non Violent GO": {
+      "horusKey": "gameOver", 
+      "setKey": "gameOver", 
+      "lines": [
+        "Horus and Set pause", 
+        " They drop their kopeshes", 
+        "HORUS: My father would not have wanted any of this", 
+        "SET: He was a good man, and a good king", 
+        "They move toward each other, and embrace", 
+        "BOTH: I'm", 
+        "sorry", 
+        "Holding hands, they both look out the window at the incredible view", 
+        " The sun is at high noon", 
+        "THEND"
+      ]
+    }, 
+    "toasts his reflection": {
+      "horusKey": "S1H0", 
+      "setKey": "Or perhaps we have a [[Time Out 1", 
+      "lines": [
+        "The door behind Set opens", 
+        " Horus is silhouetted in the light behind him, as though he is born in the sunrise", 
+        " ", 
+        "HORUS: Face me, Set!", 
+        "Set doesn't turn", 
+        "SET: Hello, nephew", 
+        " Did you ever find my brother?", 
+        "Horus advances", 
+        " ", 
+        "HORUS: You know why I am here", 
+        "SET: Trying to mend a broken family?", 
+        "Horus fires a shot at Set, who parries it", 
+        "Set grins", 
+        "SET: You'll have to try harder than that, boy", 
+        "The battle begins", 
+        "BATTLE TEXT:", 
+        "(NOTE: Two progressions, depending on who gets there first)", 
+        "HORUS (at 50%): He was your king, and you mock his death!", 
+        "SET: I promise, my heart is broken over his loss", 
+        " ", 
+        "SET WINS: I always knew he'd fall to pieces one day", 
+        "HORUS WINS: Enough jokes! You cannot laugh off the sunrise!", 
+        "SET (at 50%): Tut tut, Horus", 
+        " You take things too seriously", 
+        "HORUS: I am in no mood for laughter, Set", 
+        "SET WINS: Something troubling you? You seem a little", 
+        "scattered", 
+        "HORUS WINS: Now you will take ME seriously", 
+        "[[Horus wins!|H1S0]]"
+      ]
+    }, 
+    "2allSGO": {
+      "horusKey": "gameOver", 
+      "setKey": "gameOver", 
+      "lines": [
+        "Set trips Horus' legs out from under him and Horus falls onto his stomach", 
+        " Set grabs Horus' neck and lifts him up to his knees", 
+        " Set draws his mace and brings it down on Horus' head, and Horus crumples, vanquished", 
+        "The sun has fully descended by this time, and Set looks out the window a final time, grinning", 
+        "THEND"
+      ]
+    }, 
+    "H2S1H": {
+      "horusKey": "H3S1GO", 
+      "setKey": "2all", 
+      "lines": [
+        "Set stands up straight and grins", 
+        "SET: You think you've seen the extent of my power?", 
+        "Set leaps in front of Horus and grabs him by the neck, slamming him headfirst into a chair", 
+        " The chair shatters", 
+        "SET: You'll know what power is when I'm done with you", 
+        "The battle begins", 
+        "HORUS (at 50%): You're weakening", 
+        " I can see it", 
+        "SET: That must be the blood in your eyes", 
+        "HORUS WINS: Enough of this!", 
+        "SET WINS: I'm not finished yet!", 
+        "SET (at 50%): How are you still standing?", 
+        "HORUS: The sun always rises, Set", 
+        "HORUS WINS: Your time is come, usurper!", 
+        "SET WINS: Looks like it's not tomorrow yet"
+      ]
+    }, 
+    "2all": {
+      "horusKey": "2allSGO", 
+      "setKey": "Final chance for a [[Non Violent GO", 
+      "lines": [
+        "Both warriors are wounded and breathing heavily", 
+        " They each look to the crown, the reason for the battle", 
+        " As one they dive for it, each grabbing one of the maces and brandinshing them at their opponent", 
+        " This will decide matters", 
+        "The battle begins", 
+        "HORUS (at 50%): No! It won't end like this!", 
+        "SET: It's too late for anything else, Horus", 
+        "HORUS WINS: Father", 
+        "SET WINS: Shame it had to come to this", 
+        "SET (at 50%): Last warning, Horus", 
+        " Leave now", 
+        "HORUS: Not before I make this right!", 
+        "HORUS WINS: Father", 
+        "SET WINS: Shame it had to come to this", 
+        "[[Horus wins!|2allHGO]]"
+      ]
+    }, 
+    "H2S1S": {
+      "horusKey": "H3S1GO", 
+      "setKey": "2all", 
+      "lines": [
+        "Set rises to his feet and glares at Horus", 
+        "SET: I tried telling you to leave, Horus", 
+        " Now you leave me no choice", 
+        "Set draws his Kopesh and points it at Horus", 
+        "SET Say hello to your father for me!", 
+        "The battle begins", 
+        "HORUS (at 50%): Father", 
+        "SET: That's right, boy", 
+        " You'll see him soon", 
+        "HORUS WINS: Pray my father is more merciful than I!", 
+        "SET WINS: Tell my brother the king sends his regards!", 
+        "SET (at 50%): You self-righteous chicken! I will eat you!", 
+        "HORUS: The last words of a fallen king!", 
+        "HORUS WINS: Remember this moment, Set", 
+        " This is what justice feels like", 
+        "SET WINS: That", 
+        " Is", 
+        " It"
+      ]
+    }, 
+    "S3H0GO": {
+      "horusKey": "gameOver", 
+      "setKey": "gameOver", 
+      "lines": [
+        "Horus tries to rise to his feet again, but Set kicks him in the chest, savagely, and with enough force to send Horus through the window", 
+        " ", 
+        "The sun has fully descended by this time, and Set looks out the window a final time, grinning", 
+        "THEND"
+      ]
+    }, 
+    "H1S3GO": {
+      "horusKey": "gameOver", 
+      "setKey": "gameOver", 
+      "lines": [
+        "Set draws his kopesh, about to bisect the prone Horus", 
+        " Horus spreads his wings, about to fly, but Set runs him through", 
+        " Set lifts Horus off the ground with the kopesh, eyes him a moment, and then rips Horus' eye out", 
+        "The sun has fully descended by this time, and Set looks out the window a final time, grinning", 
+        "THEND"
+      ]
+    }
+  }
+]
