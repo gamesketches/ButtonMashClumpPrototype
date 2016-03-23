@@ -4,11 +4,14 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour {
 	public float speed;
 	public float rotateSpeed;
-	//public float theCurrentAngle;
+	public float reticleRadius;
+	public float reticleBlastRadius;
 
 	public bool useBenAiming;
 
 	public GameObject opponent;
+	public GameObject reticle;
+	public GameObject reticleBlast;
 
 	private float currentAngle;
 
@@ -31,10 +34,12 @@ public class PlayerMovement : MonoBehaviour {
 
 	void HandleMovement() {
 		rb2D.velocity = (new Vector2(Input.GetAxisRaw("Horizontal" + player.number), Input.GetAxisRaw("Vertical" + player.number))).normalized * speed;
+		float radians = 0.0f;
+		float degrees = 0.0f;
 		if(rb2D.velocity.x != 0 || rb2D.velocity.y != 0) {
 			lastMovement = new Vector2(rb2D.velocity.x, rb2D.velocity.y);
-			float radians = Mathf.Atan2(lastMovement.y, lastMovement.x);
-			float degrees = radians * Mathf.Rad2Deg;
+			radians = Mathf.Atan2(lastMovement.y, lastMovement.x);
+			degrees = radians * Mathf.Rad2Deg;
 			if(degrees >= -45.0f && degrees < 45.0f) {
 				anim.SetTrigger("Walk East");
 			} else if(degrees >= 45.0f && degrees < 135.0f) {
@@ -44,27 +49,11 @@ public class PlayerMovement : MonoBehaviour {
 			} else {
 				anim.SetTrigger("Walk South");
 			}
-			/*if(degrees >= 225.0f && degrees < 315.0f) {
-				anim.SetTrigger("Walk South");
-			}*/
-			/*if(degrees >= 22.5f && degrees < 67.5f) {
-				anim.SetTrigger("Walk East");
-			} else if(degrees >= 67.5f && degrees < 112.5f) {
-				anim.SetTrigger("Walk Northeast");
-			} else if(degrees >= 112.5f && degrees < 157.5f) {
-				anim.SetTrigger("Walk North");
-			} else if(degrees >= 157.5f && degrees < 202.5f) {
-				anim.SetTrigger("Walk Northwest");
-			} else if(degrees >= 202.5f && degrees < 247.5f) {
-				anim.SetTrigger("Walk West");
-			} else if(degrees >= 247.5f && degrees < 292.5f) {
-				anim.SetTrigger("Walk Southwest");
-			} else if(degrees >= 292.5f && degrees < 337.5f) {
-				anim.SetTrigger("Walk South");
-			} else {
-				anim.SetTrigger("Walk Southeast");
-			}*/
 		}
+		reticle.transform.localPosition = new Vector3(Mathf.Cos(radians) * reticleRadius, Mathf.Sin(radians) * reticleRadius, 0.0f);
+		reticle.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, degrees - 90.0f);
+		reticleBlast.transform.localPosition = new Vector3(Mathf.Cos(radians) * reticleBlastRadius, Mathf.Sin(radians) * reticleBlastRadius, 0.0f);
+		reticleBlast.transform.localRotation = reticle.transform.localRotation;
 	}
 
 	public void HandleRotation() {
