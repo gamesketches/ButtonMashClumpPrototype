@@ -22,6 +22,9 @@ public class PlayerMovement : MonoBehaviour {
 	private Player player;
 	private Vector2 lastMovement;
 
+	private float radians;
+	private float degrees;
+
 	void Start() {
 		player = GetComponent<Player>();
 		rb2D = GetComponent<Rigidbody2D>();
@@ -34,8 +37,6 @@ public class PlayerMovement : MonoBehaviour {
 
 	void HandleMovement() {
 		rb2D.velocity = (new Vector2(Input.GetAxisRaw("Horizontal" + player.number), Input.GetAxisRaw("Vertical" + player.number))).normalized * speed;
-		float radians = 0.0f;
-		float degrees = 0.0f;
 		if(rb2D.velocity.x != 0 || rb2D.velocity.y != 0) {
 			lastMovement = new Vector2(rb2D.velocity.x, rb2D.velocity.y);
 			radians = Mathf.Atan2(lastMovement.y, lastMovement.x);
