@@ -154,18 +154,19 @@ public class ShotManager : MonoBehaviour {
 		monkeyPunch.transform.localScale = new Vector3(width, 0.5f, 0); //we'll just give it dimensions for now
 		monkeyPunch.transform.localPosition = Vector3.right * width / 2.0f; //extend it like sword
 
-
+		float angleAmount = 0.0f;
 		for (int i = 0; i < totalCount * 5; i++)
 		{
 			//monkeyPunch.transform.Rotate(Vector3.forward, i * 20);
 			monkeyPunch.transform.localRotation = Quaternion.Euler(Vector3.zero);
 			transform.Rotate(Vector3.forward, i);
+			angleAmount += i;
 			monkeyPunch.GetComponent<Rigidbody2D>().MoveRotation(monkeyPunch.GetComponent<Rigidbody2D>().rotation * Mathf.Rad2Deg + i * 3 * Mathf.Rad2Deg);
 			yield return null;
 		}
 
 		Destroy(monkeyPunch);
-
+		transform.Rotate(Vector3.forward, -angleAmount);
 	}
 
 	public void InputsEqualAngle(char[] mashBuffer) {
