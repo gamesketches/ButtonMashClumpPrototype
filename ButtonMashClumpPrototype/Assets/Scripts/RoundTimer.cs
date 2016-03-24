@@ -63,17 +63,20 @@ public class RoundTimer : MonoBehaviour {
     void TimeOverWinner()
     {
 
-        int p0_health = player0.GetComponent<PlayerHealth>().returnHealth();
-        int p1_health = player1.GetComponent<PlayerHealth>().returnHealth();
+        int p0_health = player0.GetComponent<PlayerHealth>().ReturnHealth();
+        int p1_health = player1.GetComponent<PlayerHealth>().ReturnHealth();
 
 
         Debug.Log("p1 health is " + p0_health + "p2 health is" + p1_health);
 
         if (p0_health < p1_health)
         {
+            Debug.Log("time kill p0");
+
             TimeKill(player0);
         } else if (p0_health > p1_health)
         {
+            Debug.Log("time kill p1");
             TimeKill(player1);
         }
         else if (p0_health == p1_health)
@@ -87,7 +90,7 @@ public class RoundTimer : MonoBehaviour {
     {
         PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
 
-        while (playerHealth.GetComponent<PlayerHealth>().returnHealth() > 0)
+        while (playerHealth.GetComponent<PlayerHealth>().ReturnHealth() > 0)
             playerHealth.TakeDamage();
     }
 
