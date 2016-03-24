@@ -66,7 +66,7 @@ public class InputManager : MonoBehaviour {
 				gameObject.transform.localScale = Vector3.Lerp(new Vector3(1f, 1f, 1f), 
 														new Vector3(fullBufferScale, fullBufferScale, fullBufferScale),
 														(float)bufferIter / (float)mashBufferSize);
-				Debug.Log(fullBufferScale);
+				//Debug.Log(fullBufferScale);
 				if(!mashing) {
 					mashing = true;
 				}
