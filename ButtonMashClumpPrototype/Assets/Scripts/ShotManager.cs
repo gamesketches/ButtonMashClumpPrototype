@@ -127,8 +127,6 @@ public class ShotManager : MonoBehaviour {
 
 		float width = bCount * 0.75f;
 		width = 4.3f;
-		float height = 5f;
-		int totalCount = aCount + bCount;
 
 		// dem Lupin III references
 		GameObject monkeyPunch;

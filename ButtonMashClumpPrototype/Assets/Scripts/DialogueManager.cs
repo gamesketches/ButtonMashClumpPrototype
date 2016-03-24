@@ -2,18 +2,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System.IO;
+using SimpleJSON;
 
 public class DialogueManager : MonoBehaviour {
 
 	public class Scene {
-		public string horusWin;
-		public string setWin;
-		public List<string> dialogue;
+		public string horusKey;
+		public string setKey;
+		public List<string> lines;
+		public string sceneKey;
 
 		public Scene(string hor, string set, List<string> dia) {
-			horusWin = hor;
-			setWin = set;
-			dialogue = dia;
+			horusKey = hor;
+			setKey = set;
+			lines = dia;
 		}
 	}
 
@@ -27,45 +30,30 @@ public class DialogueManager : MonoBehaviour {
 	private static Scene currentScene;
 	void Start () {
 		inScene = false;
-		List<string> dialogue = new List<string>();
-		dialogue.Add("Sett is real mad");
-		dialogue.Add("Horus is picking a fight");
-		dialogue.Add("They did indeed fight");
+		TextAsset jsonText = (TextAsset) Resources.Load("output");
 
-		Scene startScene = new Scene("hor", "set", dialogue);
-
-		List<string> horDialogue = new List<string>();
-		horDialogue.Add("Horus grabbed Set's nads");
-		horDialogue.Add("Heyo I said nads");
-
-		Scene horWins = new Scene("gameover", "gameover", horDialogue);
-
-		List<string> setDialogue = new List<string>();
-		setDialogue.Add("Set used hyper beam");
-		setDialogue.Add("Heyo I said nads");
-
-		Scene setWins = new Scene("gameover", "gameover", setDialogue);
-
-		List<string> gameOverDia = new List<string>();
-		gameOverDia.Add("and what did we learn today");
-		gameOverDia.Add("someone's nads got grabbed");
-
-		Scene gameOver = new Scene("", "", gameOverDia);
-
+		var temp = JSON.Parse(jsonText.text);
 		scenes = new Dictionary<string, Scene>();
-		scenes.Add("start", startScene);
-		scenes.Add("hor", horWins);
-		scenes.Add("set", setWins);
-		scenes.Add("gameover", gameOver);
-
+		for(int i = 0; i < temp["data"].Count; i++) {
+			List<string> sceneLines = new List<string>();
+			for(int k = 0; k < temp["data"][i]["lines"].AsArray.Count; k++) {
+				sceneLines.Add(temp["data"][i]["lines"].AsArray[k]);
+			}
+			scenes.Add(temp["data"][i]["sceneKey"], 
+						new Scene(temp["data"][i]["horusKey"],
+									temp["data"][i]["setKey"],
+					sceneLines));
+		}
 		if(currentScene == null)
-			currentScene = scenes["start"];
+			currentScene = scenes["Start"];
+		
 	}
 
 	public void StartScene(int result) {
 		inScene = true;
-		currentScene = result == 1 ? scenes[currentScene.horusWin] : scenes[currentScene.setWin];
-		scene_iter = currentScene.dialogue.GetEnumerator();
+		Debug.Log(currentScene.setKey);
+		currentScene = result == 1 ? scenes[currentScene.horusKey] : scenes[currentScene.setKey];
+		scene_iter = currentScene.lines.GetEnumerator();
 		sceneText.text = "heyo";
 	}
 	
