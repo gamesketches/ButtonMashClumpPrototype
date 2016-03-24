@@ -16,7 +16,7 @@ public class PlayerHealth : MonoBehaviour {
     public Text victoryText;
 
     public Text winCountText;
-    private static int winCount = 0;
+	private static int[] winCount;
     public Text nameText;
     public GameObject opponent;
 
@@ -31,15 +31,20 @@ public class PlayerHealth : MonoBehaviour {
 
         victoryText.text = "";
         health = 100;
-     
+     	
+		if(winCount == null) {
+			winCount = new int[2];
+			winCount[0] = 0;
+			winCount[1] = 0;
+		}
 
         deadNow = false;
-        if (winCount > 0)
+		if (winCount[player.number] > 0)
         {
             winCountText.text = winCount + " WINS";
             winCountText.gameObject.SetActive(true);
         }
-        Debug.Log("Player " + player.number + "win count = " + winCount);
+		Debug.Log("Player " + player.number + "win count = " + winCount[player.number]);
     }
 
     public void TakeDamage()
@@ -88,7 +93,7 @@ public class PlayerHealth : MonoBehaviour {
             {
                 Debug.Log("player " + player.number + "loses");
                 //quick way to add a win to opponent
-                GetComponent<PlayerHealth>().opponent.GetComponent<PlayerHealth>().AddWin();
+                opponent.GetComponent<PlayerHealth>().AddWin();
             }
 
             string color = player.number == 1 ? "HORUS\n" : "SET\n";
@@ -132,15 +137,15 @@ public class PlayerHealth : MonoBehaviour {
 
     public int ReturnWinCount()
     {
-        return winCount;
+		return winCount[player.number];
     }
 
     public void AddWin()
     {
-        winCount++;
-        winCountText.text = winCount + " WINS";
+		winCount[player.number]++;
+		winCountText.text = winCount[player.number] + " WINS";
         Debug.Log("Adding win player " + player.number);
-        if (winCount > 0 && winCountText.IsActive() == false)
+		if (winCount[player.number] > 0 && winCountText.IsActive() == false)
         {
             winCountText.gameObject.SetActive(true);
         }
@@ -148,7 +153,7 @@ public class PlayerHealth : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-	    if(winCount > 0)
+		if(winCount[player.number] > 0)
         {
             //Debug.Log("win count increased + player is " + player.number);
         }
