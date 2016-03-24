@@ -9,9 +9,13 @@ public class PlayerMovement : MonoBehaviour {
 
 	public bool useBenAiming;
 
+	public Gradient reticleGradient;
+
 	public GameObject opponent;
 	public GameObject reticle;
 	public GameObject reticleBlast;
+
+	public SpriteRenderer reticleRenderer;
 
 	private float currentAngle;
 
@@ -29,9 +33,12 @@ public class PlayerMovement : MonoBehaviour {
 		player = GetComponent<Player>();
 		rb2D = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator>();
+		//reticleRenderer = GetComponent<SpriteRenderer>();
+		reticleRenderer.color = reticleGradient.Evaluate(0.0f);
 	}
 
 	void Update() {
+		//reticleRenderer.color = reticleGradient.Evaluate(
 		HandleMovement();
 	}
 
@@ -61,6 +68,14 @@ public class PlayerMovement : MonoBehaviour {
 		float targetAngle = Mathf.Atan2(opponent.transform.position.y - transform.position.y, opponent.transform.position.x - transform.position.x) * Mathf.Rad2Deg + player.number * 180.0f;
 		currentAngle = Mathf.LerpAngle(currentAngle, targetAngle, rotateSpeed * Time.deltaTime);
 		transform.rotation = Quaternion.Euler(0.0f, 0.0f, currentAngle);
+	}
+
+	public void PassBufferToReticle(int bufferIndex, int mashBufferSize) {
+		reticleRenderer.color = reticleGradient.Evaluate((float)bufferIndex / mashBufferSize);
+	}
+
+	public void ResetReticle() {
+		reticleRenderer.color = reticleGradient.Evaluate(0.0f);
 	}
 
 	public float currentShotAngle() {
