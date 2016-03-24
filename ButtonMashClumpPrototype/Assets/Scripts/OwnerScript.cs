@@ -35,7 +35,11 @@ public class OwnerScript : MonoBehaviour {
 				Destroy(gameObject);
 			}
 		} else if(layerMask == "Bullets") {
-			BulletType otherType = collider.gameObject.GetComponent<OwnerScript>().GetType();
+			OwnerScript otherOwner = collider.gameObject.GetComponent<OwnerScript> ();
+			if (otherOwner.mother == mother) {
+				return;
+			}
+			BulletType otherType = otherOwner.GetType();
 			if((type == BulletType.Roundabout && otherType == BulletType.Point) ||
 				(type == BulletType.Point && otherType == BulletType.Block) ||
 				(type == BulletType.Block && otherType == BulletType.Roundabout)) {
