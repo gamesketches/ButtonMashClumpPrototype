@@ -87,6 +87,7 @@ public class InputManager : MonoBehaviour {
 				}
 				if(shootFullBuffer) {
 					bufferIter++;
+					movementManager.PassBufferToReticle(bufferIter, mashBufferSize);
 					if(bufferIter >= mashBufferSize) {
 						Fire();
 					}
@@ -110,6 +111,7 @@ public class InputManager : MonoBehaviour {
 			}
 		}
 		meleeCooldown--;
+		//movementManager.PassBufferToReticle(bufferIter, mashBufferSize);
 	}
 
 	char GetButtonPress() {
@@ -131,6 +133,7 @@ public class InputManager : MonoBehaviour {
 	}
 
 	void Fire() {
+		movementManager.ResetReticle();
 		if(exponentCooldown > 0) {
 			shotManager.InputMeleeAttacksSki(meleeBuffer);
 		}

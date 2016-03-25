@@ -39,12 +39,14 @@ public class PlayerHealth : MonoBehaviour {
 		}
 
         deadNow = false;
-		if (winCount[player.number] > 0)
+        if (winCount[player.number] > 0)
         {
-            winCountText.text = winCount + " WINS";
+
+            winCountText.text = winCount[player.number].ToString();
+            winCountText.text += winCount[player.number] == 1 ? " WIN" : " WINS";
             winCountText.gameObject.SetActive(true);
         }
-		Debug.Log("Player " + player.number + "win count = " + winCount[player.number]);
+        Debug.Log("Player " + player.number + "win count = " + winCount[player.number]);
     }
 
     public void TakeDamage()
@@ -143,12 +145,14 @@ public class PlayerHealth : MonoBehaviour {
     public void AddWin()
     {
 		winCount[player.number]++;
-		winCountText.text = winCount[player.number] + " WINS";
-        Debug.Log("Adding win player " + player.number);
-		if (winCount[player.number] > 0 && winCountText.IsActive() == false)
-        {
-            winCountText.gameObject.SetActive(true);
-        }
+        winCountText.text = winCount[player.number].ToString();
+        winCountText.text += winCount[player.number] == 1 ? " WIN" : " WINS";
+        winCountText.gameObject.SetActive(true);
+        //Debug.Log("Adding win player " + player.number);
+        //if (winCount[player.number] > 0 && winCountText.IsActive() == false)
+        //{
+        //    winCountText.gameObject.SetActive(true);
+        //}
     }
 
     // Update is called once per frame
