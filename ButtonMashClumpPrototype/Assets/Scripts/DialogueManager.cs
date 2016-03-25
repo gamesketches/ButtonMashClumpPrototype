@@ -61,6 +61,7 @@ public class DialogueManager : MonoBehaviour {
 		if(inScene && Input.anyKeyDown) {
 			if(scene_iter.MoveNext()) {
 			sceneText.text = (string)scene_iter.Current;
+			changeColorForSpeaker("SET", Color.red, "HOR", Color.blue);
 			}
 			else {
 				if(sceneText.text == "THEND") {
@@ -69,6 +70,19 @@ public class DialogueManager : MonoBehaviour {
 			sceneText.text = "";
 			inScene = false;
 			}
+		}
+	}
+
+	void changeColorForSpeaker(string speakerName, Color color, string otherSpeaker, Color otherColor) {
+		if(sceneText.text.Length < 3) {
+			return;
+		}
+		if(sceneText.text.Substring(0, 3) == speakerName) {
+			sceneText.color = color;
+			return;
+		}
+		else if(sceneText.text.Substring(0, 3) == otherSpeaker) {
+			sceneText.color = otherColor;
 		}
 	}
 }
