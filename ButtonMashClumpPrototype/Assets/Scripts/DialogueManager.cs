@@ -51,7 +51,6 @@ public class DialogueManager : MonoBehaviour {
 
 	public void StartScene(int result) {
 		inScene = true;
-		Debug.Log(currentScene.setKey);
 		currentScene = result == 1 ? scenes[currentScene.horusKey] : scenes[currentScene.setKey];
 		scene_iter = currentScene.lines.GetEnumerator();
 		sceneText.text = "";
@@ -64,6 +63,9 @@ public class DialogueManager : MonoBehaviour {
 			sceneText.text = (string)scene_iter.Current;
 			}
 			else {
+				if(sceneText.text == "THEND") {
+					currentScene = scenes["Start"];
+				}
 			sceneText.text = "";
 			inScene = false;
 			}
