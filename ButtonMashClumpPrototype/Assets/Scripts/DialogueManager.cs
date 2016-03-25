@@ -51,9 +51,10 @@ public class DialogueManager : MonoBehaviour {
 
 	public void StartScene(int result) {
 		inScene = true;
+		Debug.Log(currentScene.setKey);
 		currentScene = result == 1 ? scenes[currentScene.horusKey] : scenes[currentScene.setKey];
 		scene_iter = currentScene.lines.GetEnumerator();
-		sceneText.text = "heyo";
+		sceneText.text = "";
 	}
 	
 	// Update is called once per frame

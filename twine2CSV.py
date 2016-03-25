@@ -6,7 +6,7 @@ def twine2CSV(filename, outputFilename):
     fullText = fullText[364]
     input.close()
     allLines = fullText.split('<')[2:]
-    data = {}
+    data = []
     for curLine in allLines:
         if curLine == '/div>':
             continue
@@ -25,7 +25,6 @@ def twine2CSV(filename, outputFilename):
         fullySplitLines = [x for x in fullySplitLines if x != ""]
         horusKey = "gameOver"
         setKey = "gameOver"
-        print fullySplitLines
         if fullySplitLines[-2].find("|") > 0:
             pipeIndex = fullySplitLines[-2].find("|") + 1
             horusKey = fullySplitLines[-2][pipeIndex : fullySplitLines[-2].find("]")]
@@ -35,9 +34,9 @@ def twine2CSV(filename, outputFilename):
             print setKey
             fullySplitLines = fullySplitLines[:-2]
 
-        data[key] = {"lines":fullySplitLines, "horusKey":horusKey, "setKey":setKey}
+        data.append({"lines":fullySplitLines, "horusKey":horusKey, "setKey":setKey, "sceneKey" : key})
 
-    data_string = json.dumps([data], indent=2)
+    data_string = json.dumps({"data":data}, indent=2)
     outputFile = open(outputFilename + ".json", "w")
     outputFile.write(data_string)
 

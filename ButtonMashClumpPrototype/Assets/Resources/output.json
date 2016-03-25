@@ -75,8 +75,8 @@
       "sceneKey": "S1H3GO"
     }, 
     {
-      "horusKey": "2allSGO", 
-      "setKey": "Or Perhaps we have a [[Non Violent GO", 
+      "horusKey": "2allHGO", 
+      "setKey": "2allSGO", 
       "lines": [
         "Horus lowers his guard", 
         "HORUS: It doesn't need to be like this", 
@@ -97,7 +97,7 @@
         "HORUS WINS: Your death is on your own head", 
         " I would have spared you", 
         "SET WINS: Didn't your father ever tell you not to let your guard down?", 
-        "[[Horus wins!|2allHGO]]"
+        "Or Perhaps we have a [[Non Violent GO]]"
       ], 
       "sceneKey": "Non Violent 1"
     }, 
@@ -212,8 +212,8 @@
       "sceneKey": "S1H1"
     }, 
     {
-      "horusKey": "2all", 
-      "setKey": " As Horus sinks to his knees, Horus keeps kickin", 
+      "horusKey": "S1H3GO", 
+      "setKey": "2all", 
       "lines": [
         "Set lunges at Horus, Kopesh drawn and ready to cleave him in two", 
         " Horus ducks, catching Set by the ankle as Set sails past", 
@@ -231,8 +231,7 @@
         "stop spinning! All of you!", 
         "HORUS: Last chance! Yield!", 
         "HORUS WINS: Enough of this!", 
-        "SET WINS: There you are!", 
-        "[[Horus wins!|S1H3GO]] "
+        "SET WINS: There you are!"
       ], 
       "sceneKey": "S1H2"
     }, 
@@ -261,8 +260,8 @@
       "sceneKey": "S2H1S"
     }, 
     {
-      "horusKey": "S1H0", 
-      "setKey": "Or Perhaps we have a [[Non Violent 1", 
+      "horusKey": "H1S0", 
+      "setKey": "S1H0", 
       "lines": [
         "Horus and Set pause, poised for action", 
         "SET: Why are you hesitating? Having second thoughts?", 
@@ -278,7 +277,7 @@
         "HORUS: How dare you make light of it!?!", 
         "HORUS WINS: To think I considered showing mercy", 
         "SET WINS: Your father didn't have a sense of humor either", 
-        "[[Horus wins!|H1S0]]"
+        "Or Perhaps we have a [[Non Violent 1]]"
       ], 
       "sceneKey": "Time Out 1"
     }, 
@@ -402,8 +401,8 @@
       "sceneKey": "Non Violent GO"
     }, 
     {
-      "horusKey": "S1H0", 
-      "setKey": "Or perhaps we have a [[Time Out 1", 
+      "horusKey": "H1S0", 
+      "setKey": "S1H0", 
       "lines": [
         "The door behind Set opens", 
         " Horus is silhouetted in the light behind him, as though he is born in the sunrise", 
@@ -433,7 +432,7 @@
         "SET WINS: Something troubling you? You seem a little", 
         "scattered", 
         "HORUS WINS: Now you will take ME seriously", 
-        "[[Horus wins!|H1S0]]"
+        "Or perhaps we have a [[Time Out 1]]"
       ], 
       "sceneKey": "Start"
     }, 
@@ -472,8 +471,8 @@
       "sceneKey": "H2S1H"
     }, 
     {
-      "horusKey": "2allSGO", 
-      "setKey": "Final chance for a [[Non Violent GO", 
+      "horusKey": "2allHGO", 
+      "setKey": "2allSGO", 
       "lines": [
         "Both warriors are wounded and breathing heavily", 
         " They each look to the crown, the reason for the battle", 
@@ -489,7 +488,7 @@
         "HORUS: Not before I make this right!", 
         "HORUS WINS: Father", 
         "SET WINS: Shame it had to come to this", 
-        "[[Horus wins!|2allHGO]]"
+        "Final chance for a [[Non Violent GO]]"
       ], 
       "sceneKey": "2all"
     }, 

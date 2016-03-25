@@ -1,6 +1,6 @@
-[
-  {
-    "2allHGO": {
+{
+  "data": [
+    {
       "horusKey": "gameOver", 
       "setKey": "gameOver", 
       "lines": [
@@ -12,9 +12,10 @@
         "Horus looks out of the window", 
         " The sun is rising, and Horus' eyes flash in the dawn's light", 
         "THEND"
-      ]
+      ], 
+      "sceneKey": "2allHGO"
     }, 
-    "S2H0": {
+    {
       "horusKey": "S2H1H", 
       "setKey": "S3H0GO", 
       "lines": [
@@ -41,28 +42,10 @@
         " ", 
         "//(not an accident", 
         " I really liked the line)//"
-      ]
+      ], 
+      "sceneKey": "S2H0"
     }, 
-    "Start": {
-      "horusKey": "gameOver", 
-      "setKey": "gameOver", 
-      "lines": [
-        "Set's throne room, evening", 
-        " At the top of an impossibly tall tower, this room is the crown jewel of Set's kingdom", 
-        " The ceiling and the far wall are both made of glass, and both offer a breathtaking view", 
-        " Bathed in the purple-orange of the setting sun, the room is filled with shadow", 
-        "We see a stand that holds a crown and two ceremonial maces against a wall, in clear view of Set's throne, a massive marble chair with coushions", 
-        " In front of the throne is an altar-like desk, black marble, that seems to have been raised from the floor by magic", 
-        " A bowl of salad sits near one corner, but otherwise the desk is empty", 
-        " It is more a status symbol than a workspace", 
-        "Beyond this, near the imposing doors, four marble pillars frame a reflecting area", 
-        " Four large chairs sit each at one side of a fountain in the middle of the area", 
-        "Set gazes out a window", 
-        " He is the unchallenged ruler of all he sees", 
-        " Maybe he holds a glass of wine and [[toasts his reflection]]"
-      ]
-    }, 
-    "S3H1GO": {
+    {
       "horusKey": "gameOver", 
       "setKey": "gameOver", 
       "lines": [
@@ -73,9 +56,10 @@
         " Set draws his kopesh and holds it at Horus' neck", 
         "The sun has fully descended by this time, and Set looks out the window a final time, grinning", 
         "THEND"
-      ]
+      ], 
+      "sceneKey": "S3H1GO"
     }, 
-    "S1H3GO": {
+    {
       "horusKey": "gameOver", 
       "setKey": "gameOver", 
       "lines": [
@@ -87,11 +71,12 @@
         "Horus looks out of the window", 
         " The sun is rising, and Horus' eyes flash in the dawn's light", 
         "THEND"
-      ]
+      ], 
+      "sceneKey": "S1H3GO"
     }, 
-    "Non Violent 1": {
-      "horusKey": "2allSGO", 
-      "setKey": "Or Perhaps we have a [[Non Violent GO", 
+    {
+      "horusKey": "2allHGO", 
+      "setKey": "2allSGO", 
       "lines": [
         "Horus lowers his guard", 
         "HORUS: It doesn't need to be like this", 
@@ -112,10 +97,11 @@
         "HORUS WINS: Your death is on your own head", 
         " I would have spared you", 
         "SET WINS: Didn't your father ever tell you not to let your guard down?", 
-        "[[Horus wins!|2allHGO]]"
-      ]
+        "Or Perhaps we have a [[Non Violent GO]]"
+      ], 
+      "sceneKey": "Non Violent 1"
     }, 
-    "H2S0": {
+    {
       "horusKey": "H3S0GO", 
       "setKey": "H2S1H", 
       "lines": [
@@ -141,9 +127,10 @@
         "HORUS WINS: And that was for Osiris!", 
         "SET WINS: You don't have what it takes to be king", 
         " Like father, like son"
-      ]
+      ], 
+      "sceneKey": "H2S0"
     }, 
-    "H3S0GO": {
+    {
       "horusKey": "gameOver", 
       "setKey": "gameOver", 
       "lines": [
@@ -154,9 +141,10 @@
         "Horus looks out of the window", 
         " The sun is rising, and Horus' eyes flash in the dawn's light", 
         "THEND"
-      ]
+      ], 
+      "sceneKey": "H3S0GO"
     }, 
-    "StoryTitle": {
+    {
       "horusKey": "gameOver", 
       "setKey": "gameOver", 
       "lines": [
@@ -164,9 +152,10 @@
         "2", 
         "1", 
         "NOTE: First to 3 wins"
-      ]
+      ], 
+      "sceneKey": "StoryTitle"
     }, 
-    "H3S1GO": {
+    {
       "horusKey": "gameOver", 
       "setKey": "gameOver", 
       "lines": [
@@ -176,9 +165,10 @@
         "Horus looks out of the window", 
         " The sun is rising, and Horus' eyes flash in the dawn's light", 
         "THEND"
-      ]
+      ], 
+      "sceneKey": "H3S1GO"
     }, 
-    "S1H0": {
+    {
       "horusKey": "S1H1", 
       "setKey": "S2H0", 
       "lines": [
@@ -197,9 +187,10 @@
         "HORUS: And borrowed time!", 
         "HORUS WINS: Time's up, Set!", 
         "SET WINS: You'll never be king like this, boy"
-      ]
+      ], 
+      "sceneKey": "S1H0"
     }, 
-    "S1H1": {
+    {
       "horusKey": "S1H2", 
       "setKey": "S2H1S", 
       "lines": [
@@ -217,11 +208,12 @@
         "HORUS: Oh, this is nothing", 
         "HORUS WINS: Do you yield?", 
         "SET WINS: Self-righteous twerp"
-      ]
+      ], 
+      "sceneKey": "S1H1"
     }, 
-    "S1H2": {
-      "horusKey": "2all", 
-      "setKey": " As Horus sinks to his knees, Horus keeps kickin", 
+    {
+      "horusKey": "S1H3GO", 
+      "setKey": "2all", 
       "lines": [
         "Set lunges at Horus, Kopesh drawn and ready to cleave him in two", 
         " Horus ducks, catching Set by the ankle as Set sails past", 
@@ -239,11 +231,11 @@
         "stop spinning! All of you!", 
         "HORUS: Last chance! Yield!", 
         "HORUS WINS: Enough of this!", 
-        "SET WINS: There you are!", 
-        "[[Horus wins!|S1H3GO]] "
-      ]
+        "SET WINS: There you are!"
+      ], 
+      "sceneKey": "S1H2"
     }, 
-    "S2H1S": {
+    {
       "horusKey": "gameOver", 
       "setKey": "gameOver", 
       "lines": [
@@ -264,11 +256,12 @@
         "[[Horus wins!|2all]] Horus grabs Set by the neck and begins to choke him", 
         " Set barely manages to escape by kicking out", 
         "[[Set wins!|S3H1GO]] "
-      ]
+      ], 
+      "sceneKey": "S2H1S"
     }, 
-    "Time Out 1": {
-      "horusKey": "S1H0", 
-      "setKey": "Or Perhaps we have a [[Non Violent 1", 
+    {
+      "horusKey": "H1S0", 
+      "setKey": "S1H0", 
       "lines": [
         "Horus and Set pause, poised for action", 
         "SET: Why are you hesitating? Having second thoughts?", 
@@ -284,10 +277,11 @@
         "HORUS: How dare you make light of it!?!", 
         "HORUS WINS: To think I considered showing mercy", 
         "SET WINS: Your father didn't have a sense of humor either", 
-        "[[Horus wins!|H1S0]]"
-      ]
+        "Or Perhaps we have a [[Non Violent 1]]"
+      ], 
+      "sceneKey": "Time Out 1"
     }, 
-    "H1S0": {
+    {
       "horusKey": "H2S0", 
       "setKey": "H1S1", 
       "lines": [
@@ -311,9 +305,10 @@
         " I will be king!", 
         "HORUS WINS: How about this?", 
         "SET WINS: I'm done playing games!"
-      ]
+      ], 
+      "sceneKey": "H1S0"
     }, 
-    "H1S1": {
+    {
       "horusKey": "H2S1S", 
       "setKey": "H1S2", 
       "lines": [
@@ -334,9 +329,10 @@
         "HORUS WINS: My father will be avenged!", 
         "SET WINS: You don't want the throne", 
         " It makes you a target for fleas"
-      ]
+      ], 
+      "sceneKey": "H1S1"
     }, 
-    "H1S2": {
+    {
       "horusKey": "2all", 
       "setKey": "H1S3GO", 
       "lines": [
@@ -357,9 +353,10 @@
         "HORUS: It runs in my family", 
         "HORUS WINS: Now we finish this!", 
         "SET WINS: Maybe I'll feed your heart to my dog"
-      ]
+      ], 
+      "sceneKey": "H1S2"
     }, 
-    "S2H1H": {
+    {
       "horusKey": "gameOver", 
       "setKey": "gameOver", 
       "lines": [
@@ -383,9 +380,10 @@
         "[[Horus wins!|2all]] Horus flies at Set, grabbing him and soaring into the air", 
         " He piledrives Set into the ground", 
         "[[Set wins!|S3H1GO]]  "
-      ]
+      ], 
+      "sceneKey": "S2H1H"
     }, 
-    "Non Violent GO": {
+    {
       "horusKey": "gameOver", 
       "setKey": "gameOver", 
       "lines": [
@@ -399,11 +397,12 @@
         "Holding hands, they both look out the window at the incredible view", 
         " The sun is at high noon", 
         "THEND"
-      ]
+      ], 
+      "sceneKey": "Non Violent GO"
     }, 
-    "toasts his reflection": {
-      "horusKey": "S1H0", 
-      "setKey": "Or perhaps we have a [[Time Out 1", 
+    {
+      "horusKey": "H1S0", 
+      "setKey": "S1H0", 
       "lines": [
         "The door behind Set opens", 
         " Horus is silhouetted in the light behind him, as though he is born in the sunrise", 
@@ -433,10 +432,11 @@
         "SET WINS: Something troubling you? You seem a little", 
         "scattered", 
         "HORUS WINS: Now you will take ME seriously", 
-        "[[Horus wins!|H1S0]]"
-      ]
+        "Or perhaps we have a [[Time Out 1]]"
+      ], 
+      "sceneKey": "Start"
     }, 
-    "2allSGO": {
+    {
       "horusKey": "gameOver", 
       "setKey": "gameOver", 
       "lines": [
@@ -445,9 +445,10 @@
         " Set draws his mace and brings it down on Horus' head, and Horus crumples, vanquished", 
         "The sun has fully descended by this time, and Set looks out the window a final time, grinning", 
         "THEND"
-      ]
+      ], 
+      "sceneKey": "2allSGO"
     }, 
-    "H2S1H": {
+    {
       "horusKey": "H3S1GO", 
       "setKey": "2all", 
       "lines": [
@@ -466,11 +467,12 @@
         "HORUS: The sun always rises, Set", 
         "HORUS WINS: Your time is come, usurper!", 
         "SET WINS: Looks like it's not tomorrow yet"
-      ]
+      ], 
+      "sceneKey": "H2S1H"
     }, 
-    "2all": {
-      "horusKey": "2allSGO", 
-      "setKey": "Final chance for a [[Non Violent GO", 
+    {
+      "horusKey": "2allHGO", 
+      "setKey": "2allSGO", 
       "lines": [
         "Both warriors are wounded and breathing heavily", 
         " They each look to the crown, the reason for the battle", 
@@ -486,10 +488,11 @@
         "HORUS: Not before I make this right!", 
         "HORUS WINS: Father", 
         "SET WINS: Shame it had to come to this", 
-        "[[Horus wins!|2allHGO]]"
-      ]
+        "Final chance for a [[Non Violent GO]]"
+      ], 
+      "sceneKey": "2all"
     }, 
-    "H2S1S": {
+    {
       "horusKey": "H3S1GO", 
       "setKey": "2all", 
       "lines": [
@@ -511,9 +514,10 @@
         "SET WINS: That", 
         " Is", 
         " It"
-      ]
+      ], 
+      "sceneKey": "H2S1S"
     }, 
-    "S3H0GO": {
+    {
       "horusKey": "gameOver", 
       "setKey": "gameOver", 
       "lines": [
@@ -521,9 +525,10 @@
         " ", 
         "The sun has fully descended by this time, and Set looks out the window a final time, grinning", 
         "THEND"
-      ]
+      ], 
+      "sceneKey": "S3H0GO"
     }, 
-    "H1S3GO": {
+    {
       "horusKey": "gameOver", 
       "setKey": "gameOver", 
       "lines": [
@@ -532,7 +537,8 @@
         " Set lifts Horus off the ground with the kopesh, eyes him a moment, and then rips Horus' eye out", 
         "The sun has fully descended by this time, and Set looks out the window a final time, grinning", 
         "THEND"
-      ]
+      ], 
+      "sceneKey": "H1S3GO"
     }
-  }
-]
+  ]
+}
