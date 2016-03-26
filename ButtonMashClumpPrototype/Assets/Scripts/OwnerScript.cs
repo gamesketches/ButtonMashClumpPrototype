@@ -3,8 +3,9 @@ using System.Collections;
 
 public class OwnerScript : MonoBehaviour {
 
-	// This script exists entirely for this line lulz
 	public GameObject mother;
+	public Sprite setTexture;
+	public Sprite horTexture;
 
 	public bool stray;
 	public int bounces;
@@ -69,6 +70,17 @@ public class OwnerScript : MonoBehaviour {
 
 	public void SetType(BulletType bulletType){
 		type = bulletType;
+	}
+
+	public void SetMother(GameObject newMother, int playerNum) {
+		mother = newMother;
+		if(playerNum == 0) {
+			gameObject.GetComponent<SpriteRenderer>().sprite = setTexture;
+		}
+		else {
+				Debug.Log("yup");
+			gameObject.GetComponent<SpriteRenderer>().sprite = horTexture;
+		}
 	}
 
 	public BulletType GetType() {

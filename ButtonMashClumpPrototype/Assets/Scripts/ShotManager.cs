@@ -71,8 +71,8 @@ public class ShotManager : MonoBehaviour {
 		bulletRB.velocity = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad)) * speed;
 
 		OwnerScript script = bullet.GetComponent<OwnerScript>();
-		script.mother = gameObject;
 		script.SetType(type);
+		script.SetMother(gameObject, gameObject.GetComponent<Player>().number);
 	}
 
 	public void InputEqualsNumber(char[] mashBuffer) {
