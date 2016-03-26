@@ -52,7 +52,8 @@ public class OwnerScript : MonoBehaviour {
 				return;
 			}
 			BulletType otherType = otherOwner.GetType();
-			if((type == BulletType.Roundabout && otherType == BulletType.Point) ||
+			if((type == otherType) || 
+				(type == BulletType.Roundabout && otherType == BulletType.Point) ||
 				(type == BulletType.Point && otherType == BulletType.Block) ||
 				(type == BulletType.Block && otherType == BulletType.Roundabout)) {
 				Destroy(collider.gameObject);
