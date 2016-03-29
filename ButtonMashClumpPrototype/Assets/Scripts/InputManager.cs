@@ -36,6 +36,11 @@ public class InputManager : MonoBehaviour {
 	private Player player;
 	private ShotManager shotManager;
 
+	public AudioClip bulletShot1;
+	public AudioClip bulletShot2;
+	private AudioSource audioOne;
+	private AudioSource audioTwo;
+
 	// Use this for initialization
 	void Start () {
 		player = GetComponent<Player>();
@@ -51,6 +56,9 @@ public class InputManager : MonoBehaviour {
 		shotManager = gameObject.GetComponent<ShotManager>();
 		shotManager.SetMashBufferSize(mashBufferSize);
 		startingColor = GetComponentInChildren<Renderer>().material.color;
+		AudioSource[] sources = GetComponents<AudioSource>();
+		audioOne = sources[1];
+		audioTwo = sources[2];
 	}
 	
 	// Update is called once per frame
@@ -162,6 +170,7 @@ public class InputManager : MonoBehaviour {
 
 	void ExponentShot() {
 		float incrementAngle = 45.0f;
+		AudioClip clip = bulletShot1;
 		for(int i = 0; i < bufferIter; i++) {
 			//int type = 100;
 			BulletType type = BulletType.Stray;
@@ -178,6 +187,7 @@ public class InputManager : MonoBehaviour {
 				case 'C':
 					speed = 5.0f;
 					type = BulletType.Block;
+					clip = bulletShot2;
 					break;
 				case 'D':
 					Debug.LogError("Melee button sent to projectile buffer");
@@ -188,6 +198,7 @@ public class InputManager : MonoBehaviour {
 			}
 			if(bufferIter < 2) {
 				shotManager.createBullet(0.0f, speed, type);
+				playAudio(clip);
 				return;
 			}
 			else {
@@ -195,13 +206,30 @@ public class InputManager : MonoBehaviour {
 				for(int k = 1; k < i; k++) {
 					speed = speed > 1 ? speed -= 1 : 1;
 					shotManager.createBullet(baseAngle + incrementAngle, speed, type);
+					playAudio(clip);
 					k++;
 					shotManager.createBullet(-(baseAngle + incrementAngle), speed, type);
+					playAudio(clip);
 					baseAngle += incrementAngle;
 				}
 			}
 			if(i >= 1) {
 				incrementAngle /= i;
+			}
+		}
+	}
+
+	void playAudio(AudioClip clip) {
+		if(audioOne.isPlaying && audioTwo.isPlaying) {
+			return;
+		}
+		else {
+			Debug.Log("playin audio");
+			if(audioOne.isPlaying) {
+				audioTwo.PlayOneShot(clip);
+			}
+			else {
+				audioOne.PlayOneShot(clip);
 			}
 		}
 	}
