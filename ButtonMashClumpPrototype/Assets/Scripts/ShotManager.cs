@@ -99,7 +99,7 @@ public class ShotManager : MonoBehaviour {
 		} else {
 			theBulletType = BulletType.Block;
 		} 	
-
+		Debug.Log(theBulletType);
 		bulletAngles.Add(0.0f);
 		bulletTypes.Insert(0, theBulletType);
 		if(bulletNumber == mashBufferSize) {
