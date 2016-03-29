@@ -74,7 +74,7 @@ public class InputManager : MonoBehaviour {
 				gameObject.transform.localScale = Vector3.Lerp(new Vector3(1f, 1f, 1f), 
 														new Vector3(fullBufferScale, fullBufferScale, fullBufferScale),
 														(float)bufferIter / (float)mashBufferSize);
-				//Debug.Log(fullBufferScale);
+				mashBuffer.SetValue(button, bufferIter);
 				if(!mashing) {
 					mashing = true;
 				}
@@ -89,9 +89,6 @@ public class InputManager : MonoBehaviour {
 						shotManager.InputMeleeAttacksSki(meleeBuffer);
 						meleeCooldown = meleeInputCooldown;
 					}
-				}
-				else {
-					mashBuffer.SetValue(button, bufferIter);
 				}
 				if(shootFullBuffer) {
 					bufferIter++;
@@ -174,7 +171,7 @@ public class InputManager : MonoBehaviour {
 	void ExponentShot() {
 		float incrementAngle = 45.0f;
 		AudioClip clip = bulletShot1;
-		for(int i = 0; i < bufferIter; i++) {
+		for(int i = 0; i < mashBuffer.Length; i++) {
 			//int type = 100;
 			BulletType type = BulletType.Stray;
 			float speed = (float)bufferIter * 2;
