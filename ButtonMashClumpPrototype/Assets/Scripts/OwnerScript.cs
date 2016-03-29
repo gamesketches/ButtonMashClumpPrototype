@@ -16,10 +16,14 @@ public class OwnerScript : MonoBehaviour {
 
 	private GameObject target;
 	private float headingTime = 0.0f;
+	public float shelfLife;
 	public float directionChangeRate = 5.0f;
 
 	void Awake() {
 		rb2D = GetComponent<Rigidbody2D>();
+		if(shelfLife != 0.0f) {
+			StartCoroutine(DoomsdayClock());
+		}
 		//rb2D.AddTorque(100.0f);
 	}
 
@@ -101,5 +105,10 @@ public class OwnerScript : MonoBehaviour {
 
 	public BulletType GetType() {
 		return type;
+	}
+
+	IEnumerator DoomsdayClock() {
+		yield return new WaitForSeconds(shelfLife);
+		Destroy(gameObject);
 	}
 }
