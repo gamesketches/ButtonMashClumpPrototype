@@ -142,10 +142,13 @@ public class InputManager : MonoBehaviour {
 
 	void Fire() {
 		movementManager.ResetReticle();
-		if(exponentCooldown > 0) {
+		/*if(exponentCooldown > 0) {
 			shotManager.InputMeleeAttacksSki(meleeBuffer);
 		}
 		else {
+			shotManager.shotInterpreter(mashBuffer);
+		}*/
+		if(exponentCooldown <= 0) {
 			shotManager.shotInterpreter(mashBuffer);
 		}
 		for(int i = 0; i < mashBufferSize; i++){
