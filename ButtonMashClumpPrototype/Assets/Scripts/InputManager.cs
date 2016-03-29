@@ -196,6 +196,7 @@ public class InputManager : MonoBehaviour {
 					continue;
 					break;
 			}
+
 			if(bufferIter < 2) {
 				shotManager.createBullet(0.0f, speed, type);
 				playAudio(clip);

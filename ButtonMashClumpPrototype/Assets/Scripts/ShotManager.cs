@@ -89,21 +89,38 @@ public class ShotManager : MonoBehaviour {
 		float angleDifference = 90.0f / mashBufferSize;
 		List<float> bulletAngles = new List<float>();
 		List<BulletType> bulletTypes = new List<BulletType>();
+		BulletType theBulletType;
+		if(meaningfulInput.Count <= 0) {
+			return;
+		}
+		char bulletTypeChar = meaningfulInput[meaningfulInput.Count - 1];
+		if(bulletTypeChar == 'A') {
+			theBulletType = BulletType.Point;
+		} else if(bulletTypeChar == 'B') {
+			theBulletType = BulletType.Roundabout;
+		} else /*if(bulletTypeChar == 'C')*/ {
+			theBulletType = BulletType.Block;
+		} 	
 
 		bulletAngles.Add(0.0f);
-		bulletTypes.Insert(0, (BulletType)Random.Range(2, 4));
+		//bulletTypes.Insert(0, (BulletType)Random.Range(2, 4));
+		bulletTypes.Insert(0, theBulletType);
 		if(bulletNumber == mashBufferSize) {
 			bulletAngles.Add(90.0f);
 			bulletAngles.Add(-90.0f);
-			bulletTypes.Insert(0, (BulletType)Random.Range(2, 4));
-			bulletTypes.Insert(0, (BulletType)Random.Range(2, 4));
+			bulletTypes.Insert(0, theBulletType);
+			bulletTypes.Insert(0, theBulletType);
+			/*bulletTypes.Insert(0, (BulletType)Random.Range(2, 4));
+			bulletTypes.Insert(0, (BulletType)Random.Range(2, 4));*/
 		}
 
 		if(bulletNumber > 1) {
 			for(int i = 0; i < bulletNumber - 1; i++) {
 				bulletAngles.Add(angleDifference * (i + 1));
 				bulletAngles.Add(-angleDifference * (i + 1));
-				if(meaningfulInput[i] == 'A') {
+				bulletTypes.Add(theBulletType);
+				bulletTypes.Add(theBulletType);
+				/*if(meaningfulInput[i] == 'A') {
 					bulletTypes.Add(BulletType.Point);
 					bulletTypes.Add(BulletType.Point);
 				} else if(meaningfulInput[i] == 'B') {
@@ -112,7 +129,7 @@ public class ShotManager : MonoBehaviour {
 				} else if(meaningfulInput[i] == 'C') {
 					bulletTypes.Add(BulletType.Roundabout);
 					bulletTypes.Add(BulletType.Roundabout);
-				} 	
+				}*/ 	
 			}
 		}
 		for(int i = 0; i < bulletAngles.Count; i++) {
