@@ -74,7 +74,16 @@ public class InputManager : MonoBehaviour {
 				gameObject.transform.localScale = Vector3.Lerp(new Vector3(1f, 1f, 1f), 
 														new Vector3(fullBufferScale, fullBufferScale, fullBufferScale),
 														(float)bufferIter / (float)mashBufferSize);
+
+			if(button == 'D') {
+				if(meleeCooldown <= 0) {
+					shotManager.InputMeleeAttacksSki(meleeBuffer);
+					meleeCooldown = meleeInputCooldown;
+				}
+			}
+			else {
 				mashBuffer.SetValue(button, bufferIter);
+			}
 				if(!mashing) {
 					mashing = true;
 				}
@@ -83,12 +92,6 @@ public class InputManager : MonoBehaviour {
 				}
 				if(exponentialBuffer && exponentCooldown <= 0) {
 					ExponentShot();
-				}
-				if(button == 'D') {
-					if(meleeCooldown <= 0) {
-						shotManager.InputMeleeAttacksSki(meleeBuffer);
-						meleeCooldown = meleeInputCooldown;
-					}
 				}
 				if(shootFullBuffer) {
 					bufferIter++;
