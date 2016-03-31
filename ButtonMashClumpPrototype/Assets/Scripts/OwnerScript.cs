@@ -17,7 +17,7 @@ public class OwnerScript : MonoBehaviour {
 	private GameObject target;
 	private float headingTime = 0.0f;
 	public float shelfLife;
-	public float directionChangeRate = 5.0f;
+	public float directionChangeRate = 1f;
 
 	void Awake() {
 		rb2D = GetComponent<Rigidbody2D>();
@@ -29,8 +29,9 @@ public class OwnerScript : MonoBehaviour {
 
 	void Update() {
 		if(type == BulletType.Roundabout && headingTime < 1.0f) {
-		rb2D.velocity = Vector2.Lerp(rb2D.velocity, target.transform.position - gameObject.transform.position, headingTime);
-		headingTime += Time.deltaTime * directionChangeRate;
+			rb2D.velocity = Vector2.Lerp(rb2D.velocity, target.transform.position - gameObject.transform.position, 
+																								headingTime);
+			headingTime += directionChangeRate / (directionChangeRate * 60);
 		}
 	}
 
