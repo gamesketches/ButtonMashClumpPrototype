@@ -7,7 +7,9 @@ public class OwnerScript : MonoBehaviour {
 	public Sprite setTexture;
 	public Sprite horTexture;
 
-	public bool stray;
+    public GameObject bltCrashPrefab;
+
+    public bool stray;
 	public int bounces;
 
 	private BulletType type;
@@ -60,12 +62,25 @@ public class OwnerScript : MonoBehaviour {
 				(type == BulletType.Roundabout && otherType == BulletType.Point) ||
 				(type == BulletType.Point && otherType == BulletType.Block) ||
 				(type == BulletType.Block && otherType == BulletType.Roundabout)) {
-				Destroy(collider.gameObject);
-			}
-		}
+                Debug.Log("Starting coroutine");
+                StartCoroutine(PlayBulletCrash());
+                Destroy(collider.gameObject);
+            }
+        }
 	}
 
-	void OnCollisionEnter2D(Collision2D collision) {
+    IEnumerator PlayBulletCrash()
+    {
+        Debug.Log("inside coroutine");
+        GameObject crash = ((GameObject)Instantiate(bltCrashPrefab, transform.position, Quaternion.identity));
+        crash.GetComponent<Transform>().localScale = new Vector3(2f, 2f);
+        yield return null;//new WaitForSeconds(1.0f);
+        Debug.Log("should be here");
+        Debug.Log(crash);
+        yield return null;
+    }
+
+    void OnCollisionEnter2D(Collision2D collision) {
 		string layerMask = LayerMask.LayerToName(collision.gameObject.layer);
 		if(layerMask == "Players") {
 			if(collision.gameObject != mother) {
