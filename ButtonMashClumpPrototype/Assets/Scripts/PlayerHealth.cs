@@ -68,6 +68,12 @@ public class PlayerHealth : MonoBehaviour {
             healthText.color = Color.red;
         }
 
+		// 50% life text
+		if(health < 50) {
+			DialogueManager dialogue = Camera.main.GetComponent<DialogueManager>();
+			dialogue.StartScene(player.number);
+		}
+
 
         healthText.text = "";
 
@@ -111,7 +117,7 @@ public class PlayerHealth : MonoBehaviour {
 
 	IEnumerator sceneReset(int playerNum) {
 		DialogueManager dialogue = Camera.main.GetComponent<DialogueManager>();
-		dialogue.StartScene(playerNum);
+		dialogue.EndScene(playerNum);
 		while(dialogue.inScene) {
 			yield return null;
 		}
