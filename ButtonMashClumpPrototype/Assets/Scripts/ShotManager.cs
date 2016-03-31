@@ -73,6 +73,7 @@ public class ShotManager : MonoBehaviour {
 		OwnerScript script = bullet.GetComponent<OwnerScript>();
 		Player player = gameObject.GetComponent<Player>();
 		script.Initialize(type, gameObject, gameObject.GetComponent<PlayerHealth>().opponent, player.number); 
+		BulletManager.Instance.AddBullet(bullet);
 	}
 
 	public void InputEqualsNumber(char[] mashBuffer) {
@@ -99,7 +100,6 @@ public class ShotManager : MonoBehaviour {
 		} else {
 			theBulletType = BulletType.Block;
 		} 	
-		Debug.Log(theBulletType);
 		bulletAngles.Add(0.0f);
 		bulletTypes.Insert(0, theBulletType);
 		if(bulletNumber == mashBufferSize) {
