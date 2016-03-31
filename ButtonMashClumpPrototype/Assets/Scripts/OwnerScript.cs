@@ -20,6 +20,7 @@ public class OwnerScript : MonoBehaviour {
 	private float headingTime = 0.0f;
 	public float shelfLife;
 	public float directionChangeRate = 1f;
+    public float collisionScale;
 
 	void Awake() {
 		rb2D = GetComponent<Rigidbody2D>();
@@ -74,7 +75,7 @@ public class OwnerScript : MonoBehaviour {
     {
         Debug.Log("inside coroutine");
         GameObject crash = ((GameObject)Instantiate(bltCrashPrefab, transform.position, Quaternion.identity));
-        crash.GetComponent<Transform>().localScale = new Vector3(2f, 2f);
+        crash.GetComponent<Transform>().localScale = new Vector3(collisionScale, collisionScale);
         yield return null;//new WaitForSeconds(1.0f);
         Debug.Log("should be here");
         Debug.Log(crash);
