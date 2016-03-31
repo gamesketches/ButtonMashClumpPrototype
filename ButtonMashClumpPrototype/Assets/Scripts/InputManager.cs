@@ -69,38 +69,40 @@ public class InputManager : MonoBehaviour {
 
 			GetComponentInChildren<Renderer>().material.color = startingColor;
 			char button = GetButtonPress();
-			if(button != '0'){
-				inputCooldownTimer = inputCooldown;
-				gameObject.transform.localScale = Vector3.Lerp(new Vector3(1f, 1f, 1f), 
-														new Vector3(fullBufferScale, fullBufferScale, fullBufferScale),
-														(float)bufferIter / (float)mashBufferSize);
-
 			if(button == 'D') {
 				if(meleeCooldown <= 0) {
 					shotManager.InputMeleeAttacksSki(meleeBuffer);
 					meleeCooldown = meleeInputCooldown;
 				}
 			}
-			else {
+			else if(button != '0' && exponentCooldown <= 0){
+				inputCooldownTimer = inputCooldown;
+				gameObject.transform.localScale = Vector3.Lerp(new Vector3(1f, 1f, 1f), 
+														new Vector3(fullBufferScale, fullBufferScale, fullBufferScale),
+														(float)bufferIter / (float)mashBufferSize);
+			{
 				mashBuffer.SetValue(button, bufferIter);
 			}
-				if(!mashing) {
-					mashing = true;
+			if(!mashing) {
+				mashing = true;
+			}
+			if(shootStrays) {
+				FireStray();
+			}
+			if(exponentialBuffer && exponentCooldown <= 0) {
+				ExponentShot();
+			}
+			if(shootFullBuffer) {
+				bufferIter++;
+				movementManager.PassBufferToReticle(bufferIter, mashBufferSize);
+				if(bufferIter >= mashBufferSize) {
+					Fire();
 				}
-				if(shootStrays) {
-					FireStray();
-				}
-				if(exponentialBuffer && exponentCooldown <= 0) {
-					ExponentShot();
-				}
-				if(shootFullBuffer) {
-					bufferIter++;
-					movementManager.PassBufferToReticle(bufferIter, mashBufferSize);
-					if(bufferIter >= mashBufferSize) {
-						Fire();
-					}
 			} else {
-				bufferIter = bufferIter >= mashBufferSize - 1 ? 0 : bufferIter + 1;
+				if(bufferIter < mashBufferSize && exponentCooldown <= 0){
+					bufferIter++;
+					//bufferIter = bufferIter >= mashBufferSize - 1 ? 0 : bufferIter + 1;
+				}
 			}
 		}else if(mashing && button == '0'){
 			inputCooldownTimer -= Time.deltaTime;
