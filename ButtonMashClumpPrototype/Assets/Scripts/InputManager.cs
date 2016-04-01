@@ -16,6 +16,7 @@ public class InputManager : MonoBehaviour {
 	public bool shootFullBuffer;
 	public bool shootStrays;
 	public bool exponentialBuffer;
+	public bool cooldown;
 
 	public float inputCooldown;
 	private float inputCooldownTimer;
@@ -158,11 +159,13 @@ public class InputManager : MonoBehaviour {
 		}
 		// This will be the hardest part to get right
 		if(exponentialBuffer) {
-			int lockFrames = (bufferIter * (bufferIter + 1)) * 2;
+			int lockFrames = (bufferIter * (bufferIter + 1));
 			if (bufferIter < mashBufferSize) {
 				lockFrames = lockFrames / 2;
 			}
-			exponentCooldown = lockFrames;
+			if(cooldown) {
+				exponentCooldown = lockFrames;
+			}
 		}
 		bufferIter = 0;
 		mashing = false;
