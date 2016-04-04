@@ -240,4 +240,8 @@ public class InputManager : MonoBehaviour {
 		}
 	}
 
+	public void forcedCooldown(int frames) {
+		exponentCooldown = frames;
+	}
+
 }

@@ -91,7 +91,7 @@ public class RoundTimer : MonoBehaviour {
         PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
 
         while (playerHealth.GetComponent<PlayerHealth>().ReturnHealth() > 0)
-            playerHealth.TakeDamage();
+            playerHealth.TakeDamage(3);
     }
 
     void TieGame()

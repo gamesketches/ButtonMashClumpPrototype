@@ -21,6 +21,7 @@ public class OwnerScript : MonoBehaviour {
 	public float shelfLife;
 	public float directionChangeRate = 1f;
     public float collisionScale;
+	public int damage = 3;
 
 	void Awake() {
 		rb2D = GetComponent<Rigidbody2D>();
@@ -42,7 +43,7 @@ public class OwnerScript : MonoBehaviour {
 		string layerMask = LayerMask.LayerToName(collider.gameObject.layer);
 		if(layerMask == "Players") {
 			if(collider.gameObject != mother) {
-                collider.gameObject.GetComponent<PlayerHealth>().TakeDamage();
+                collider.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
                 Destroy(gameObject);
             }
         } else if(layerMask == "Bounds") {
@@ -86,7 +87,7 @@ public class OwnerScript : MonoBehaviour {
 		string layerMask = LayerMask.LayerToName(collision.gameObject.layer);
 		if(layerMask == "Players") {
 			if(collision.gameObject != mother) {
-				collision.gameObject.GetComponent<PlayerHealth>().TakeDamage();
+				collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
 				Destroy(gameObject);
 			}
 		} else if(layerMask == "Bounds") {

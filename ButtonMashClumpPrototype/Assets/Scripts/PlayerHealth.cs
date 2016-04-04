@@ -49,13 +49,13 @@ public class PlayerHealth : MonoBehaviour {
         Debug.Log("Player " + player.number + "win count = " + winCount[player.number]);
     }
 
-    public void TakeDamage()
+    public void TakeDamage(int damage)
     {
 
         if (deadNow)
             return;
         //Debug.Log("Im taking damage!");
-        health-=3;
+        health -= damage;
 		audioSource.Play();
         
         //"GREEN BARR!!"
