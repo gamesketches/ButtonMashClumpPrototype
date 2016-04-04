@@ -1,10 +1,17 @@
 fileFormatVersion: 2
 guid: e428e9ce49d3949a1a2169fd38bb014a
-timeCreated: 1454998788
+timeCreated: 1459453567
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - mother: {instanceID: 0}
+  - setTexture: {instanceID: 0}
+  - horTexture: {instanceID: 0}
+  - bltCrashTexture: {instanceID: 0}
+  - bltDeathTexture: {instanceID: 0}
+  - puffTexture: {instanceID: 0}
+  - bltCrashPrefab: {fileID: 105736, guid: 3b3e728d2473d474b8aecb66fe22c1df, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
