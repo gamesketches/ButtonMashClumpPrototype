@@ -242,6 +242,9 @@ public class InputManager : MonoBehaviour {
 
 	public void forcedCooldown(int frames) {
 		exponentCooldown = frames;
+		for(int i = 0; i < mashBufferSize; i++){
+			mashBuffer.SetValue('*', i);
+		}
 	}
 
 }
