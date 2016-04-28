@@ -60,6 +60,7 @@ public class InputManager : MonoBehaviour {
 		AudioSource[] sources = GetComponents<AudioSource>();
 		audioOne = sources[1];
 		audioTwo = sources[2];
+        audioTwo.pitch *= -0.90f;
 	}
 	
 	// Update is called once per frame
@@ -233,7 +234,7 @@ public class InputManager : MonoBehaviour {
 			return;
 		}
 		else {
-			Debug.Log("playin audio");
+			//Debug.Log("playin audio"); heavy lag lol
 			if(audioOne.isPlaying) {
 				audioTwo.PlayOneShot(clip);
 			}

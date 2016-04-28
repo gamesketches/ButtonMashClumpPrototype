@@ -36,12 +36,25 @@ public class OwnerScript : MonoBehaviour {
 			rb2D.velocity = Vector2.Lerp(rb2D.velocity, target.transform.position - gameObject.transform.position, 
 																								headingTime);
 			headingTime += directionChangeRate / (directionChangeRate * 60);
-		}
+		}   
 	}
 
 	void OnTriggerEnter2D(Collider2D collider) {
 		string layerMask = LayerMask.LayerToName(collider.gameObject.layer);
-		if(layerMask == "Players") {
+
+        //if (layerMask == "Bullets")
+        if (layerMask == "BulletsSet" || layerMask == "BulletsHorus")
+        {
+            OwnerScript otherOwner = collider.gameObject.GetComponent<OwnerScript>();
+            if (otherOwner.mother == mother)
+            {
+                Physics2D.IgnoreCollision(collider, GetComponent<Collider2D>());
+                //unity doc literally has bullet LOL Physics.IgnoreCollision(bullet.GetComponent<Collider>(), GetComponent<Collider>());
+                return;
+            }
+        }
+
+        if (layerMask == "Players") {
 			if(collider.gameObject != mother) {
                 collider.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
                 Destroy(gameObject);
@@ -53,20 +66,56 @@ public class OwnerScript : MonoBehaviour {
 					Destroy(gameObject);
 				}
 			} else {
-				Destroy(gameObject);
+                //reimplement bounces
+
+                if (bounces > 0)
+                {
+                    //bounce, 
+                    rb2D.velocity = rb2D.velocity * -1;
+                    bounces--;
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
 			}
-		} else if(layerMask == "Bullets") {
-			OwnerScript otherOwner = collider.gameObject.GetComponent<OwnerScript> ();
+//		} else if(layerMask == "Bullets") {
+		} else if((layerMask == "BulletsSet" && this.gameObject.layer == 13) || (layerMask == "BulletsHorus" && this.gameObject.layer == 12)) {
+            OwnerScript otherOwner = collider.gameObject.GetComponent<OwnerScript> ();
 			if (otherOwner.mother == mother) {
-				return;
+                return;
+                //this is no longer reached - cs
 			}
 			BulletType otherType = otherOwner.GetType();
-			if((type == otherType) || 
-				(type == BulletType.Roundabout && otherType == BulletType.Point) ||
-				(type == BulletType.Point && otherType == BulletType.Block) ||
-				(type == BulletType.Block && otherType == BulletType.Roundabout)) {
-                Debug.Log("Starting coroutine");
+			if(type == otherType) {
                 StartCoroutine(PlayBulletCrash());
+                Destroy(collider.gameObject);
+            }
+            else if ((type == BulletType.Roundabout && otherType == BulletType.Point) ||
+				    (type == BulletType.Point && otherType == BulletType.Block) ||
+				    (type == BulletType.Block && otherType == BulletType.Roundabout)){ 
+                //BULLET CONSUME START HERE
+
+                //if point eats block then give point bounces?
+                if (type == BulletType.Point && otherType == BulletType.Block)
+                {
+                    bounces += 3;
+                }
+
+                // if roundabouts eats point increase speed and regain tracking
+                if (type == BulletType.Roundabout && otherType == BulletType.Point)
+                {
+                    headingTime += 3.0f;
+                    rb2D.velocity *= 1.2f;
+                }
+
+                // make blocks grow if eating a roundabout
+                if (type == BulletType.Block && otherType == BulletType.Roundabout)
+                {
+                    this.transform.localScale *= 1.2f;
+                }
+
+                //StartCoroutine(PlayBulletCrash());
                 Destroy(collider.gameObject);
             }
         }
@@ -74,7 +123,6 @@ public class OwnerScript : MonoBehaviour {
 
     IEnumerator PlayBulletCrash()
     {
-        Debug.Log("inside coroutine");
         GameObject crash = ((GameObject)Instantiate(bltCrashPrefab, transform.position, Quaternion.identity));
         crash.GetComponent<Transform>().localScale = new Vector3(collisionScale, collisionScale);
         yield return null;//new WaitForSeconds(1.0f);

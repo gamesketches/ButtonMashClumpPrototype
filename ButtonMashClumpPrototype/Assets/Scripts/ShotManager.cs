@@ -19,12 +19,16 @@ public class ShotManager : MonoBehaviour {
 	private int mashBufferSize;
 	private PlayerMovement movementManager;
 
+
 	public delegate void ShotInterpreter(char[] mashBuffer);
 	public ShotInterpreter shotInterpreter;
 
+    public PlayerMovement testpub;
+    public Player player;
 	void Start() {
-		movementManager = gameObject.GetComponent<PlayerMovement>();
-		shotInterpreter = InputEqualsNumber;
+		//movementManager = gameObject.GetComponent<PlayerMovement>();
+		movementManager = testpub;
+        shotInterpreter = InputEqualsNumber;
 	}
 
 	public void SetMashBufferSize(int bufferSize) {
@@ -71,9 +75,19 @@ public class ShotManager : MonoBehaviour {
 		bulletRB.velocity = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad)) * speed;
 
 		OwnerScript script = bullet.GetComponent<OwnerScript>();
-		Player player = gameObject.GetComponent<Player>();
-		script.Initialize(type, gameObject, gameObject.GetComponent<PlayerHealth>().opponent, player.number); 
-		BulletManager.Instance.AddBullet(bullet);
+		player = gameObject.GetComponent<Player>();
+		script.Initialize(type, gameObject, gameObject.GetComponent<PlayerHealth>().opponent, player.number);
+        //changing bullets to be on their own player layers 
+        if (player.name == "Player0")
+        {
+            bullet.layer = 12;
+        }
+        if (player.name == "Player1")
+        {
+            bullet.layer = 13;
+        }//Seth Bullets layer
+
+        BulletManager.Instance.AddBullet(bullet);
 	}
 
 	public void InputEqualsNumber(char[] mashBuffer) {
@@ -117,13 +131,24 @@ public class ShotManager : MonoBehaviour {
 				bulletTypes.Add(theBulletType);	
 			}
 		}
+        StartCoroutine(createManyBullets(bulletAngles, bulletTypes));
+        /*
 		for(int i = 0; i < bulletAngles.Count; i++) {
 			createBullet(bulletAngles[i], Random.Range(15.0f, 25.0f), bulletTypes[i]);
-		}
+		}*/
 	}
 
-	//ski's melee - similar to charged 360 degree attack in Zelda LTTP
-	public void InputMeleeAttacksSki(char[] mashBuffer)
+    IEnumerator createManyBullets(List<float> bulletAngles, List<BulletType> bulletTypes)
+    {
+        for (int i = 0; i < bulletAngles.Count; i++)
+        {
+            createBullet(bulletAngles[i], Random.Range(15.0f, 25.0f), bulletTypes[i]);
+        }
+        yield return null;
+    }
+
+    //ski's melee - similar to charged 360 degree attack in Zelda LTTP
+    public void InputMeleeAttacksSki(char[] mashBuffer)
 	{
 		int aCount, bCount;
 
@@ -177,6 +202,7 @@ public class ShotManager : MonoBehaviour {
 		TallyInputs(out numAs, out numBs, mashBuffer);
 		angle += 10.0f * numAs;
 		angle -= 10.0f * numBs;
+        Debug.Log("lag");
 		createBullet(angle);
 	}
 
@@ -195,10 +221,10 @@ public class ShotManager : MonoBehaviour {
 
 		for(int i = 0; i < horis; i++) {
 			createBullet(10.0f * i);
+            Debug.Log("laggy do");
+        }
 
-		}
-
-		for(int i = 0; i < verts; i++) {
+        for (int i = 0; i < verts; i++) {
 			createBullet(90.0f - (10.0f * i));
 		}
 	}
@@ -214,33 +240,51 @@ public class ShotManager : MonoBehaviour {
 		for(int i = 0; i < mashBufferSize;i++){
 			pattern = string.Concat(mashBuffer[i].ToString(), mashBuffer[++i].ToString());
 			if(pattern.CompareTo(aa) == 1){
-
+                StartCoroutine(createTrioBullets(10.0f, 0.0f, -10.0f));
+                /*
 				createBullet(10.0f);
 				createBullet(0.0f);
 				createBullet(-10.0f);
-			}
+                */
+            }
 
-			else if(pattern.CompareTo(bb) == 1) {
-				createBullet(100.0f);
+            else if(pattern.CompareTo(bb) == 1) {
+                StartCoroutine(createTrioBullets(100.0f, 90.0f, 80.0f));
+                /*
+                createBullet(100.0f);
 				createBullet(90.0f);
 				createBullet(80.0f);
+                */
 			}
 			else if(pattern.CompareTo(ab) == 1) {
-				createBullet(-90.0f);
+                StartCoroutine(createTrioBullets(-90.0f, -80.0f, -100.0f));
+                /*
+                createBullet(-90.0f);
 				createBullet(-80.0f);
 				createBullet(-100.0f);
-			}
-			else if(pattern.CompareTo(ba) == 1){
-				createBullet(180.0f);
+                */
+            }
+            else if(pattern.CompareTo(ba) == 1){
+                StartCoroutine(createTrioBullets(180.0f, 190.0f, 2000.0f));
+                /*
+                createBullet(180.0f);
 				createBullet(190.0f);
 				createBullet(200.0f);
+                */
 			}
 		}
 	}
 
+    IEnumerator createTrioBullets(float angle1, float angle2, float angle3)
+    {
+        createBullet(angle1);
+        createBullet(angle2);
+        createBullet(angle3);
+        Debug.Log("creating trio");
+        yield return null;
+    }
 
-
-	public void InputEqualsRandom(char[] mashBuffer) {
+    public void InputEqualsRandom(char[] mashBuffer) {
 		int bulletNumber = 0;
 		List<BulletType> bulletTypes = new List<BulletType>();
 		for(int i = 0; i < mashBufferSize; i++) {
@@ -258,6 +302,7 @@ public class ShotManager : MonoBehaviour {
 
 		for(int i = 0; i < bulletNumber; i++) {
 			createBullet(Random.Range(0.0f, 360.0f), Random.Range(15.0f, 25.0f), bulletTypes[i]);
+            Debug.Log("big lag");
 		}
 	}
 
@@ -266,8 +311,8 @@ public class ShotManager : MonoBehaviour {
 
 		TallyInputs(out aCount, out bCount, mashBuffer);
 
-		float width = aCount * 0.3f;
-		float height = bCount * 0.3f;
+		//float width = aCount * 0.3f;
+		//float height = bCount * 0.3f;
 
 		// dem Lupin III references
 		GameObject monkeyPunch;

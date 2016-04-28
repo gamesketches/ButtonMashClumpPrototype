@@ -15,10 +15,11 @@ public class MeleeScript : MonoBehaviour {
 		if(layerMask == "Players") {
 			if(collider.gameObject != mother) {
 				collider.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
+                Debug.Log("Hit the player with sword!");
 				collider.gameObject.GetComponent<InputManager>().forcedCooldown(cooldownDamage);
 			}
 		} 
-		else if(layerMask == "Bullets" && collider.gameObject.GetComponent<OwnerScript>().mother != mother) {
+		else if((layerMask == "BulletsSet" || layerMask == "BulletsHorus") && (collider.gameObject.GetComponent<OwnerScript>().mother != mother)) {
 			if(nullifiesProjectiles){
 				Debug.Log("TriggerWarning");
 				Destroy(collider.gameObject);
